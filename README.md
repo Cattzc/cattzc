@@ -2,79 +2,43 @@
 
 # Jaye
 
-<a href="https://github.com/YOUR_USERNAME">
-  <img src="https://cdn.simpleicons.org/github" width="20">
-</a>
-&nbsp;&nbsp;&nbsp;
-<a href="https://linkedin.com/in/YOUR_USERNAME">
-  <img src="https://cdn.simpleicons.org/linkedin" width="20">
-</a>
-&nbsp;&nbsp;&nbsp;
-<a href="mailto:YOUR_EMAIL">
-  <img src="https://cdn.simpleicons.org/gmail" width="20">
-</a>
+<br>
+
+<a href="https://github.com/YOUR_USERNAME">GitHub</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://linkedin.com/in/YOUR_USERNAME">LinkedIn</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="mailto:YOUR_EMAIL">Email</a>
 
 </div>
 
-<br>
+<br><br>
 
 <table align="center">
 <tr>
 
-<td width="250" align="center">
-
-<img src="https://cdn.simpleicons.org/javascript" width="38">
-
+<td align="center" width="180">
+<img src="https://cdn.simpleicons.org/javascript" width="34">
 <br><br>
-
 <b>JavaScript</b>
-
-<br>
-
-<sub>Frontend · Logic</sub>
-
 </td>
 
-<td width="250" align="center">
-
-<img src="https://cdn.simpleicons.org/html5" width="38">
-
+<td align="center" width="180">
+<img src="https://cdn.simpleicons.org/html5" width="34">
 <br><br>
-
 <b>HTML</b>
-
-<br>
-
-<sub>Structure · Markup</sub>
-
 </td>
 
-<td width="250" align="center">
-
-<img src="https://cdn.simpleicons.org/css" width="38">
-
+<td align="center" width="180">
+<img src="https://cdn.simpleicons.org/css" width="34">
 <br><br>
-
 <b>CSS</b>
-
-<br>
-
-<sub>Layout · Styling</sub>
-
 </td>
 
-<td width="250" align="center">
-
-<img src="https://cdn.simpleicons.org/python" width="38">
-
+<td align="center" width="180">
+<img src="https://cdn.simpleicons.org/python" width="34">
 <br><br>
-
 <b>Python</b>
-
-<br>
-
-<sub>Scripts · Tools</sub>
-
 </td>
 
 </tr>
@@ -87,55 +51,49 @@
 
 <td width="50%" valign="top">
 
-### 01 — Work
+### Repositories
 
 <br>
 
-**Project name**
+<a href="https://github.com/YOUR_USERNAME/REPO_1">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=YOUR_USERNAME&repo=REPO_1&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=8b949e&icon_color=ffffff">
+</a>
 
-What it does, in one line.
+<br>
 
-`JavaScript` `CSS`
-
-<br><br>
-
-**Project name**
-
-What it does, in one line.
-
-`Python` `JavaScript`
-
-<br><br>
-
-**Project name**
-
-What it does, in one line.
-
-`HTML` `CSS`
+<a href="https://github.com/YOUR_USERNAME/REPO_2">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=YOUR_USERNAME&repo=REPO_2&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=8b949e&icon_color=ffffff">
+</a>
 
 </td>
 
 <td width="50%" valign="top">
 
-### 02 — Now
+### Activity
 
 <br>
 
-**Building**
+<img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&hide_title=true&hide_border=true&bg_color=00000000&text_color=8b949e&icon_color=ffffff">
 
-Project / thing you're working on
+</td>
 
-<br><br>
-
-**Exploring**
-
-Technology / idea you're testing
+</tr>
+</table>
 
 <br><br>
 
-**Learning**
+<table align="center">
+<tr>
 
-Something you're currently getting better at
+<td align="center" width="50%">
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=8b949e">
+
+</td>
+
+<td align="center" width="50%">
+
+<img src="https://streak-stats.demolab.com?user=YOUR_USERNAME&hide_border=true&background=00000000&ring=ffffff&fire=ffffff&currStreakLabel=ffffff&sideLabels=8b949e&currStreakNum=ffffff&sideNums=ffffff&dates=555555">
 
 </td>
 
@@ -144,22 +102,10 @@ Something you're currently getting better at
 
 <br>
 
-### 03 — GitHub
-
-<div align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&hide_border=true&hide_title=true&bg_color=00000000&text_color=8b949e&icon_color=ffffff">
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&hide_border=true&bg_color=00000000&text_color=8b949e&title_color=ffffff">
-
-</div>
-
-<br>
-
 <div align="center">
 
 <a href="https://github.com/YOUR_USERNAME?tab=repositories">
-  Repositories →
+View all repositories →
 </a>
 
 </div>
