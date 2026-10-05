@@ -1,260 +1,148 @@
-<div align="center">
+<h1 align="center">Jaye</h1>
 
-# Jaye
-
-### Developer · Builder · Experimenter
-
-Building web experiences, interfaces and things I find interesting.
-
-<br>
-
-<a href="https://github.com/[USERNAME]">
-  <img src="https://img.shields.io/badge/GitHub-111111?style=for-the-badge&logo=github&logoColor=white" />
-</a>
-<a href="[LINKEDIN]">
-  <img src="https://img.shields.io/badge/LinkedIn-111111?style=for-the-badge&logo=linkedin&logoColor=white" />
-</a>
-<a href="mailto:[EMAIL]">
-  <img src="https://img.shields.io/badge/Email-111111?style=for-the-badge&logo=gmail&logoColor=white" />
-</a>
-
-</div>
+<p align="center">
+  <a href="https://github.com/YOUR_USERNAME">
+    <img src="https://img.shields.io/badge/GitHub-111111?style=flat-square&logo=github&logoColor=white">
+  </a>
+  <a href="https://linkedin.com/in/YOUR_USERNAME">
+    <img src="https://img.shields.io/badge/LinkedIn-111111?style=flat-square&logo=linkedin&logoColor=white">
+  </a>
+  <a href="mailto:YOUR_EMAIL">
+    <img src="https://img.shields.io/badge/Email-111111?style=flat-square&logo=gmail&logoColor=white">
+  </a>
+</p>
 
 <br>
 
----
+<table align="center">
+  <tr>
+    <td align="center" width="180">
+      <br>
+      <img src="https://cdn.simpleicons.org/javascript" width="42">
+      <br><br>
+      <strong>JavaScript</strong>
+      <br><br>
+    </td>
 
-## About
+    <td align="center" width="180">
+      <br>
+      <img src="https://cdn.simpleicons.org/html5" width="42">
+      <br><br>
+      <strong>HTML</strong>
+      <br><br>
+    </td>
 
-I like building things from scratch, experimenting with interfaces,
-and pushing projects beyond the first version that simply works.
+    <td align="center" width="180">
+      <br>
+      <img src="https://cdn.simpleicons.org/css" width="42">
+      <br><br>
+      <strong>CSS</strong>
+      <br><br>
+    </td>
 
-My main stack:
-
-<br>
-
-<div align="center">
-
-<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-<img src="https://skillicons.dev/icons?i=js" width="60" />
-</a>
-
-&nbsp;&nbsp;&nbsp;
-
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
-<img src="https://skillicons.dev/icons?i=html" width="60" />
-</a>
-
-&nbsp;&nbsp;&nbsp;
-
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
-<img src="https://skillicons.dev/icons?i=css" width="60" />
-</a>
-
-&nbsp;&nbsp;&nbsp;
-
-<a href="https://www.python.org/">
-<img src="https://skillicons.dev/icons?i=python" width="60" />
-</a>
-
-</div>
-
-<br>
-
-<div align="center">
-
-<sub>JavaScript</sub>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<sub>HTML</sub>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<sub>CSS</sub>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<sub>Python</sub>
-
-</div>
-
-<br><br>
-
----
-
-## Selected Work
-
-<table>
-<tr>
-
-<td width="50%" valign="top">
-
-### [Project One]
-
-[Short description of what it does.]
-
-<br>
-
-<img src="https://skillicons.dev/icons?i=js,html,css" height="28" />
-
-<br><br>
-
-[GitHub ↗] · [Live ↗]
-
-</td>
-
-<td width="50%" valign="top">
-
-### [Project Two]
-
-[Short description of what it does.]
-
-<br>
-
-<img src="https://skillicons.dev/icons?i=python" height="28" />
-
-<br><br>
-
-[GitHub ↗] · [Live ↗]
-
-</td>
-
-</tr>
-
-<tr>
-
-<td width="50%" valign="top">
-
-### [Project Three]
-
-[Short description of what it does.]
-
-<br>
-
-<img src="https://skillicons.dev/icons?i=js,css" height="28" />
-
-<br><br>
-
-[GitHub ↗] · [Live ↗]
-
-</td>
-
-<td width="50%" valign="top">
-
-### [Project Four]
-
-[Short description of what it does.]
-
-<br>
-
-<img src="https://skillicons.dev/icons?i=html,css,js" height="28" />
-
-<br><br>
-
-[GitHub ↗] · [Live ↗]
-
-</td>
-
-</tr>
+    <td align="center" width="180">
+      <br>
+      <img src="https://cdn.simpleicons.org/python" width="42">
+      <br><br>
+      <strong>Python</strong>
+      <br><br>
+    </td>
+  </tr>
 </table>
 
-<br>
+<br><br>
 
----
-
-## Currently
+<h2>Projects</h2>
 
 <table>
-<tr>
+  <tr>
+    <td width="50%" valign="top">
 
-<td width="33%" align="center">
+### Project One
 
-**BUILDING**
+A short, factual description of the project.
 
-<br><br>
+<br>
 
-[Current project]
-
-</td>
-
-<td width="33%" align="center">
-
-**EXPLORING**
+`JavaScript` · `HTML` · `CSS`
 
 <br><br>
 
-[Current interest]
+<a href="YOUR_PROJECT_LINK">View repository →</a>
 
 </td>
 
-<td width="33%" align="center">
+<td width="50%" valign="top">
 
-**EXPERIMENTING**
+### Project Two
+
+A short, factual description of the project.
+
+<br>
+
+`Python` · `JavaScript`
 
 <br><br>
 
-[Current experiment]
+<a href="YOUR_PROJECT_LINK">View repository →</a>
+
+</td>
+  </tr>
+
+  <tr>
+    <td width="50%" valign="top">
+
+### Project Three
+
+A short, factual description of the project.
+
+<br>
+
+`JavaScript` · `CSS`
+
+<br><br>
+
+<a href="YOUR_PROJECT_LINK">View repository →</a>
 
 </td>
 
-</tr>
+<td width="50%" valign="top">
+
+### Project Four
+
+A short, factual description of the project.
+
+<br>
+
+`Python`
+
+<br><br>
+
+<a href="YOUR_PROJECT_LINK">View repository →</a>
+
+</td>
+  </tr>
 </table>
 
-<br>
-
----
-
-## GitHub
-
-<div align="center">
-
-<a href="https://github.com/[USERNAME]">
-<img
-  src="https://github-readme-stats.vercel.app/api?username=[USERNAME]&show_icons=true&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=8b949e&icon_color=ffffff"
-  height="165"
-/>
-</a>
-
-<a href="https://github.com/[USERNAME]">
-<img
-  src="https://github-readme-stats.vercel.app/api/top-langs/?username=[USERNAME]&layout=compact&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=8b949e"
-  height="165"
-/>
-</a>
-
-</div>
-
-<br>
-
----
-
-## Connect
-
-<div align="center">
-
-<a href="https://github.com/[USERNAME]">
-<img src="https://skillicons.dev/icons?i=github" width="42" />
-</a>
-
-&nbsp;&nbsp;&nbsp;
-
-<a href="[LINKEDIN]">
-<img src="https://skillicons.dev/icons?i=linkedin" width="42" />
-</a>
-
-&nbsp;&nbsp;&nbsp;
-
-<a href="[DISCORD]">
-<img src="https://skillicons.dev/icons?i=discord" width="42" />
-</a>
-
-&nbsp;&nbsp;&nbsp;
-
-<a href="[X]">
-<img src="https://skillicons.dev/icons?i=twitter" width="42" />
-</a>
-
-</div>
-
 <br><br>
 
-<div align="center">
+<h2>GitHub</h2>
 
-<sub>Jaye · building quietly.</sub>
+<p align="center">
+  <img
+    src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&hide_border=true&hide_title=true&bg_color=00000000&text_color=8b949e&icon_color=ffffff"
+    height="165"
+  />
+  <img
+    src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&hide_border=true&bg_color=00000000&text_color=8b949e&title_color=ffffff"
+    height="165"
+  />
+</p>
 
-</div>
+<br>
+
+<p align="center">
+  <a href="https://github.com/YOUR_USERNAME?tab=repositories">
+    View all repositories →
+  </a>
+</p>
