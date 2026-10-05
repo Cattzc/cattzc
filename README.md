@@ -1,111 +1,113 @@
 <div align="center">
 
+<br>
+
 # Jaye
 
 <br>
 
-<a href="https://github.com/YOUR_USERNAME">GitHub</a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://linkedin.com/in/YOUR_USERNAME">LinkedIn</a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="mailto:YOUR_EMAIL">Email</a>
+<table>
+<tr>
+<td align="center" width="54">
+<a href="https://github.com/YOUR_USERNAME">
+<img src="https://cdn.simpleicons.org/github/FFFFFF" width="22">
+</a>
+</td>
+
+<td width="10"></td>
+
+<td align="center" width="54">
+<a href="https://linkedin.com/in/YOUR_USERNAME">
+<img src="https://cdn.simpleicons.org/linkedin/FFFFFF" width="22">
+</a>
+</td>
+
+<td width="10"></td>
+
+<td align="center" width="54">
+<a href="mailto:YOUR_EMAIL">
+<img src="https://cdn.simpleicons.org/gmail/FFFFFF" width="22">
+</a>
+</td>
+</tr>
+</table>
+
+<br><br>
+
+</div>
+
+<div align="center">
+
+<table>
+<tr>
+
+<td align="center" width="190" height="145">
+
+<img src="https://cdn.simpleicons.org/javascript/F7DF1E" width="48">
+
+<br><br>
+
+<strong>JavaScript</strong>
+
+</td>
+
+<td align="center" width="190" height="145">
+
+<img src="https://cdn.simpleicons.org/html5/E34F26" width="48">
+
+<br><br>
+
+<strong>HTML</strong>
+
+</td>
+
+<td align="center" width="190" height="145">
+
+<img src="https://cdn.simpleicons.org/css3/1572B6" width="48">
+
+<br><br>
+
+<strong>CSS</strong>
+
+</td>
+
+<td align="center" width="190" height="145">
+
+<img src="https://cdn.simpleicons.org/python/3776AB" width="48">
+
+<br><br>
+
+<strong>Python</strong>
+
+</td>
+
+</tr>
+</table>
 
 </div>
 
 <br><br>
 
-<table align="center">
-<tr>
+<div align="center">
 
-<td align="center" width="180">
-<img src="https://cdn.simpleicons.org/javascript" width="34">
-<br><br>
-<b>JavaScript</b>
-</td>
+<img
+src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&hide_title=true&hide_rank=true&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=00000000&text_color=8B949E&icon_color=FFFFFF"
+height="150"
+/>
 
-<td align="center" width="180">
-<img src="https://cdn.simpleicons.org/html5" width="34">
-<br><br>
-<b>HTML</b>
-</td>
+<img
+src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&hide_border=true&bg_color=00000000&text_color=8B949E&title_color=FFFFFF"
+height="150"
+/>
 
-<td align="center" width="180">
-<img src="https://cdn.simpleicons.org/css" width="34">
-<br><br>
-<b>CSS</b>
-</td>
-
-<td align="center" width="180">
-<img src="https://cdn.simpleicons.org/python" width="34">
-<br><br>
-<b>Python</b>
-</td>
-
-</tr>
-</table>
-
-<br><br>
-
-<table>
-<tr>
-
-<td width="50%" valign="top">
-
-### Repositories
-
-<br>
-
-<a href="https://github.com/YOUR_USERNAME/REPO_1">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=YOUR_USERNAME&repo=REPO_1&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=8b949e&icon_color=ffffff">
-</a>
-
-<br>
-
-<a href="https://github.com/YOUR_USERNAME/REPO_2">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=YOUR_USERNAME&repo=REPO_2&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=8b949e&icon_color=ffffff">
-</a>
-
-</td>
-
-<td width="50%" valign="top">
-
-### Activity
-
-<br>
-
-<img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&hide_title=true&hide_border=true&bg_color=00000000&text_color=8b949e&icon_color=ffffff">
-
-</td>
-
-</tr>
-</table>
-
-<br><br>
-
-<table align="center">
-<tr>
-
-<td align="center" width="50%">
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=8b949e">
-
-</td>
-
-<td align="center" width="50%">
-
-<img src="https://streak-stats.demolab.com?user=YOUR_USERNAME&hide_border=true&background=00000000&ring=ffffff&fire=ffffff&currStreakLabel=ffffff&sideLabels=8b949e&currStreakNum=ffffff&sideNums=ffffff&dates=555555">
-
-</td>
-
-</tr>
-</table>
+</div>
 
 <br>
 
 <div align="center">
 
 <a href="https://github.com/YOUR_USERNAME?tab=repositories">
-View all repositories →
+<img src="https://img.shields.io/badge/REPOSITORIES-161616?style=for-the-badge&labelColor=0D0D0D&color=161616">
 </a>
 
 </div>
