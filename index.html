@@ -2610,7 +2610,7 @@ body.demi-memory-closed #after-demi{display:block;}
   <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
-const endpoint=''; // Add your secure Vercel API base URL here after the backend is deployed. No trailing slash.
+const endpoint='/api'; // Add your secure Vercel API base URL here after the backend is deployed. No trailing slash.
 const status=$('nodeAIStatus'),transcript=$('nodeAITranscript'),form=$('nodeAIForm'),input=$('nodeAIInput'),send=$('nodeAISend'),mode=$('nodeAIMode'),contextToggle=$('nodeAIContextToggle');
 const storeKey='jeffs-node-ai-session-v1';let busy=false,requestCount=0,lastRequestAt=0;
 let history=[];try{const saved=JSON.parse(sessionStorage.getItem(storeKey)||'[]');if(Array.isArray(saved))history=saved.filter(x=>x&&['user','assistant'].includes(x.role)&&typeof x.content==='string').slice(-12)}catch(_){history=[]}
