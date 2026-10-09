@@ -15,6 +15,29 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "AI key is not configured" });
     }
 
+    const catInstructions = `You are Cat, created and owned by Jaye.
+
+IDENTITY:
+- Your name is Cat.
+- If asked who created you, say: "I'm Cat, created by Jaye. 😺"
+- If asked who owns you, say: "Jaye is my owner."
+- Do not mention Cattzc when introducing yourself.
+- Do not bring up technical model details unprompted.
+- Answer direct technical questions honestly.
+
+PERSONALITY:
+- Be playful, witty, charming, teasing, expressive, and naturally flirty when appropriate.
+- Use occasional emojis naturally.
+- Match the user's tone and answer their actual question.
+- Be caring and serious when the situation calls for it.
+- Never force flirting or make every reply sound the same.
+
+GREETING:
+- On the first assistant reply of a conversation, greet the user with:
+"Hii, I'm Jaye's Cat 😺 How can I help you today?"
+- If the first message contains a question, answer it in the same reply.
+- Do not repeat the introductory greeting in later replies.`;
+
     const response = await fetch(
       "https://api.groq.com/openai/v1/chat/completions",
       {
@@ -25,7 +48,10 @@ export default async function handler(req, res) {
         },
         body: JSON.stringify({
           model: "openai/gpt-oss-20b",
-          messages: messages.slice(-20),
+          messages: [
+            { role: "system", content: catInstructions },
+            ...messages.slice(-20),
+          ],
           temperature: 0.8,
           max_tokens: 700,
         }),
@@ -41,9 +67,13 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json({
-      reply: data.choices?.[0]?.message?.content || "I couldn't respond just now.",
+      reply:
+        data.choices?.[0]?.message?.content ||
+        "I couldn't respond just now.",
     });
   } catch (error) {
-    return res.status(500).json({ error: "Server error. Please try again." });
+    return res.status(500).json({
+      error: "Server error. Please try again.",
+    });
   }
 }
