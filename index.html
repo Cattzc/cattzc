@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#03050a">
   <meta name="description" content="Jayé / Yarc personal archive">
   <meta name="color-scheme" content="dark">
-  <title>Jayé / Yarc</title>
+  <title>Jayé ㅤEffs.</title>
   <style>
 :root{
   --bg:#03050a;
@@ -1922,6 +1922,26 @@ body.demi-memory-closed #after-demi{display:block;}
 }
 @media(prefers-reduced-motion:reduce){.hero-entry-grid .cat-chat-mini,.node-ai-chip,.node-ai-tool{transition:none}}
  
+ 
+/* Premium contact shortcuts + Glimpse music; isolated from original player and peak effects. */
+.glimpse-contact{position:relative;z-index:8;display:flex;justify-content:flex-end;gap:10px;width:calc(100% - 44px);max-width:980px;margin:12px auto 4px}
+.glimpse-contact a{position:relative;flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:7px;min-height:34px;padding:7px 11px;border:1px solid rgba(155,190,255,.25);border-radius:999px;background:linear-gradient(135deg,rgba(19,29,51,.72),rgba(6,10,22,.82));box-shadow:inset 0 1px rgba(255,255,255,.07),0 0 0 3px rgba(112,157,230,.025),0 5px 22px rgba(65,112,190,.12);backdrop-filter:blur(14px);color:#dce8ff;text-decoration:none;font-size:.61rem;font-weight:650;letter-spacing:.055em;transition:transform .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease;animation:instaAura 4s ease-in-out infinite}
+.contact-icon{font-size:.9rem;color:#a9ccff;line-height:1}
+.contact-arrow{font-size:.72rem;color:#7189ad;transition:transform .22s ease,color .22s ease}
+.glimpse-contact a:hover,.glimpse-contact a:focus-visible{border-color:rgba(158,198,255,.58);background:linear-gradient(135deg,rgba(30,47,78,.92),rgba(10,15,31,.94));box-shadow:0 8px 30px rgba(65,112,190,.12),inset 0 1px rgba(255,255,255,.08);transform:translateY(-2px);outline:none}
+.glimpse-contact a:hover .contact-arrow{transform:translate(2px,-2px);color:#e5efff}
+.glimpse-section{position:relative;z-index:4;width:min(760px,calc(100% - 30px));margin:100px auto 70px;padding:clamp(22px,5vw,38px);border:1px solid rgba(151,190,255,.2);border-radius:24px;background:radial-gradient(ellipse at 10% 0%,rgba(83,125,202,.13),transparent 45%),linear-gradient(145deg,rgba(13,20,39,.88),rgba(5,8,19,.86));box-shadow:0 24px 90px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.045);backdrop-filter:blur(16px)}
+.glimpse-heading{margin:0 0 24px;font-size:clamp(2.3rem,9vw,4rem);font-weight:650;letter-spacing:-.065em;color:#edf4ff;text-shadow:0 0 34px rgba(123,170,255,.12)}
+.glimpse-tracks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.glimpse-track{display:flex;align-items:center;gap:12px;min-width:0;padding:15px 13px;border:1px solid rgba(151,190,255,.16);border-radius:15px;background:linear-gradient(130deg,rgba(12,20,39,.82),rgba(6,10,23,.72));color:#dce8fa;text-align:left;cursor:pointer;transition:border-color .22s,transform .22s,background .22s,box-shadow .22s}
+.glimpse-track:hover,.glimpse-track.is-active{border-color:rgba(151,190,255,.58);background:linear-gradient(130deg,rgba(23,37,66,.9),rgba(8,14,29,.86));transform:translateY(-2px);box-shadow:0 9px 26px rgba(48,89,155,.12)}
+.glimpse-play{display:grid;place-items:center;flex:0 0 36px;height:36px;border-radius:50%;border:1px solid rgba(151,190,255,.34);background:rgba(111,159,231,.07);color:#c6dcff;font-size:.8rem}
+.glimpse-track-name{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.78rem;letter-spacing:.04em}
+.glimpse-track-state{display:block;margin-top:5px;color:#8295b2;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase}
+.glimpse-note{margin:16px 0 0;color:#7d8da8;font-size:.68rem;line-height:1.6}
+@keyframes instaAura{0%,100%{box-shadow:inset 0 1px rgba(255,255,255,.07),0 0 0 3px rgba(112,157,230,.025),0 5px 22px rgba(65,112,190,.10)}50%{box-shadow:inset 0 1px rgba(255,255,255,.09),0 0 0 4px rgba(112,157,230,.055),0 5px 25px rgba(65,112,190,.19)}}
+@media(max-width:440px){.glimpse-contact{margin-top:10px}.glimpse-tracks{grid-template-columns:1fr}.glimpse-section{margin-top:70px}.glimpse-track{padding:13px}}
+@media(prefers-reduced-motion:reduce){.glimpse-contact a,.contact-arrow,.glimpse-track{transition:none;animation:none}}
 </style>
   <style id="mobile-layout-glitch-fix-v2">
 /* Hard layout guard: prevent the archive from rendering wider than the phone viewport. */
@@ -2150,6 +2170,255 @@ main > *, main section, main header, .hero, .hero > *, .hero-entry-grid, .archiv
  .hero-entry-grid .cat-chat-mini,.archive-entry { transition:none !important; }
 }
 </style>
+  <style id="instagram-inline-dark-name-refinement">
+/* Instagram is part of the page flow, not a floating screen overlay. */
+.glimpse-contact{
+  position:relative !important; top:auto !important; right:auto !important; left:auto !important;
+  z-index:8 !important; display:flex !important; justify-content:flex-end !important;
+  width:calc(100% - 36px) !important; max-width:760px !important;
+  margin:16px auto 0 !important; pointer-events:auto !important;
+}
+.glimpse-contact a{
+  min-height:30px !important; padding:6px 10px !important; gap:6px !important;
+  font-size:10px !important; letter-spacing:.06em !important; border-radius:9px !important;
+  color:#d9e4f6 !important; border:1px solid rgba(125,151,190,.22) !important;
+  background:linear-gradient(145deg,rgba(10,14,25,.98),rgba(4,6,12,.98)) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.035),0 5px 18px rgba(0,0,0,.28) !important;
+  animation:none !important; backdrop-filter:blur(12px);
+}
+.glimpse-contact .contact-icon{color:#a78bfa !important}
+.glimpse-contact .contact-arrow{color:#64748b !important}
+.hero-name-stack{
+  font-size:clamp(3.8rem,14vw,7.2rem) !important;
+  line-height:.92 !important; letter-spacing:-.065em !important;
+  font-weight:800 !important;
+}
+.hero-name-stack > span:first-child{color:#f3f6ff !important;text-shadow:0 0 28px rgba(178,197,255,.12)}
+.hero-name-stack .hero-name-second{
+  font-size:.72em !important; line-height:1.08 !important; margin-top:.06em !important;
+  opacity:1 !important; background:linear-gradient(100deg,#a78bfa 0%,#75c8ff 90%) !important;
+  -webkit-background-clip:text !important; background-clip:text !important;
+  -webkit-text-fill-color:transparent !important; color:#a78bfa !important;
+}
+</style>
+  <style id="jayé-name-and-mini-instagram">
+/* Exact two-line hero name requested. */
+.hero-name-stack{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  gap:0 !important;
+  line-height:.98 !important;
+}
+.hero-name-stack .hero-name-second{
+  display:block !important;
+  margin:0 !important;
+  font:inherit !important;
+  font-size:.68em !important;
+  line-height:1.08 !important;
+  opacity:.88;
+}
+/* Tiny, distinctive Instagram glyph-pill; independent of the music player. */
+.glimpse-contact a{
+  min-height:27px !important;
+  padding:5px 8px !important;
+  gap:5px !important;
+  font-size:10px !important;
+  letter-spacing:.045em !important;
+  border-radius:10px !important;
+  border-color:rgba(112,174,255,.3) !important;
+  background:linear-gradient(135deg,rgba(18,35,62,.72),rgba(7,12,25,.84)) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.08),0 0 12px rgba(65,132,255,.12) !important;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.glimpse-contact .contact-icon{font-size:13px !important;line-height:1}
+.glimpse-contact .contact-arrow{font-size:10px !important;opacity:.7}
+@media(max-width:520px){
+ .glimpse-contact a{min-height:25px !important;padding:4px 7px !important;font-size:9px !important;gap:4px !important}
+ .glimpse-contact .contact-icon{font-size:12px !important}
+}
+</style>
+  <style id="instagram-visible-name-large-final">
+/* Keep Instagram visible in the page layout, not fixed to the viewport. */
+main > nav.glimpse-contact {
+  position:relative !important; inset:auto !important; transform:none !important;
+  display:flex !important; visibility:visible !important; opacity:1 !important;
+  width:calc(100% - 32px) !important; max-width:1100px !important;
+  justify-content:flex-end !important; align-items:center !important;
+  margin:12px auto 8px !important; padding:0 !important;
+  z-index:12 !important; pointer-events:auto !important;
+}
+main > nav.glimpse-contact a {
+  display:inline-flex !important; align-items:center !important; justify-content:center !important;
+  min-height:29px !important; padding:5px 9px !important; gap:5px !important;
+  font-size:10px !important; letter-spacing:.07em !important;
+  color:#dbeafe !important; text-decoration:none !important;
+  border:1px solid rgba(129,160,255,.28) !important; border-radius:999px !important;
+  background:linear-gradient(135deg,rgba(20,25,43,.96),rgba(5,8,17,.98)) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.07),0 0 16px rgba(91,113,255,.13) !important;
+  opacity:1 !important; visibility:visible !important;
+}
+main > nav.glimpse-contact .contact-icon { color:#c4b5fd !important; font-size:13px !important; }
+.hero-name-stack {
+  font-size:clamp(4.8rem,17vw,9rem) !important;
+  line-height:.9 !important; letter-spacing:-.075em !important;
+  font-weight:850 !important;
+}
+.hero-name-stack > span:first-child {
+  color:#f7f8ff !important; text-shadow:0 0 34px rgba(185,199,255,.16) !important;
+}
+.hero-name-stack .hero-name-second {
+  font-size:.78em !important; line-height:1.02 !important; margin-top:.06em !important;
+  font-weight:800 !important; opacity:1 !important;
+  background:linear-gradient(100deg,#b69aff 0%,#77d5ff 100%) !important;
+  -webkit-background-clip:text !important; background-clip:text !important;
+  -webkit-text-fill-color:transparent !important; color:#b69aff !important;
+}
+@media(max-width:520px) {
+  main > nav.glimpse-contact { width:calc(100% - 24px) !important; margin:9px auto 7px !important; }
+  main > nav.glimpse-contact a { min-height:27px !important; padding:4px 8px !important; font-size:9px !important; }
+  .hero-name-stack { font-size:clamp(4.25rem,18vw,6.8rem) !important; }
+}
+</style>
+  <style id="final-instagram-top-left-and-original-name-layout">
+/* Instagram gets its own top-left corner, away from the fixed music player. */
+main > nav.glimpse-contact {
+  position: fixed !important;
+  top: max(14px, env(safe-area-inset-top)) !important;
+  left: max(14px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  bottom: auto !important;
+  inset-inline-end: auto !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  z-index: 1001 !important;
+  pointer-events: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+main > nav.glimpse-contact a {
+  pointer-events: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  min-height: 31px !important;
+  padding: 5px 9px !important;
+  border-radius: 999px !important;
+  color: #dbeafe !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: .09em !important;
+  text-decoration: none !important;
+  border: 1px solid rgba(126, 166, 255, .28) !important;
+  background: linear-gradient(135deg, rgba(15, 24, 43, .94), rgba(4, 8, 18, .96)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 0 14px rgba(82, 130, 255, .15), 0 6px 20px rgba(0,0,0,.22) !important;
+  backdrop-filter: blur(14px) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(125%) !important;
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease !important;
+}
+main > nav.glimpse-contact a:active {
+  transform: scale(.96) !important;
+  border-color: rgba(153, 196, 255, .62) !important;
+  box-shadow: inset 0 0 12px rgba(93, 145, 255, .12), 0 0 18px rgba(82,130,255,.24) !important;
+}
+main > nav.glimpse-contact .contact-icon {
+  color: #b8a5ff !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+main > nav.glimpse-contact .contact-arrow {
+  color: #83bfff !important;
+  font-size: 11px !important;
+  opacity: .82 !important;
+}
+/* Restore the original hierarchy: very large Jayé, smaller blue Effs. below it. */
+.hero-name-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+  font-size: clamp(3.8rem, 14vw, 7.2rem) !important;
+  line-height: .92 !important;
+  letter-spacing: -.065em !important;
+  font-weight: 800 !important;
+}
+.hero-name-stack > span:first-child {
+  font: inherit !important;
+  color: #f3f6ff !important;
+  text-shadow: 0 0 28px rgba(178,197,255,.12) !important;
+}
+.hero-name-stack .hero-name-second {
+  display: block !important;
+  font-size: .72em !important;
+  font-weight: 800 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -.055em !important;
+  margin-top: .06em !important;
+  opacity: 1 !important;
+  background: linear-gradient(100deg, #a78bfa 0%, #75c8ff 90%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #a78bfa !important;
+}
+@media (max-width: 520px) {
+  main > nav.glimpse-contact {
+    top: max(12px, env(safe-area-inset-top)) !important;
+    left: max(12px, env(safe-area-inset-left)) !important;
+  }
+  main > nav.glimpse-contact a {
+    min-height: 29px !important;
+    padding: 4px 8px !important;
+    font-size: 9px !important;
+    gap: 5px !important;
+  }
+  .hero-name-stack {
+    font-size: clamp(3.8rem, 14vw, 7.2rem) !important;
+  }
+}
+</style>
+  <style id="final-instagram-nonfloating-fix">
+/* Final correction: Instagram stays in document flow; never pins to the viewport. */
+main > nav.glimpse-contact,
+.glimpse-contact {
+  position: relative !important;
+  inset: auto !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  transform: none !important;
+  z-index: 8 !important;
+  display: flex !important;
+  width: calc(100% - 32px) !important;
+  max-width: 1100px !important;
+  margin: 14px auto 10px !important;
+  padding: 0 !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+main > nav.glimpse-contact a,
+.glimpse-contact a {
+  pointer-events: auto !important;
+}
+@media (max-width: 520px) {
+  main > nav.glimpse-contact,
+  .glimpse-contact {
+    width: calc(100% - 24px) !important;
+    margin: 10px auto 8px !important;
+  }
+}
+</style>
  </head>
  <body>
   <div class="big-star" aria-hidden="true"></div>
@@ -2225,12 +2494,15 @@ main > *, main section, main header, .hero, .hero > *, .hero-entry-grid, .archiv
    <source src="Music.mp3" type="audio/mpeg">
   </audio>
   <main>
+   <nav class="glimpse-contact" aria-label="Social link">
+    <a href="https://www.instagram.com/cvechz" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile"><span class="contact-icon" aria-hidden="true">◎</span><span>Instagram</span><span class="contact-arrow" aria-hidden="true">↗</span></a>
+   </nav>
    <header class="hero hero-section">
     <div class="hero-kinetic-scene" aria-hidden="true">
      <span class="hero-orbit hero-orbit-a"></span> <span class="hero-orbit hero-orbit-b"></span> <span class="hero-orbit hero-orbit-c"></span> <span class="hero-orbit-core"></span> <span class="hero-orbit-node hero-node-a"></span> <span class="hero-orbit-node hero-node-b"></span> <span class="hero-orbit-node hero-node-c"></span> <span class="hero-signal-line"></span>
     </div>
     <div class="kicker">Personal archive / Yarc</div>
-    <h1>Jayé <span>/ Yarc</span></h1>
+    <h1 class="hero-name-stack"><span>Jayé</span><span class="hero-name-second">ㅤEffs.</span></h1>
     <div class="hero-intro">
      I’m Jayé. Most people know me as Yarc.
      <br>
@@ -2586,6 +2858,15 @@ main > *, main section, main header, .hero, .hero > *, .hero-entry-grid, .archiv
      </div>
      <p class="node-ai-footer-line">A new system / after the last memory</p>
     </div>
+   </section>
+   <section class="glimpse-section" id="glimpse" aria-labelledby="glimpseTitle">
+    <h2 class="glimpse-heading" id="glimpseTitle">Glimpse</h2>
+    <div class="glimpse-tracks" role="group" aria-label="Glimpse songs">
+     <button class="glimpse-track" type="button" data-track="glimpse/song1.mp3" aria-label="Play song one"><img class="glimpse-thumbnail" src="glimpse/cover1.jpg" alt="Song one artwork" loading="lazy"> <span class="glimpse-track-copy"><span class="glimpse-track-name">Track 01</span><span class="glimpse-track-state">Tap to play</span></span> <span class="glimpse-play" aria-hidden="true">▶</span></button>
+     <button class="glimpse-track" type="button" data-track="glimpse/song2.mp3" aria-label="Play song two"><img class="glimpse-thumbnail" src="glimpse/cover2.jpg" alt="Song two artwork" loading="lazy"> <span class="glimpse-track-copy"><span class="glimpse-track-name">Track 02</span><span class="glimpse-track-state">Tap to play</span></span> <span class="glimpse-play" aria-hidden="true">▶</span></button>
+    </div>
+    <audio id="glimpseAudio" preload="none"></audio>
+    <p class="glimpse-note" id="glimpseNote">Add two songs and their artwork to the <code>glimpse</code> folder.</p>
    </section>
    <footer>Made by @cvechz</footer>
   </main>
@@ -3079,6 +3360,18 @@ $('nodeAICopyChat').addEventListener('click',async()=>{const text=history.map(x=
 $('nodeAIClearChat').addEventListener('click',()=>{if(busy){setStatus('Stop the current request before clearing the conversation.','error');return}history=[];try{sessionStorage.removeItem(storeKey)}catch(_){}transcript.replaceChildren();addBubble('assistant','The conversation has been cleared. The rest of the archive remains untouched.');setStatus('Conversation cleared.','success')});
 mode.addEventListener('change',()=>setStatus('Response style: '+mode.options[mode.selectedIndex].text+'.'));
 renderHistory();resizeInput();
+})();
+</script>
+  <script>
+/* Independent Glimpse audio system. Does not touch the original background player. */
+(function(){
+ const audio=document.getElementById('glimpseAudio');
+ const buttons=Array.from(document.querySelectorAll('.glimpse-track'));
+ const note=document.getElementById('glimpseNote');
+ if(!audio||!buttons.length)return;
+ function paint(active){buttons.forEach(function(b){const on=b===active&& !audio.paused;b.classList.toggle('is-active',on);b.querySelector('.glimpse-play').textContent=on?'Ⅱ':'▶';b.querySelector('.glimpse-track-state').textContent=on?'Now playing':(b===active&&audio.paused?'Paused':'Tap to play');});}
+ buttons.forEach(function(button){button.addEventListener('click',async function(){const src=button.dataset.track; if(audio.dataset.current===src&&!audio.paused){audio.pause();paint(button);return;} if(audio.dataset.current!==src){audio.src=src;audio.dataset.current=src;} try{await audio.play();note.textContent='Now playing: '+button.querySelector('.glimpse-track-name').textContent;paint(button);}catch(e){note.textContent='Could not play this track yet. Make sure '+src+' exists in your deployed project.';paint(null);}});});
+ audio.addEventListener('ended',function(){paint(null);});audio.addEventListener('pause',function(){paint(null);});audio.addEventListener('play',function(){paint(buttons.find(b=>b.dataset.track===audio.dataset.current)||null);});
 })();
 </script>
  </body>
