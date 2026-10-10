@@ -1,879 +1,2053 @@
-/*
-  J.EFFS — Advanced whole-site visual stylesheet
-  Companion stylesheet for index_glimpse_about_a_je.html
-  CSS ONLY: no HTML/JS edits, no animation/keyframe/transition declarations.
-  Load this stylesheet AFTER the page's existing styles for the overrides to apply.
-*/
+/* =============================================================================
+   jeffs-peak-cinematic-skin.css
+   Jayé / Effs — obsidian, midnight navy, ice blue, silver.
+   CSS only. No HTML or JS changes.
  
-:root {
-  --je-bg: #03050a;
-  --je-bg-raised: #080d17;
-  --je-panel: rgba(10, 16, 29, .78);
-  --je-panel-strong: rgba(12, 19, 34, .94);
-  --je-line: rgba(155, 177, 220, .15);
-  --je-line-strong: rgba(113, 1, 255, .48);
-  --je-text: #f3f5ff;
-  --je-muted: #a7b1c7;
-  --je-dim: #707c94;
-  --je-accent: #7101ff;
-  --je-accent-soft: rgba(113, 1, 255, .14);
-  --je-accent-glow: rgba(113, 1, 255, .22);
-  --je-radius-sm: 12px;
-  --je-radius-md: 18px;
-  --je-radius-lg: 26px;
-  --je-radius-xl: 34px;
-  --je-shadow: 0 24px 70px rgba(0, 0, 0, .34);
-  --je-content-width: 760px;
-  color-scheme: dark;
+   LOAD ORDER: link this AFTER the last inline <style> block (right before
+   </head>) so it sits last in the cascade.
+ 
+   PROTECTED — nothing below selects, inherits into, or restacks these:
+     AI system ....... #nodeAISection, .node-ai-*, #nodeAITranscript
+     Touch system .... #touchFxLayer, .touch-*
+     Demi butterfly .. .demi-butterfly, -stage, -art, -label
+   Rules for that guarantee:
+     - New tokens only, all prefixed --jp-. Existing variables are never redefined
+       (the protected sections may read them).
+     - Nothing is set on html, body, main or bare `section`, so no inheritable
+       property (font, colour, spacing, filter, transform, opacity) can flow down.
+     - Archive sections are reached only through SCOPE below, which excludes the
+       AI, Demi, after-Demi and Glimpse sections by class.
+   The Demi memory gate / warp / destination are left as-is on purpose: they are
+   driven by a JS state machine and share a palette with the protected butterfly.
+   ============================================================================= */
+ 
+/* 0. TOKENS ---------------------------------------------------------------- */
+:root{
+  --jp-obsidian:#03050A;
+  --jp-midnight:#0B1421;
+  --jp-graphite:#0F1826;
+  --jp-slate:#16212F;
+  --jp-ice:#A9C9F2;
+  --jp-silver:#E8EDF5;
+  --jp-mist:#9BA9BB;
+  --jp-steel:#6B7B90;
+  --jp-hair:rgba(169,201,242,.13);
+  --jp-hair-strong:rgba(169,201,242,.30);
+  --jp-serif:"Iowan Old Style","Palatino Linotype",Palatino,"Noto Serif",Georgia,serif;
+  --jp-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --jp-ease:cubic-bezier(.16,1,.3,1);
+  --jp-fs-body:clamp(.95rem,.92rem + .18vw,1.03rem);
+  --jp-fs-lead:clamp(1.16rem,.98rem + .9vw,1.46rem);
+  --jp-fs-h2:clamp(2.05rem,1.25rem + 4.4vw,3.5rem);
+  --jp-fs-micro:.64rem;
 }
  
-html {
-  background: var(--je-bg);
-  color: var(--je-text);
-  scrollbar-color: rgba(113, 1, 255, .58) #05070d;
-  scrollbar-width: thin;
+/* SCOPE (documented, not a rule): the nine archive sections are
+     main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section)
+   Written out in full in every selector below. */
+ 
+/* 1. ARCHIVE SECTIONS 01–09 — editorial rhythm ----------------------------- */
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section){
+  padding-block:clamp(76px,14vw,128px);
+  padding-left:max(0px,calc(env(safe-area-inset-left) - 16px));
+  padding-right:max(0px,calc(env(safe-area-inset-right) - 16px));
+  border-top-color:var(--jp-hair);
+  background-repeat:no-repeat;
+  background-image:radial-gradient(70% 38% at 0% 0%,rgba(169,201,242,.05),transparent 72%);
+}
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section):nth-of-type(even){
+  background-image:radial-gradient(70% 38% at 100% 0%,rgba(169,201,242,.045),transparent 72%);
 }
  
-body {
-  color: var(--je-text);
+/* Index marker: "01 ———" */
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > .section-number{
+  display:flex;
+  align-items:center;
+  gap:.9rem;
+  margin-bottom:clamp(16px,3vw,24px);
+  color:var(--jp-steel);
+  font-family:var(--jp-mono);
+  font-size:var(--jp-fs-micro);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.26em;
+}
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > .section-number::after{
+  content:"";
+  flex:0 1 3.2rem;
+  height:1px;
+  background:linear-gradient(90deg,var(--jp-hair-strong),transparent);
+}
+ 
+/* Headings: lighter weight, tighter, silver — expensive, not loud */
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > h2{
+  margin-bottom:clamp(24px,5vw,40px);
+  color:var(--jp-silver);
+  font-size:var(--jp-fs-h2);
+  font-weight:600;
+  line-height:.98;
+  letter-spacing:-.05em;
+  text-wrap:balance;
+}
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > h2::after{
+  background:linear-gradient(90deg,var(--jp-ice),transparent);
+}
+ 
+/* Body copy: shorter measure, blue-gray, generous leading */
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > p{
+  max-width:36rem;
+  margin-bottom:1.3em;
+  color:var(--jp-mist);
+  font-size:var(--jp-fs-body);
+  line-height:1.84;
+  font-weight:400;
+  overflow-wrap:break-word;
+  text-wrap:pretty;
+}
+/* First paragraph becomes the standfirst */
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > p:first-of-type{
+  color:var(--jp-silver);
+  font-family:var(--jp-serif);
+  font-size:var(--jp-fs-lead);
+  line-height:1.5;
+  letter-spacing:-.008em;
+  margin-bottom:1.5em;
+}
+/* Emphasis: silver with a hairline underline, wraps cleanly across lines */
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > p strong{
+  color:var(--jp-silver);
+  font-weight:640;
+  letter-spacing:-.005em;
+  background:linear-gradient(var(--jp-hair-strong),var(--jp-hair-strong)) 0 96%/100% 1px no-repeat;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
+}
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) ::selection{
+  background:rgba(169,201,242,.9);
+  color:var(--jp-obsidian);
+}
+ 
+/* 2. FAVOURITES — indexed field, BLUE as the feature ------------------------ */
+.favourites{
+  counter-reset:jpfav;
+  margin-top:clamp(20px,4vw,32px);
+  border-color:var(--jp-hair);
+  background:var(--jp-hair);
+}
+.favourites > .fav{
+  counter-increment:jpfav;
+  padding:clamp(22px,4vw,30px) clamp(18px,3.4vw,28px);
+  background:linear-gradient(160deg,rgba(15,24,38,.94),rgba(4,7,12,.97));
+}
+.favourites > .fav:hover{background:linear-gradient(160deg,rgba(19,31,48,.96),rgba(5,9,15,.98))}
+.favourites > .fav .fav-label{
+  color:var(--jp-ice);
+  font-size:var(--jp-fs-micro);
+  letter-spacing:.2em;
+  margin-bottom:12px;
+}
+.favourites > .fav .fav-label::before{
+  content:counter(jpfav,decimal-leading-zero);
+  display:block;
+  margin-bottom:10px;
+  color:var(--jp-steel);
+  font-family:var(--jp-mono);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.24em;
+}
+.favourites > .fav p{
+  color:var(--jp-mist);
+  font-size:.93rem;
+  line-height:1.8;
+}
+.favourites > .fav p strong{color:var(--jp-silver);font-weight:640}
+ 
+/* BLUE: the one colour, given a display moment */
+.favourites > .fav:first-child{
   background:
-    radial-gradient(ellipse at 50% -12%, rgba(49, 31, 91, .23), transparent 43%),
-    radial-gradient(ellipse at 100% 48%, rgba(30, 44, 88, .11), transparent 35%),
-    var(--je-bg);
-  font-family: var(--font-body, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+    radial-gradient(120% 150% at 100% 0%,rgba(169,201,242,.15),transparent 58%),
+    linear-gradient(160deg,rgba(15,24,38,.94),rgba(4,7,12,.97));
+}
+.favourites > .fav:first-child .fav-label{
+  margin:0 0 .5rem;
+  font-size:clamp(2.7rem,12vw,4.7rem);
+  font-weight:300;
+  line-height:.9;
+  letter-spacing:-.055em;
+  color:var(--jp-ice);
+}
+.favourites > .fav:first-child p{max-width:34rem}
+ 
+@media (min-width:640px){
+  .favourites{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .favourites > .fav:first-child{grid-column:1/-1}
 }
  
-::selection { color: #fff; background: rgba(113, 1, 255, .58); }
-:focus-visible { outline: 2px solid #a66cff; outline-offset: 4px; }
- 
-/* Keep the original mobile layout guard and sizing behavior intact. */
-main {
-  color: var(--je-text);
+/* 3. WIDE VIEWPORTS — hang headings left, set text on an inset column ------- */
+@media (min-width:720px){
+  main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > p{
+    margin-left:4.5rem;
+  }
 }
  
-main > section,
-main > header,
-main > footer,
-main > .hero,
-main > .system-continuation,
-main > .demi-system,
-main > .node-ai-section,
-main > .glimpse-section {
-  min-width: 0;
+/* 4. HERO — palette and finish only; layout, scene and motion untouched ----- */
+.hero .hero-name-stack > span:first-child{text-rendering:geometricPrecision}
+.hero .kicker{
+  border-radius:2px;
+  border-color:var(--jp-hair-strong);
+  background:rgba(11,20,33,.66);
+  box-shadow:none;
+  color:var(--jp-ice);
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+}
+.hero .hero-intro{color:var(--jp-mist);border-left-color:var(--jp-hair-strong)}
+.hero .hero-rule{background:linear-gradient(90deg,var(--jp-hair-strong),transparent)}
+.hero-bottom-note{color:var(--jp-steel)}
+ 
+/* Entry card: flat, graphite, silver hairline */
+.hero-entry-grid .cat-chat-mini{
+  border-radius:5px;
+  border-color:var(--jp-hair-strong);
+  background:linear-gradient(118deg,rgba(169,201,242,.10),rgba(11,20,33,.94) 52%,rgba(3,5,10,.97));
+  box-shadow:inset 0 1px 0 rgba(232,237,245,.05),0 18px 40px rgba(0,0,0,.36);
+}
+.hero-entry-grid .cat-chat-mini:hover,
+.hero-entry-grid .cat-chat-mini:focus-visible{
+  border-color:rgba(169,201,242,.55);
+  box-shadow:inset 0 1px 0 rgba(232,237,245,.07),0 22px 48px rgba(0,0,0,.42);
+}
+.hero-entry-grid .cat-chat-mini:focus-visible{outline:2px solid var(--jp-ice);outline-offset:3px}
+.hero-entry-grid .cat-chat-mini-mark{
+  border-radius:4px;
+  border-color:var(--jp-hair-strong);
+  background:var(--jp-graphite);
+  color:var(--jp-ice);
+  box-shadow:inset 0 1px 0 rgba(232,237,245,.06);
+}
+.hero-entry-grid .entry-eyebrow{color:var(--jp-ice);letter-spacing:.2em}
+.hero-entry-grid .cat-chat-mini-copy strong{color:var(--jp-silver)}
+.hero-entry-grid .cat-chat-mini-copy small{color:var(--jp-mist)}
+ 
+/* 5. MUSIC CONTROL — a small instrument, not a pill ------------------------- */
+.sound-control{
+  border-radius:6px;
+  border-color:var(--jp-hair-strong);
+  background:rgba(3,5,10,.80);
+  box-shadow:0 12px 30px rgba(0,0,0,.38),inset 0 1px 0 rgba(232,237,245,.05);
+}
+.sound-label{color:var(--jp-steel);letter-spacing:.2em}
+.sound-control.playing .sound-label{color:var(--jp-ice)}
+.sound-control .sound-button{
+  position:relative;
+  border-radius:4px;
+  border-color:var(--jp-hair-strong);
+  background:var(--jp-midnight);
+  color:var(--jp-silver);
+}
+.sound-control .sound-button::before{content:"";position:absolute;inset:-6px}   /* 46px touch target */
+.sound-control .sound-button:focus-visible{outline:2px solid var(--jp-ice);outline-offset:3px}
+.sound-bars span{background:var(--jp-ice)}
+@media (hover:hover){
+  .sound-control .sound-button:hover{background:var(--jp-slate);border-color:rgba(169,201,242,.5)}
 }
  
-/* Shared type system: improves hierarchy without changing content or motion. */
-h1, h2, h3, h4,
-.hero-name-stack,
-.demi-gate-copy,
-.sys-title,
-.final-name,
-#glimpseTitle,
-#nodeAITitle {
-  color: var(--je-text);
-  text-wrap: balance;
-  letter-spacing: -.035em;
+/* 6. GLIMPSE — a listening room: stacked tracklist, indexed rows ------------ */
+.glimpse-section{border-radius:6px}
+.glimpse-section .glimpse-heading{
+  color:var(--jp-silver);
+  font-weight:300;
+  letter-spacing:-.055em;
+  text-shadow:none;
+}
+.glimpse-section .glimpse-tracks{grid-template-columns:1fr;gap:10px;counter-reset:jptrack}
+.glimpse-section .glimpse-track{
+  position:relative;
+  overflow:hidden;
+  counter-increment:jptrack;
+  min-height:76px;
+  padding:14px 16px;
+  border-radius:4px;
+}
+.glimpse-section .glimpse-track::before{
+  content:counter(jptrack,decimal-leading-zero);
+  position:absolute;
+  top:8px;
+  right:12px;
+  color:var(--jp-steel);
+  font-family:var(--jp-mono);
+  font-size:.52rem;
+  letter-spacing:.22em;
+}
+.glimpse-section .glimpse-track::after{                        /* light sweep, hover only */
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(105deg,transparent 35%,rgba(232,237,245,.06) 50%,transparent 65%);
+  transform:translateX(-120%);
+}
+.glimpse-section .glimpse-thumbnail,
+.glimpse-section .glimpse-art-fallback{
+  flex-basis:60px;
+  width:60px;
+  height:60px;
+  min-width:60px;
+  border-radius:3px;
+  border-color:var(--jp-hair-strong);
+  background-color:var(--jp-graphite);
+}
+.glimpse-section img.glimpse-thumbnail{filter:saturate(.82) contrast(1.04)}
+.glimpse-section .glimpse-track-name{font-size:.86rem;letter-spacing:.02em}
+.glimpse-section .glimpse-track-state{letter-spacing:.2em}
+.glimpse-section .glimpse-play{border-radius:4px}
+.glimpse-section .glimpse-note{max-width:38ch}
+.glimpse-section .glimpse-note code{
+  padding:1px 6px;
+  border:1px solid var(--jp-hair);
+  border-radius:3px;
+  color:var(--jp-ice);
+  font-family:var(--jp-mono);
+  font-size:.9em;
+}
+.glimpse-section .glimpse-track:focus-visible{outline:2px solid var(--jp-ice);outline-offset:3px}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .glimpse-section .glimpse-track:hover::after{transform:translateX(120%);transition:transform .9s var(--jp-ease)}
 }
  
-p, .hero-intro, .final-copy, .demi-story-copy,
-.demi-gate-foot, .sys-sub, .glimpse-note {
-  color: var(--je-muted);
-  line-height: 1.75;
-  overflow-wrap: anywhere;
+/* 7. INSTAGRAM LINK — hit area, focus (colours live in section 11) ---------- */
+main > nav.glimpse-contact a::after{content:"";position:absolute;inset:-8px}   /* >= 44px target */
+main > nav.glimpse-contact a:focus-visible{outline:2px solid var(--jp-ice);outline-offset:3px}
+ 
+/* 8. FIXED ATMOSPHERE — remove the last violet, keep every animation -------- */
+.scroll-progress span{
+  background:linear-gradient(90deg,rgba(169,201,242,.12),rgba(169,201,242,.92),rgba(232,237,245,.95));
+  box-shadow:none;
+}
+.orbit-two{background:radial-gradient(circle,rgba(150,178,214,.22),rgba(110,140,182,.07) 35%,transparent 70%)}
+ 
+/* 9. AFTER-DEMI PANELS — surface colour and focus only (no layout/state) ---- */
+.null-console{
+  border-color:var(--jp-hair);
+  background:radial-gradient(circle at 50% 30%,rgba(169,201,242,.06),transparent 55%),#070C14;
+}
+.echo-word:focus-visible,
+.origin-help-btn:focus-visible,
+.origin-help-close:focus-visible,
+.null-button:focus-visible,
+.exit-portal:focus-visible{outline:2px solid var(--jp-ice);outline-offset:3px}
+ 
+/* 10. FOOTER ---------------------------------------------------------------- */
+main > footer{
+  padding-bottom:calc(52px + env(safe-area-inset-bottom));
+  color:var(--jp-steel);
+  font-size:var(--jp-fs-micro);
+  letter-spacing:.26em;
+  text-transform:uppercase;
+}
+main > footer::before{
+  content:"";
+  display:block;
+  width:56px;
+  height:1px;
+  margin:0 auto 26px;
+  background:linear-gradient(90deg,transparent,var(--jp-hair-strong),transparent);
 }
  
-.kicker, .section-number, .entry-eyebrow, .hero-bottom-note,
-.demi-eyebrow, .demi-butterfly-label, .sys-kicker,
-.afterstory-label, .node-ai-live-label, .glimpse-track-state {
-  color: #a995ff;
-  letter-spacing: .16em;
-  text-transform: uppercase;
+/* 11. CASCADE RECONCILIATION — the only !important in this file ------------- */
+/* The inline <style> blocks set these exact properties with !important, so no
+   normal declaration can override them regardless of order or specificity.
+   Each rule below targets only those properties, on those selectors, and wins
+   by source order (this sheet is last) or by equal-or-higher specificity.      */
+ 
+/* 11a. Hero name: swap the violet gradient for silver → ice → steel */
+.hero .hero-name-stack > span:first-child{
+  color:var(--jp-silver)!important;
+  text-shadow:0 0 44px rgba(169,201,242,.10)!important;
+}
+.hero .hero-name-stack .hero-name-second{
+  background:linear-gradient(100deg,#E8EDF5 0%,#A9C9F2 48%,#6F8DB5 100%)!important;
+  color:var(--jp-ice)!important;
 }
  
-/* First view / hero: cinematic framing, restrained purple signature. */
-.hero-section {
+/* 11b. Instagram link: flat plate, ice glyph, no violet, no blue glow */
+main > nav.glimpse-contact a{
+  border-radius:5px!important;
+  border-color:var(--jp-hair-strong)!important;
+  background:linear-gradient(145deg,rgba(15,24,38,.94),rgba(3,5,10,.96))!important;
+  box-shadow:inset 0 1px 0 rgba(232,237,245,.06),0 8px 22px rgba(0,0,0,.32)!important;
+  color:var(--jp-silver)!important;
+}
+main > nav.glimpse-contact .contact-icon{color:var(--jp-ice)!important}
+main > nav.glimpse-contact .contact-arrow{color:var(--jp-steel)!important}
+main > nav.glimpse-contact a:hover,
+main > nav.glimpse-contact a:focus-visible{
+  border-color:rgba(169,201,242,.55)!important;
+  box-shadow:inset 0 1px 0 rgba(232,237,245,.08),0 10px 26px rgba(0,0,0,.40)!important;
+}
+main > nav.glimpse-contact a:active{
+  border-color:rgba(169,201,242,.7)!important;
+  box-shadow:inset 0 0 10px rgba(169,201,242,.10),0 4px 14px rgba(0,0,0,.35)!important;
+}
+ 
+/* 11c. Glimpse: replace the violet "peak-navy-css-polish" colours */
+.glimpse-section{
+  background:
+    radial-gradient(ellipse at 8% 0%,rgba(169,201,242,.08),transparent 46%),
+    linear-gradient(155deg,rgba(11,20,33,.98),rgba(3,5,10,.98))!important;
+  border-color:var(--jp-hair-strong)!important;
+  box-shadow:inset 0 1px 0 rgba(232,237,245,.04),0 24px 60px rgba(0,0,0,.34)!important;
+}
+.glimpse-section .glimpse-track{
+  background:linear-gradient(130deg,rgba(15,24,38,.95),rgba(5,8,14,.97))!important;
+  border-color:var(--jp-hair)!important;
+  box-shadow:inset 0 1px 0 rgba(232,237,245,.035)!important;
+  color:var(--jp-silver)!important;
+}
+.glimpse-section .glimpse-track:hover{
+  border-color:rgba(169,201,242,.45)!important;
+  background:linear-gradient(130deg,rgba(21,34,52,.96),rgba(6,10,17,.98))!important;
+}
+.glimpse-section .glimpse-track.is-active{
+  border-color:rgba(169,201,242,.55)!important;
+  background:linear-gradient(130deg,rgba(24,40,62,.97),rgba(6,10,17,.98))!important;
+  box-shadow:inset 2px 0 0 var(--jp-ice),0 12px 30px rgba(0,0,0,.38)!important;
+}
+.glimpse-section .glimpse-track-name{color:var(--jp-silver)!important}
+.glimpse-section .glimpse-track-state,
+.glimpse-section .glimpse-note{color:var(--jp-steel)!important}
+.glimpse-section .glimpse-art-fallback{color:var(--jp-ice)!important}
+.glimpse-section .glimpse-play{
+  border-color:var(--jp-hair-strong)!important;
+  background:rgba(169,201,242,.07)!important;
+  color:var(--jp-ice)!important;
+}
+.glimpse-section .glimpse-track.is-active .glimpse-play{background:rgba(169,201,242,.16)!important}
+ 
+/* 12. SMALL SCREENS --------------------------------------------------------- */
+@media (max-width:440px){
+  .glimpse-section .glimpse-track{padding:12px 14px}
+  .glimpse-section .glimpse-thumbnail,
+  .glimpse-section .glimpse-art-fallback{flex-basis:54px;width:54px;height:54px;min-width:54px}
+  main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > p{max-width:100%}
+}
+ 
+/* 13. REDUCED MOTION — this sheet's own transitions only -------------------- */
+@media (prefers-reduced-motion:reduce){
+  .glimpse-section .glimpse-track::after{display:none}
+}
+ 
+/* =============================================================================
+   14. PEAK FINISH — restrained depth, precision states, mobile polish
+   This enhancement layer stays inside components already styled above. It does
+   not add global typography, layout, filters, or animations to protected systems.
+   ============================================================================= */
+ 
+/* Fine-grain surface contrast: crisp borders instead of broad neon glow. */
+.hero-entry-grid .cat-chat-mini,
+.hero-entry-grid .archive-entry,
+.favourites > .fav,
+.sound-control,
+.glimpse-section .glimpse-track,
+main > nav.glimpse-contact a {
+  -webkit-tap-highlight-color: transparent;
+}
+ 
+/* A quiet top-edge highlight makes the entry cards feel machined, not glassy. */
+.hero-entry-grid .cat-chat-mini,
+.hero-entry-grid .archive-entry {
   isolation: isolate;
-  background-color: transparent;
-  background-image:
-    radial-gradient(ellipse at 84% 18%, rgba(113, 1, 255, .13), transparent 33%),
-    radial-gradient(ellipse at 12% 70%, rgba(32, 57, 108, .13), transparent 39%);
+  transition:
+    border-color .28s var(--jp-ease),
+    background-color .28s var(--jp-ease),
+    box-shadow .28s var(--jp-ease),
+    transform .28s var(--jp-ease);
 }
- 
-.hero-section::before {
-  border-color: rgba(113, 1, 255, .10);
+.hero-entry-grid .cat-chat-mini::before,
+.hero-entry-grid .archive-entry::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232,237,245,.28), transparent);
   pointer-events: none;
 }
- 
-.hero-name-stack {
-  color: #faf8ff;
-  text-shadow: 0 0 36px rgba(113, 1, 255, .12);
-}
- 
-.hero-name-second { color: #c7b7ff; }
-.hero-intro { max-width: 42ch; }
-.hero-rule {
-  background: linear-gradient(90deg, rgba(113, 1, 255, .8), rgba(113, 1, 255, .04));
-  opacity: .8;
-}
- 
-.hero-entry-grid { gap: 12px; }
-.cat-chat-mini,
-.archive-entry,
-.hero-chat-entry {
-  color: var(--je-text);
-  background: linear-gradient(145deg, rgba(16, 22, 39, .86), rgba(7, 10, 19, .88));
-  border: 1px solid var(--je-line);
-  border-radius: var(--je-radius-md);
-  box-shadow: 0 12px 34px rgba(0, 0, 0, .18), inset 0 1px rgba(255, 255, 255, .025);
-  min-width: 0;
-}
- 
-.cat-chat-mini-copy,
-.archive-entry-copy,
-.entry-eyebrow { color: var(--je-muted); }
-.cat-chat-mini-mark,
-.archive-entry-icon { color: #c9b7ff; }
-.cat-chat-mini-arrow,
-.archive-entry-arrow { color: #a982ff; }
-.hero-live-dot { background-color: #9b66ff; }
- 
-/* Common section surfaces. These selectors intentionally avoid animation properties. */
-#aboutArchive,
-.favourites,
-section:not(.hero-section):not(.demi-system):not(.system-continuation):not(.glimpse-section):not(.node-ai-section),
-.system-continuation,
-.node-ai-section,
-.glimpse-section {
-  color: var(--je-text);
-}
- 
-#aboutArchive,
-.favourites,
-.system-continuation,
-.node-ai-section,
-.glimpse-section {
-  position: relative;
-  border: 1px solid rgba(155, 177, 220, .105);
-  border-radius: var(--je-radius-xl);
-  background: linear-gradient(155deg, rgba(11, 17, 31, .78), rgba(4, 7, 14, .62));
-  box-shadow: 0 22px 65px rgba(0, 0, 0, .17), inset 0 1px rgba(255, 255, 255, .025);
-}
- 
-.section-number { color: #a58aff; }
-.final-copy { color: #c0c7d9; }
-.fav, .fav-label { color: var(--je-muted); }
- 
-/* DEMI system: dark glass console, clear control hierarchy. */
-.demi-system {
-  color: var(--je-text);
-  background:
-    radial-gradient(ellipse at 50% 12%, rgba(113, 1, 255, .10), transparent 43%),
-    linear-gradient(180deg, rgba(7, 11, 21, .96), rgba(3, 5, 10, .98));
-  border-color: rgba(113, 1, 255, .16);
-}
- 
-.demi-system-header { border-color: var(--je-line); }
-.demi-gate {
-  border-color: rgba(113, 1, 255, .2);
-  background: linear-gradient(155deg, rgba(14, 18, 35, .86), rgba(5, 8, 16, .92));
-  border-radius: var(--je-radius-xl);
-  box-shadow: var(--je-shadow), inset 0 1px rgba(255, 255, 255, .035);
-}
- 
-.demi-gate-copy { color: #f4f0ff; }
-.demi-gate-console,
-.demi-destination,
-.demi-warp,
-.memory-frame,
-.memory-wrap {
-  border-color: var(--je-line);
-  border-radius: var(--je-radius-lg);
-}
- 
-.demi-enter,
-#demiEnter,
-#demiReturn,
-#originHelpBtn,
-#nullButton,
-#originHelpClose,
-#nodeAISend,
-#nodeAINewWhisper,
-#nodeAICopyChat,
-#nodeAIClearChat,
-#echoRandom,
-#glimpseAudio,
-.glimpse-play {
-  color: #fff;
-  border: 1px solid rgba(166, 112, 255, .5);
-  background: linear-gradient(135deg, #7101ff, #4a0ab8);
-  box-shadow: 0 8px 26px rgba(113, 1, 255, .2), inset 0 1px rgba(255, 255, 255, .16);
-  border-radius: 999px;
-}
- 
-.demi-dest-intro,
-.demi-arrival,
-.demi-story-copy,
-.demi-closing,
-.afterstory-line { color: var(--je-muted); }
- 
-.memory-frame {
-  background: rgba(7, 10, 19, .78);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, .24);
-}
-.memory-image { border-radius: var(--je-radius-md); }
-.memory-caption { color: #d7d0f5; }
-.demi-return { color: #d8caff; }
- 
-/* Continuation / Echo / Origin panels. */
-.system-continuation { padding-inline: clamp(16px, 3vw, 30px); }
-.sys-title { color: #f5f2ff; }
-.sys-sub { max-width: 58ch; }
- 
-.echo-panel,
-.signal-map,
-.origin-map,
-.null-console,
-.console-row,
-#originHelp,
-#nullResult,
-#echoDisplay,
-#echoWords {
-  color: var(--je-text);
-  background: linear-gradient(145deg, rgba(13, 19, 34, .82), rgba(5, 8, 16, .88));
-  border: 1px solid var(--je-line);
-  border-radius: var(--je-radius-md);
-}
- 
-.echo-head,
-.origin-head { border-color: var(--je-line); }
-.echo-word,
-.signal-cell,
-.signal-index { color: #d1c5ff; }
-#echoDisplay { min-height: 72px; }
-#originHelp { color: var(--je-muted); }
-#nullResult { overflow-wrap: anywhere; }
- 
-/* AI / chat interface. */
-.node-ai-section {
-  background:
-    radial-gradient(ellipse at 95% 0%, rgba(113, 1, 255, .12), transparent 34%),
-    linear-gradient(160deg, rgba(10, 16, 30, .95), rgba(4, 7, 14, .96));
-  border-color: rgba(113, 1, 255, .2);
-}
- 
-#nodeAISection,
-.node-ai-section { min-width: 0; }
-#nodeAITranscript {
-  background: rgba(2, 4, 10, .58);
-  border: 1px solid var(--je-line);
-  border-radius: var(--je-radius-md);
-  scrollbar-width: thin;
-  scrollbar-color: rgba(113, 1, 255, .45) transparent;
-}
- 
-.node-ai-chip,
-.node-ai-tool {
-  color: #d9d0ff;
-  background: rgba(113, 1, 255, .09);
-  border: 1px solid rgba(113, 1, 255, .22);
-  border-radius: 999px;
-}
- 
-#nodeAIInput,
-#nodeAIForm input,
-#nodeAIForm textarea,
-#nodeAIForm select,
-input, textarea, select {
-  color: var(--je-text);
-  background: rgba(4, 7, 15, .92);
-  border: 1px solid rgba(155, 177, 220, .2);
-  border-radius: var(--je-radius-sm);
-  min-width: 0;
-}
- 
-#nodeAIInput::placeholder,
-input::placeholder,
-textarea::placeholder { color: #77839a; }
- 
-/* Glimpse / music tracks — retain both existing tracks and all playback logic. */
-.glimpse-section {
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at 100% 0%, rgba(113, 1, 255, .12), transparent 35%),
-    linear-gradient(155deg, rgba(10, 15, 28, .94), rgba(4, 7, 14, .96));
-  border-color: rgba(113, 1, 255, .2);
-}
- 
-#glimpseTitle { color: #f5f0ff; }
-#glimpseNote { color: var(--je-muted); }
-.glimpse-track {
-  min-width: 0;
-  border: 1px solid rgba(155, 177, 220, .14);
-  border-radius: var(--je-radius-lg);
-  background: linear-gradient(145deg, rgba(15, 21, 38, .88), rgba(6, 9, 18, .94));
-  box-shadow: 0 14px 38px rgba(0, 0, 0, .2), inset 0 1px rgba(255, 255, 255, .025);
-}
- 
-.glimpse-track.is-active {
-  border-color: rgba(113, 1, 255, .62);
-  background: linear-gradient(145deg, rgba(28, 17, 52, .9), rgba(7, 9, 20, .96));
-  box-shadow: 0 16px 42px rgba(0, 0, 0, .25), 0 0 0 1px rgba(113, 1, 255, .09);
-}
- 
-.glimpse-thumbnail {
-  border: 1px solid rgba(175, 149, 255, .18);
-  border-radius: var(--je-radius-md);
-  overflow: hidden;
-  background: #0b0d19;
-}
- 
-.glimpse-track-copy { min-width: 0; }
-.glimpse-track-name { color: #f2edff; overflow-wrap: anywhere; }
-.glimpse-track-state { color: #b6a2ff; }
-.glimpse-contact a {
-  color: #e5dcff;
-  background: rgba(10, 13, 25, .84);
-  border: 1px solid rgba(113, 1, 255, .3);
-  border-radius: 999px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
-}
- 
-/* Footer and quiet details. */
-footer {
-  color: var(--je-dim);
-  border-color: var(--je-line);
-}
-footer a { color: #c6b2ff; }
-hr { border-color: var(--je-line); }
- 
-/* Media assets never overflow narrow devices. */
-img, video, canvas, svg, iframe { max-width: 100%; }
-img { height: auto; }
-button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
-button, input, textarea, select { font: inherit; }
-button { color: inherit; }
-a { color: #c8b7ff; text-decoration-color: rgba(200, 183, 255, .35); text-underline-offset: .2em; }
- 
-@media (min-width: 900px) {
-  :root { --je-content-width: 820px; }
-  #aboutArchive,
-  .favourites,
-  .system-continuation,
-  .node-ai-section,
-  .glimpse-section { box-shadow: 0 28px 85px rgba(0, 0, 0, .22), inset 0 1px rgba(255, 255, 255, .025); }
-}
- 
-@media (max-width: 600px) {
-  :root {
-    --je-radius-lg: 22px;
-    --je-radius-xl: 26px;
+@media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .hero-entry-grid .cat-chat-mini:hover,
+  .hero-entry-grid .archive-entry:hover {
+    transform: translateY(-2px);
   }
- 
-  body { font-size: 15px; }
-  .hero-section { background-position: center top; }
-  .hero-entry-grid { grid-template-columns: minmax(0, 1fr); }
-  .cat-chat-mini, .archive-entry, .hero-chat-entry { width: 100%; min-width: 0; }
-  #aboutArchive,
-  .favourites,
-  .system-continuation,
-  .node-ai-section,
-  .glimpse-section { border-radius: var(--je-radius-lg); }
-  .glimpse-track { gap: 12px; padding: 12px; }
-  .glimpse-thumbnail { max-width: 100%; }
-  .glimpse-contact { max-width: calc(100% - 28px); }
-  #nodeAITranscript { max-width: 100%; overflow-x: hidden; }
+  .hero-entry-grid .cat-chat-mini:hover::after,
+  .hero-entry-grid .archive-entry:hover::after {
+    opacity: 1;
+    transform: translateX(22%);
+  }
 }
  
-@media (prefers-reduced-motion: reduce) {
-  /* Deliberately no motion overrides: existing page animations remain untouched. */
+/* Editorial section rhythm: use a narrow rule as a recurring visual signature. */
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > h2::before {
+  content: "";
+  display: block;
+  width: clamp(30px, 5vw, 52px);
+  height: 2px;
+  margin-bottom: clamp(18px, 3vw, 27px);
+  background: linear-gradient(90deg, var(--jp-ice), rgba(169,201,242,.12));
+  transform-origin: left center;
 }
  
-/* ================================================================
-   PEAK PASS — deeper component coverage, CSS only
-   No script, animation, keyframe, or transition behavior is added.
-   ================================================================ */
- 
-:root {
-  --je-surface-1: rgba(10, 15, 29, .88);
-  --je-surface-2: rgba(7, 11, 21, .94);
-  --je-edge: rgba(173, 185, 221, .16);
-  --je-edge-hot: rgba(113, 1, 255, .42);
-  --je-lilac: #cbbaff;
-  --je-copy: #c0c9dc;
-}
- 
-/* Make section rhythm consistent while leaving original layout rules in place. */
-.hero-section,
-#aboutArchive,
-.favourites,
-.demi-system,
-.system-continuation,
-.node-ai-section,
-.glimpse-section,
-footer {
-  overflow-wrap: anywhere;
-}
- 
-#aboutArchive,
-.favourites,
-.demi-system,
-.system-continuation,
-.node-ai-section,
-.glimpse-section {
-  background-clip: padding-box;
-  box-shadow: 0 22px 70px rgba(0, 0, 0, .22), inset 0 1px rgba(255, 255, 255, .035);
-}
- 
-/* Hero cards and archive links */
-.hero-entry-grid { align-items: stretch; }
-.cat-chat-mini,
-.archive-entry,
-.hero-chat-entry {
+/* The first favourite is the feature; remaining cards stay quiet and legible. */
+.favourites > .fav {
   position: relative;
-  overflow: hidden;
-  border-color: var(--je-edge);
-  background-color: var(--je-surface-1);
+  min-width: 0;
+  border: 1px solid rgba(169,201,242,.10);
+  transition: border-color .25s var(--jp-ease), background .25s var(--jp-ease);
 }
-.cat-chat-mini-copy,
-.archive-entry-copy,
-.hero-intro,
-.final-intro,
-.final-note { color: var(--je-copy); }
-.archive-entry-icon,
-.cat-chat-mini-mark { flex-shrink: 0; }
- 
-/* Favourites / story typography */
-.favourites { color: var(--je-text); }
-.fav { color: #e3e8f6; }
-.fav-label { color: var(--je-muted); }
-.final-name { color: #f5f1ff; }
-.final-tag { color: var(--je-lilac); }
-.final-signoff { color: #d7ccff; }
-.demi-emphasis,
-.demi-emphasis-soft { color: #e2d8ff; }
- 
-/* DEMI: preserve every gate, orbit, butterfly, warp and destination effect. */
-.demi-system { min-width: 0; }
-.demi-system-header,
-.demi-dest-topline,
-.demi-gate-console { color: var(--je-muted); }
-.demi-gate-console { background-color: rgba(3, 6, 14, .58); }
-.demi-gate-foot { color: #9da8c0; }
-.demi-gate-core { isolation: isolate; }
-.demi-core-mark { color: #f8f4ff; }
-.demi-destination { background-color: #050812; }
-.demi-dest-intro,
-.demi-story-copy,
-.demi-closing { color: var(--je-copy); }
-.demi-return { border-color: var(--je-edge-hot); }
-.demi-warp { color: var(--je-text); }
-.demi-warp-code,
-.demi-warp-kicker { color: var(--je-lilac); }
-.demi-butterfly-label { color: #c7b5ff; }
- 
-/* Origin / Echo / Null controls */
-.echo-panel,
-.signal-map,
-.origin-map,
-.null-console { min-width: 0; }
-.echo-random,
-#echoRandom,
-#originHelpBtn,
-#originHelpClose,
-#nullButton,
-#demiReturn,
-#nodeAISend,
-#nodeAINewWhisper,
-#nodeAICopyChat,
-#nodeAIClearChat,
-#glimpseAudio {
-  min-height: 42px;
-  font-weight: 650;
-  letter-spacing: .01em;
+@media (hover:hover) {
+  .favourites > .fav:hover { border-color: rgba(169,201,242,.28); }
 }
-.echo-word { overflow-wrap: anywhere; }
-.signal-cell { min-width: 0; }
-#originHelpTitle,
-.origin-label { color: var(--je-lilac); }
-#nullResult,
-#echoDisplay,
-#echoWords { overflow-wrap: anywhere; }
  
-/* AI console: presentation only; input, transcript and actions remain as-is. */
-.node-ai-wrap,
-.node-ai-card,
-.node-ai-transcript,
-#nodeAITranscript,
-.node-ai-composer-row,
-.node-ai-controls,
-.node-ai-tools { min-width: 0; }
-.node-ai-card {
-  background: linear-gradient(150deg, rgba(13, 19, 35, .94), rgba(5, 8, 16, .96));
-  border: 1px solid var(--je-edge);
-  border-radius: var(--je-radius-lg);
-  box-shadow: inset 0 1px rgba(255, 255, 255, .03);
+/* Listening room: clear active state, robust wrapping, and comfortable targets. */
+.glimpse-section .glimpse-track {
+  min-width: 0;
+  transition:
+    border-color .24s var(--jp-ease),
+    background .24s var(--jp-ease),
+    box-shadow .24s var(--jp-ease),
+    transform .24s var(--jp-ease);
 }
-.node-ai-card-head,
-.node-ai-top { border-color: var(--je-line); }
-.node-ai-title { color: #f4f0ff; }
-.node-ai-intro,
-.node-ai-context,
-.node-ai-foot { color: var(--je-copy); }
-.node-ai-status { color: #c8b7ff; }
-.node-ai-bubble {
-  max-width: 100%;
+.glimpse-section .glimpse-track-name,
+.glimpse-section .glimpse-track-state,
+.glimpse-section .glimpse-note {
   overflow-wrap: anywhere;
-  border-radius: 16px;
 }
-.node-ai-composer-row { align-items: end; }
-.node-ai-input,
-#nodeAIInput,
-#nodeAIForm input,
-#nodeAIForm textarea { width: 100%; }
-.node-ai-prompts { min-width: 0; }
-.node-ai-chip,
-.node-ai-tool { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.glimpse-section .glimpse-play {
+  min-width: 40px;
+  min-height: 40px;
+  display: inline-grid;
+  place-items: center;
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .glimpse-section .glimpse-track:hover { transform: translateY(-1px); }
+}
  
-/* Glimpse / audio cards */
-.glimpse-heading { color: #f5f0ff; }
-.glimpse-tracks { min-width: 0; }
-.glimpse-track { align-items: center; }
-.glimpse-track-name { line-height: 1.35; }
-.glimpse-play { flex-shrink: 0; }
-.glimpse-contact { min-width: 0; }
-.glimpse-contact a { overflow-wrap: anywhere; }
- 
-/* Form fields and keyboard focus: accessibility without motion changes. */
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible,
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid #b99aff;
+/* Keyboard users get a clear ice-blue focus ring on the interactive controls. */
+.hero-entry-grid a:focus-visible,
+.favourites a:focus-visible,
+.glimpse-section button:focus-visible,
+.glimpse-section a:focus-visible,
+.sound-control button:focus-visible,
+main > nav.glimpse-contact a:focus-visible {
+  outline: 2px solid var(--jp-ice);
   outline-offset: 3px;
 }
-input:disabled,
-textarea:disabled,
-select:disabled,
-button:disabled { cursor: not-allowed; opacity: .62; }
-textarea { resize: vertical; }
  
-/* Protect against long text, narrow screens, and media overflow. */
-.node-ai-bubble,
-.node-ai-context,
-.demi-story-copy,
-.demi-closing,
-.final-copy,
-.glimpse-note { overflow-wrap: anywhere; }
- 
-@media (min-width: 760px) {
-  .hero-entry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .node-ai-card { padding: clamp(18px, 2.5vw, 30px); }
-}
- 
+/* Mobile: avoid horizontal overflow and preserve a breathable reading measure. */
 @media (max-width: 600px) {
-  .demi-gate,
-  .demi-destination,
-  .echo-panel,
-  .signal-map,
-  .origin-map,
-  .null-console,
-  .node-ai-card { max-width: 100%; }
-  .demi-gate-copy,
-  .sys-title,
-  .node-ai-title,
-  #glimpseTitle { overflow-wrap: anywhere; }
-  .node-ai-composer-row { grid-template-columns: minmax(0, 1fr); }
-  .node-ai-controls,
-  .node-ai-tools { flex-wrap: wrap; }
-  .glimpse-contact a { max-width: 100%; }
+  .hero .hero-name-stack {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .hero .hero-entry-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero .cat-chat-mini.hero-chat-entry,
+  .hero .archive-entry {
+    min-height: 88px;
+    padding: 16px 14px;
+  }
+  .glimpse-section .glimpse-track {
+    gap: 12px;
+  }
 }
  
-/* =====================================================================
-   J.EFFS — CINEMATIC MOTION PASS
-   Built for index_glimpse_about_a_je.html.
-   Adds CSS-only ambient motion and interaction feedback; does not replace
-   the page's existing keyframes or JavaScript-driven interactions.
-   ===================================================================== */
+/* Keep the enhancement layer respectful of the visitor's motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-entry-grid .cat-chat-mini,
+  .hero-entry-grid .archive-entry,
+  .favourites > .fav,
+  .glimpse-section .glimpse-track {
+    transition: none !important;
+    transform: none !important;
+  }
+  .hero-entry-grid .cat-chat-mini::after,
+  .hero-entry-grid .archive-entry::after,
+  .glimpse-section .glimpse-track::after {
+    display: none !important;
+  }
+}
+ 
+/* ═══════════════════════════════════════════════════════════════════════════
+   JP PEAK EXPANSION LAYER — 02
+   A deeper, more deliberate editorial system. CSS only; original HTML/JS stays.
+   Every archive selector excludes the protected story/AI/Glimpse sections.
+   Protected systems: #nodeAISection, .node-ai-*, #nodeAITranscript,
+   #touchFxLayer, .touch-*, .demi-butterfly* — intentionally never selected.
+   ═══════════════════════════════════════════════════════════════════════════ */
  
 :root {
-  --je-motion-ease: cubic-bezier(.2, .75, .2, 1);
-  --je-motion-fast: 220ms;
-  --je-motion-mid: 420ms;
-  --je-motion-slow: 900ms;
+  --jp-void: #020308;
+  --jp-night: #070C14;
+  --jp-panel: rgba(11, 20, 33, .72);
+  --jp-panel-solid: #0A111C;
+  --jp-glass: rgba(232, 237, 245, .035);
+  --jp-glass-hover: rgba(232, 237, 245, .065);
+  --jp-line: rgba(169, 201, 242, .10);
+  --jp-line-mid: rgba(169, 201, 242, .20);
+  --jp-line-hot: rgba(169, 201, 242, .38);
+  --jp-white-soft: rgba(232, 237, 245, .78);
+  --jp-white-dim: rgba(232, 237, 245, .56);
+  --jp-shadow-soft: 0 16px 48px rgba(0, 0, 0, .22);
+  --jp-shadow-deep: 0 28px 80px rgba(0, 0, 0, .38);
+  --jp-radius-sm: 8px;
+  --jp-radius-md: 14px;
+  --jp-radius-lg: 22px;
+  --jp-radius-xl: 30px;
+  --jp-motion-fast: 180ms;
+  --jp-motion-mid: 320ms;
+  --jp-motion-slow: 620ms;
 }
  
-/* Fine, slow ambient light: stays behind content and never captures input. */
-.hero-section,
-.demi-system,
-.system-continuation,
-.node-ai-section,
-.glimpse-section {
-  isolation: isolate;
+/* HERO — cinematic hierarchy */
+.hero .kicker { position: relative; width: fit-content; max-width: 100%; padding: .45rem .72rem; border: 1px solid var(--jp-line); border-radius: 999px; background: linear-gradient(110deg, rgba(169,201,242,.075), transparent 72%); }
+.hero .kicker::before { content: ""; display: inline-block; width: .36rem; height: .36rem; margin: 0 .55rem .08rem 0; border-radius: 50%; background: var(--jp-ice); box-shadow: 0 0 12px rgba(169,201,242,.32); }
+.hero .hero-intro { max-width: 39rem; color: var(--jp-white-soft); text-wrap: pretty; }
+.hero .hero-rule { transform-origin: left center; background: linear-gradient(90deg, var(--jp-ice), rgba(169,201,242,.28) 42%, transparent); }
+.hero .hero-name-stack > span:first-child { text-shadow: 0 1px 0 rgba(255,255,255,.04), 0 16px 48px rgba(0,0,0,.24); }
+.hero .hero-name-stack .hero-name-second { color: var(--jp-silver); text-shadow: 0 0 42px rgba(169,201,242,.08); }
+.hero .hero-bottom-note { color: var(--jp-white-dim); font-family: var(--jp-mono); font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; }
+.hero .hero-intro a { color: var(--jp-ice); text-decoration-color: var(--jp-line-hot); text-underline-offset: .22em; }
+.hero .hero-intro a:hover { text-decoration-color: var(--jp-ice); }
+.hero .hero-intro strong { color: var(--jp-silver); font-weight: 620; }
+.hero .hero-rule { opacity: .88; }
+.hero .kicker, .hero .hero-bottom-note { -webkit-font-smoothing: antialiased; }
+ 
+/* ENTRY GRID — tactile, not noisy */
+.hero-entry-grid { align-items: stretch; isolation: isolate; }
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { position: relative; min-width: 0; overflow: hidden; border: 1px solid var(--jp-line); border-radius: var(--jp-radius-md); background: linear-gradient(145deg, rgba(232,237,245,.055), rgba(11,20,33,.42) 52%, rgba(3,5,10,.62)); box-shadow: inset 0 1px 0 rgba(255,255,255,.035); transition: border-color var(--jp-motion-mid) var(--jp-ease), background var(--jp-motion-mid) var(--jp-ease), transform var(--jp-motion-mid) var(--jp-ease), box-shadow var(--jp-motion-mid) var(--jp-ease); }
+.hero-entry-grid .archive-entry::before, .hero-entry-grid .cat-chat-mini::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .65; background: linear-gradient(115deg, rgba(169,201,242,.08), transparent 32%, transparent 72%, rgba(169,201,242,.025)); }
+.hero-entry-grid .archive-entry::after, .hero-entry-grid .cat-chat-mini::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--jp-line-mid), transparent); opacity: .65; }
+.hero-entry-grid .archive-entry:hover, .hero-entry-grid .cat-chat-mini:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); background: linear-gradient(145deg, rgba(169,201,242,.085), rgba(11,20,33,.62) 52%, rgba(3,5,10,.76)); box-shadow: var(--jp-shadow-soft), inset 0 1px 0 rgba(255,255,255,.06); }
+.hero-entry-grid .archive-entry:active, .hero-entry-grid .cat-chat-mini:active { transform: translateY(-1px) scale(.995); }
+.hero-entry-grid .archive-entry:focus-visible, .hero-entry-grid .cat-chat-mini:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; }
+.hero-entry-grid .archive-entry-icon, .hero-entry-grid .cat-chat-mini-mark { color: var(--jp-ice); filter: drop-shadow(0 0 10px rgba(169,201,242,.12)); }
+.hero-entry-grid .entry-eyebrow { color: var(--jp-steel); font-family: var(--jp-mono); font-size: .62rem; letter-spacing: .17em; text-transform: uppercase; }
+.hero-entry-grid .cat-chat-mini-copy strong { color: var(--jp-silver); font-weight: 600; letter-spacing: -.025em; }
+.hero-entry-grid .cat-chat-mini-copy small { color: var(--jp-mist); line-height: 1.55; }
+.hero-entry-grid .archive-entry-arrow, .hero-entry-grid .cat-chat-mini-arrow { color: var(--jp-ice); transition: transform var(--jp-motion-fast) var(--jp-ease); }
+.hero-entry-grid .archive-entry:hover .archive-entry-arrow, .hero-entry-grid .cat-chat-mini:hover .cat-chat-mini-arrow { transform: translate(3px, -2px); }
+ 
+/* ARCHIVE — section surfaces */
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) { position: relative; isolation: isolate; }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section)::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .55; background: linear-gradient(180deg, rgba(169,201,242,.018), transparent 28%, transparent 78%, rgba(0,0,0,.10)); }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > h2 { max-width: 15ch; text-shadow: 0 8px 34px rgba(0,0,0,.20); }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > h2::before { color: var(--jp-ice); opacity: .72; }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > h2::after { opacity: .72; }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > p { max-width: min(100%, 38rem); }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > p + p { margin-top: .85em; }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) > p em { color: var(--jp-white-soft); }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) a { color: var(--jp-ice); text-decoration-thickness: 1px; text-underline-offset: .22em; text-decoration-color: var(--jp-line-mid); }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) a:hover { text-decoration-color: var(--jp-ice); }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) :focus-visible { outline-color: var(--jp-ice); outline-offset: 4px; }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) hr { border: 0; height: 1px; background: linear-gradient(90deg, var(--jp-line-hot), var(--jp-line), transparent); }
+ 
+/* FAVOURITES — curated cards */
+.favourites { gap: clamp(10px, 1.6vw, 18px); }
+.favourites > .fav { position: relative; overflow: hidden; border: 1px solid var(--jp-line); border-radius: var(--jp-radius-md); background: linear-gradient(145deg, rgba(232,237,245,.045), rgba(11,20,33,.28)); box-shadow: inset 0 1px 0 rgba(255,255,255,.025); transition: transform var(--jp-motion-mid) var(--jp-ease), border-color var(--jp-motion-mid) var(--jp-ease), background var(--jp-motion-mid) var(--jp-ease), box-shadow var(--jp-motion-mid) var(--jp-ease); }
+.favourites > .fav::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 2px; background: linear-gradient(180deg, transparent, var(--jp-ice), transparent); opacity: .4; }
+.favourites > .fav::after { content: ""; position: absolute; inset: auto 12% 0; height: 1px; background: linear-gradient(90deg, transparent, var(--jp-line-mid), transparent); }
+.favourites > .fav:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); background: linear-gradient(145deg, rgba(169,201,242,.075), rgba(11,20,33,.46)); box-shadow: var(--jp-shadow-soft); }
+.favourites > .fav .fav-label { color: var(--jp-ice); font-family: var(--jp-mono); font-size: .65rem; letter-spacing: .16em; text-transform: uppercase; }
+.favourites > .fav .fav-label::before { color: var(--jp-steel); }
+.favourites > .fav p { color: var(--jp-mist); line-height: 1.7; }
+.favourites > .fav p strong { color: var(--jp-silver); font-weight: 620; }
+.favourites > .fav:first-child { border-color: rgba(169,201,242,.28); background: linear-gradient(140deg, rgba(169,201,242,.075), rgba(11,20,33,.48)); }
+.favourites > .fav:first-child .fav-label { color: var(--jp-silver); }
+.favourites > .fav:first-child p { color: var(--jp-white-soft); }
+.favourites > .fav:focus-within { outline: 1px solid var(--jp-line-hot); outline-offset: 3px; }
+ 
+/* GLIMPSE — listening room */
+.glimpse-section { position: relative; isolation: isolate; background-image: radial-gradient(70% 55% at 0% 0%, rgba(169,201,242,.065), transparent 70%), linear-gradient(180deg, rgba(11,20,33,.10), transparent 42%); }
+.glimpse-section::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; border-top: 1px solid var(--jp-line); border-bottom: 1px solid rgba(169,201,242,.055); }
+.glimpse-section .glimpse-heading { color: var(--jp-silver); text-wrap: balance; letter-spacing: -.04em; }
+.glimpse-section .glimpse-tracks { align-items: stretch; gap: clamp(10px, 1.8vw, 18px); }
+.glimpse-section .glimpse-track { min-width: 0; position: relative; overflow: hidden; border: 1px solid var(--jp-line); border-radius: var(--jp-radius-lg); background: linear-gradient(145deg, rgba(232,237,245,.045), rgba(11,20,33,.44) 56%, rgba(3,5,10,.52)); box-shadow: inset 0 1px 0 rgba(255,255,255,.035); transition: transform var(--jp-motion-mid) var(--jp-ease), border-color var(--jp-motion-mid) var(--jp-ease), box-shadow var(--jp-motion-mid) var(--jp-ease), background var(--jp-motion-mid) var(--jp-ease); }
+.glimpse-section .glimpse-track::before { opacity: .8; background: linear-gradient(135deg, rgba(169,201,242,.08), transparent 42%); }
+.glimpse-section .glimpse-track::after { opacity: .65; background: linear-gradient(90deg, transparent, var(--jp-line-mid), transparent); }
+.glimpse-section .glimpse-track:hover { transform: translateY(-4px); border-color: var(--jp-line-hot); box-shadow: var(--jp-shadow-deep); }
+.glimpse-section .glimpse-track.is-active { border-color: rgba(169,201,242,.48); background: linear-gradient(145deg, rgba(169,201,242,.10), rgba(11,20,33,.60)); box-shadow: 0 0 0 1px rgba(169,201,242,.06), 0 18px 48px rgba(0,0,0,.25); }
+.glimpse-section .glimpse-art-fallback { background: radial-gradient(circle at 50% 42%, rgba(169,201,242,.16), transparent 44%), linear-gradient(145deg, #111D2C, #05080E 72%); }
+.glimpse-section img.glimpse-thumbnail { filter: saturate(.82) contrast(1.04); transition: filter var(--jp-motion-slow) var(--jp-ease), transform 900ms var(--jp-ease); }
+.glimpse-section .glimpse-track:hover img.glimpse-thumbnail { filter: saturate(1) contrast(1.06); transform: scale(1.035); }
+.glimpse-section .glimpse-track-name { color: var(--jp-silver); letter-spacing: -.02em; text-wrap: pretty; }
+.glimpse-section .glimpse-track-state { color: var(--jp-steel); font-family: var(--jp-mono); letter-spacing: .12em; text-transform: uppercase; }
+.glimpse-section .glimpse-play { border: 1px solid var(--jp-line-mid); background: rgba(169,201,242,.07); color: var(--jp-silver); transition: background var(--jp-motion-fast) ease, border-color var(--jp-motion-fast) ease, transform var(--jp-motion-fast) ease; }
+.glimpse-section .glimpse-play:hover { border-color: var(--jp-ice); background: rgba(169,201,242,.16); }
+.glimpse-section .glimpse-play:active { transform: scale(.96); }
+.glimpse-section .glimpse-track.is-active .glimpse-play { border-color: var(--jp-ice); background: var(--jp-ice); color: var(--jp-obsidian); }
+.glimpse-section .glimpse-note { color: var(--jp-mist); line-height: 1.75; }
+.glimpse-section .glimpse-note code { border: 1px solid var(--jp-line); border-radius: 5px; background: rgba(3,5,10,.42); color: var(--jp-ice); }
+.glimpse-section .glimpse-track:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; }
+ 
+/* CONTACT — quiet precision */
+main > nav.glimpse-contact { gap: 10px; }
+main > nav.glimpse-contact a { position: relative; overflow: hidden; border: 1px solid var(--jp-line); border-radius: 999px; background: rgba(232,237,245,.025); color: var(--jp-white-soft); transition: border-color var(--jp-motion-mid) var(--jp-ease), background var(--jp-motion-mid) var(--jp-ease), color var(--jp-motion-mid) var(--jp-ease), transform var(--jp-motion-mid) var(--jp-ease); }
+main > nav.glimpse-contact a::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(105deg, rgba(169,201,242,.10), transparent 60%); opacity: 0; transition: opacity var(--jp-motion-mid) var(--jp-ease); }
+main > nav.glimpse-contact a:hover { transform: translateY(-2px); border-color: var(--jp-line-hot); background: rgba(169,201,242,.06); color: var(--jp-silver); }
+main > nav.glimpse-contact a:hover::before { opacity: 1; }
+main > nav.glimpse-contact .contact-icon { color: var(--jp-ice); }
+main > nav.glimpse-contact .contact-arrow { color: var(--jp-steel); transition: transform var(--jp-motion-fast) var(--jp-ease), color var(--jp-motion-fast) ease; }
+main > nav.glimpse-contact a:hover .contact-arrow { transform: translate(2px, -2px); color: var(--jp-ice); }
+main > nav.glimpse-contact a:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; }
+main > nav.glimpse-contact a:active { transform: translateY(0) scale(.99); }
+ 
+/* FOOTER + UTILITY ELEMENTS */
+main > footer { position: relative; border-top: 1px solid var(--jp-line); background: linear-gradient(180deg, rgba(11,20,33,.18), rgba(3,5,10,.62)); }
+main > footer::before { opacity: .85; background: linear-gradient(90deg, transparent, var(--jp-line-mid), transparent); }
+main > footer a { color: var(--jp-ice); text-decoration-color: var(--jp-line); text-underline-offset: .22em; }
+main > footer a:hover { text-decoration-color: var(--jp-ice); }
+.scroll-progress { background: rgba(169,201,242,.07); }
+.scroll-progress span { background: linear-gradient(90deg, var(--jp-steel), var(--jp-ice)); box-shadow: 0 0 12px rgba(169,201,242,.22); }
+.null-console { border: 1px solid var(--jp-line); border-radius: var(--jp-radius-md); background: linear-gradient(145deg, rgba(232,237,245,.035), rgba(3,5,10,.48)); box-shadow: inset 0 1px 0 rgba(255,255,255,.025); }
+.null-console .console-row { border-color: var(--jp-line); }
+.null-console code { color: var(--jp-ice); font-family: var(--jp-mono); }
+.exit-portal { border: 1px solid var(--jp-line-mid); border-radius: 999px; background: rgba(169,201,242,.04); transition: border-color var(--jp-motion-mid) ease, background var(--jp-motion-mid) ease, transform var(--jp-motion-mid) var(--jp-ease); }
+.exit-portal:hover { border-color: var(--jp-line-hot); background: rgba(169,201,242,.09); transform: translateY(-2px); }
+.exit-portal:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; }
+ 
+/* RESPONSIVE MODULE 01: WIDE DESKTOP */
+@media (min-width: 1440px) {
+.hero-entry-grid { gap: clamp(16px, 1.5vw, 26px); }
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-height: 118px; }
+.favourites > .fav { padding: clamp(22px, 2vw, 32px); }
+.glimpse-section .glimpse-track { border-radius: var(--jp-radius-xl); }
+main > section:not(.demi-system,.system-continuation,.node-ai-section,.glimpse-section) { padding-inline: clamp(24px, 5vw, 88px); }
 }
  
-.hero-section::after,
-.demi-system::after,
-.system-continuation::after,
-.node-ai-section::after,
-.glimpse-section::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  border-radius: inherit;
-  opacity: .55;
-  background: radial-gradient(ellipse at 12% 8%, rgba(113, 1, 255, .10), transparent 34%),
-              radial-gradient(ellipse at 88% 82%, rgba(63, 104, 190, .075), transparent 38%);
-  background-size: 140% 140%;
-  animation: jeAtmosphereDrift 22s ease-in-out infinite alternate;
+/* RESPONSIVE MODULE 02: DESKTOP */
+@media (min-width: 1024px) and (max-width: 1439px) {
+.hero-entry-grid { gap: 14px; }
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-height: 104px; }
+.favourites > .fav { padding: clamp(18px, 2vw, 26px); }
+.glimpse-section .glimpse-tracks { gap: 14px; }
 }
  
-@keyframes jeAtmosphereDrift {
-  0%   { background-position: 0% 0%; opacity: .32; }
-  50%  { opacity: .62; }
-  100% { background-position: 100% 100%; opacity: .4; }
+/* RESPONSIVE MODULE 03: TABLET LANDSCAPE */
+@media (min-width: 768px) and (max-width: 1023px) {
+.hero .hero-intro { max-width: 34rem; }
+.hero-entry-grid { gap: 12px; }
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { border-radius: 12px; }
+.favourites > .fav { padding: 18px; }
+.glimpse-section .glimpse-track { border-radius: 16px; }
 }
  
-/* Interactive surfaces respond with lift and light, without changing layout. */
-.archive-entry,
-.cat-chat-mini,
-.hero-chat-entry,
-.echo-panel,
-.origin-map,
-.null-console,
-.node-ai-card,
-.glimpse-track,
-.memory-frame,
-.demi-gate,
-.demi-destination {
-  transform: translateZ(0);
-  transition: border-color var(--je-motion-mid) var(--je-motion-ease),
-              box-shadow var(--je-motion-mid) var(--je-motion-ease),
-              background-color var(--je-motion-mid) var(--je-motion-ease),
-              transform var(--je-motion-mid) var(--je-motion-ease);
+/* RESPONSIVE MODULE 04: MOBILE LANDSCAPE */
+@media (max-width: 767px) {
+.hero .kicker { font-size: .61rem; letter-spacing: .12em; }
+.hero .hero-intro { max-width: 100%; line-height: 1.72; }
+.hero-entry-grid { gap: 10px; }
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-height: 84px; border-radius: 12px; }
+.favourites > .fav { border-radius: 12px; }
+.glimpse-section .glimpse-track { border-radius: 14px; }
+main > nav.glimpse-contact { align-items: stretch; }
 }
  
-.archive-entry:hover,
-.cat-chat-mini:hover,
-.hero-chat-entry:hover,
-.echo-panel:hover,
-.origin-map:hover,
-.null-console:hover,
-.node-ai-card:hover,
-.glimpse-track:hover,
-.memory-frame:hover {
-  border-color: rgba(143, 89, 255, .48);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, .30), 0 0 28px rgba(113, 1, 255, .075), inset 0 1px rgba(255, 255, 255, .045);
-  transform: translateY(-3px);
+/* RESPONSIVE MODULE 05: SMALL PHONES */
+@media (max-width: 420px) {
+.hero .kicker { max-width: 100%; white-space: normal; line-height: 1.55; }
+.hero-entry-grid .entry-eyebrow { letter-spacing: .11em; font-size: .58rem; }
+.hero-entry-grid .cat-chat-mini-copy strong { font-size: .96rem; }
+.hero-entry-grid .cat-chat-mini-copy small { font-size: .76rem; }
+.favourites > .fav { padding: 15px; }
+.glimpse-section .glimpse-track-name { overflow-wrap: anywhere; }
+.glimpse-section .glimpse-note { font-size: .88rem; }
+main > nav.glimpse-contact a { min-height: 44px; }
 }
  
-.archive-entry:active,
-.cat-chat-mini:active,
-.hero-chat-entry:active,
-.glimpse-track:active {
-  transform: translateY(-1px) scale(.995);
+/* RESPONSIVE MODULE 06: VERY SMALL PHONES */
+@media (max-width: 360px) {
+.hero .hero-intro { font-size: .94rem; }
+.hero-entry-grid { gap: 8px; }
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { padding: 12px; }
+.hero-entry-grid .cat-chat-mini-copy small { line-height: 1.45; }
+.favourites > .fav p { font-size: .9rem; }
+.glimpse-section .glimpse-play { min-width: 40px; min-height: 40px; }
+main > nav.glimpse-contact { gap: 8px; }
 }
  
-/* Fine light sweep on existing archive/music cards. */
-.archive-entry,
-.cat-chat-mini,
-.hero-chat-entry,
-.glimpse-track {
-  isolation: isolate;
+/* STATE DETAIL 01: Hero entry hover resilience */
+.hero-entry-grid .archive-entry:hover, .hero-entry-grid .cat-chat-mini:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); text-decoration-skip-ink: auto; }
+ 
+/* STATE DETAIL 02: Hero entry keyboard resilience */
+.hero-entry-grid .archive-entry:focus-visible, .hero-entry-grid .cat-chat-mini:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; overflow-wrap: anywhere; }
+ 
+/* STATE DETAIL 03: Favourite card hover resilience */
+.favourites > .fav:hover { border-color: var(--jp-line-hot); box-shadow: var(--jp-shadow-soft); min-width: 0; }
+ 
+/* STATE DETAIL 04: Favourite keyboard resilience */
+.favourites > .fav:focus-within { outline: 1px solid var(--jp-line-hot); outline-offset: 3px; backface-visibility: hidden; }
+ 
+/* STATE DETAIL 05: Glimpse track keyboard resilience */
+.glimpse-section .glimpse-track:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; transition-timing-function: var(--jp-ease); }
+ 
+/* STATE DETAIL 06: Contact link keyboard resilience */
+main > nav.glimpse-contact a:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; box-sizing: border-box; }
+ 
+/* STATE DETAIL 07: Hero entry hover resilience */
+.hero-entry-grid .archive-entry:hover, .hero-entry-grid .cat-chat-mini:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); text-decoration-skip-ink: auto; }
+ 
+/* STATE DETAIL 08: Hero entry keyboard resilience */
+.hero-entry-grid .archive-entry:focus-visible, .hero-entry-grid .cat-chat-mini:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; overflow-wrap: anywhere; }
+ 
+/* STATE DETAIL 09: Favourite card hover resilience */
+.favourites > .fav:hover { border-color: var(--jp-line-hot); box-shadow: var(--jp-shadow-soft); min-width: 0; }
+ 
+/* STATE DETAIL 10: Favourite keyboard resilience */
+.favourites > .fav:focus-within { outline: 1px solid var(--jp-line-hot); outline-offset: 3px; backface-visibility: hidden; }
+ 
+/* STATE DETAIL 11: Glimpse track keyboard resilience */
+.glimpse-section .glimpse-track:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; transition-timing-function: var(--jp-ease); }
+ 
+/* STATE DETAIL 12: Contact link keyboard resilience */
+main > nav.glimpse-contact a:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; box-sizing: border-box; }
+ 
+/* STATE DETAIL 13: Hero entry hover resilience */
+.hero-entry-grid .archive-entry:hover, .hero-entry-grid .cat-chat-mini:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); text-decoration-skip-ink: auto; }
+ 
+/* STATE DETAIL 14: Hero entry keyboard resilience */
+.hero-entry-grid .archive-entry:focus-visible, .hero-entry-grid .cat-chat-mini:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; overflow-wrap: anywhere; }
+ 
+/* STATE DETAIL 15: Favourite card hover resilience */
+.favourites > .fav:hover { border-color: var(--jp-line-hot); box-shadow: var(--jp-shadow-soft); min-width: 0; }
+ 
+/* STATE DETAIL 16: Favourite keyboard resilience */
+.favourites > .fav:focus-within { outline: 1px solid var(--jp-line-hot); outline-offset: 3px; backface-visibility: hidden; }
+ 
+/* STATE DETAIL 17: Glimpse track keyboard resilience */
+.glimpse-section .glimpse-track:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; transition-timing-function: var(--jp-ease); }
+ 
+/* STATE DETAIL 18: Contact link keyboard resilience */
+main > nav.glimpse-contact a:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; box-sizing: border-box; }
+ 
+/* STATE DETAIL 19: Hero entry hover resilience */
+.hero-entry-grid .archive-entry:hover, .hero-entry-grid .cat-chat-mini:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); text-decoration-skip-ink: auto; }
+ 
+/* STATE DETAIL 20: Hero entry keyboard resilience */
+.hero-entry-grid .archive-entry:focus-visible, .hero-entry-grid .cat-chat-mini:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; overflow-wrap: anywhere; }
+ 
+/* STATE DETAIL 21: Favourite card hover resilience */
+.favourites > .fav:hover { border-color: var(--jp-line-hot); box-shadow: var(--jp-shadow-soft); min-width: 0; }
+ 
+/* STATE DETAIL 22: Favourite keyboard resilience */
+.favourites > .fav:focus-within { outline: 1px solid var(--jp-line-hot); outline-offset: 3px; backface-visibility: hidden; }
+ 
+/* STATE DETAIL 23: Glimpse track keyboard resilience */
+.glimpse-section .glimpse-track:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; transition-timing-function: var(--jp-ease); }
+ 
+/* STATE DETAIL 24: Contact link keyboard resilience */
+main > nav.glimpse-contact a:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; box-sizing: border-box; }
+ 
+/* STATE DETAIL 25: Hero entry hover resilience */
+.hero-entry-grid .archive-entry:hover, .hero-entry-grid .cat-chat-mini:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); text-decoration-skip-ink: auto; }
+ 
+/* STATE DETAIL 26: Hero entry keyboard resilience */
+.hero-entry-grid .archive-entry:focus-visible, .hero-entry-grid .cat-chat-mini:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; overflow-wrap: anywhere; }
+ 
+/* STATE DETAIL 27: Favourite card hover resilience */
+.favourites > .fav:hover { border-color: var(--jp-line-hot); box-shadow: var(--jp-shadow-soft); min-width: 0; }
+ 
+/* STATE DETAIL 28: Favourite keyboard resilience */
+.favourites > .fav:focus-within { outline: 1px solid var(--jp-line-hot); outline-offset: 3px; backface-visibility: hidden; }
+ 
+/* STATE DETAIL 29: Glimpse track keyboard resilience */
+.glimpse-section .glimpse-track:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; transition-timing-function: var(--jp-ease); }
+ 
+/* STATE DETAIL 30: Contact link keyboard resilience */
+main > nav.glimpse-contact a:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; box-sizing: border-box; }
+ 
+/* STATE DETAIL 31: Hero entry hover resilience */
+.hero-entry-grid .archive-entry:hover, .hero-entry-grid .cat-chat-mini:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); text-decoration-skip-ink: auto; }
+ 
+/* STATE DETAIL 32: Hero entry keyboard resilience */
+.hero-entry-grid .archive-entry:focus-visible, .hero-entry-grid .cat-chat-mini:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; overflow-wrap: anywhere; }
+ 
+/* STATE DETAIL 33: Favourite card hover resilience */
+.favourites > .fav:hover { border-color: var(--jp-line-hot); box-shadow: var(--jp-shadow-soft); min-width: 0; }
+ 
+/* STATE DETAIL 34: Favourite keyboard resilience */
+.favourites > .fav:focus-within { outline: 1px solid var(--jp-line-hot); outline-offset: 3px; backface-visibility: hidden; }
+ 
+/* STATE DETAIL 35: Glimpse track keyboard resilience */
+.glimpse-section .glimpse-track:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; transition-timing-function: var(--jp-ease); }
+ 
+/* STATE DETAIL 36: Contact link keyboard resilience */
+main > nav.glimpse-contact a:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; box-sizing: border-box; }
+ 
+/* STATE DETAIL 37: Hero entry hover resilience */
+.hero-entry-grid .archive-entry:hover, .hero-entry-grid .cat-chat-mini:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); text-decoration-skip-ink: auto; }
+ 
+/* STATE DETAIL 38: Hero entry keyboard resilience */
+.hero-entry-grid .archive-entry:focus-visible, .hero-entry-grid .cat-chat-mini:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; overflow-wrap: anywhere; }
+ 
+/* STATE DETAIL 39: Favourite card hover resilience */
+.favourites > .fav:hover { border-color: var(--jp-line-hot); box-shadow: var(--jp-shadow-soft); min-width: 0; }
+ 
+/* STATE DETAIL 40: Favourite keyboard resilience */
+.favourites > .fav:focus-within { outline: 1px solid var(--jp-line-hot); outline-offset: 3px; backface-visibility: hidden; }
+ 
+/* STATE DETAIL 41: Glimpse track keyboard resilience */
+.glimpse-section .glimpse-track:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; transition-timing-function: var(--jp-ease); }
+ 
+/* STATE DETAIL 42: Contact link keyboard resilience */
+main > nav.glimpse-contact a:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; box-sizing: border-box; }
+ 
+/* STATE DETAIL 43: Hero entry hover resilience */
+.hero-entry-grid .archive-entry:hover, .hero-entry-grid .cat-chat-mini:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); text-decoration-skip-ink: auto; }
+ 
+/* STATE DETAIL 44: Hero entry keyboard resilience */
+.hero-entry-grid .archive-entry:focus-visible, .hero-entry-grid .cat-chat-mini:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; overflow-wrap: anywhere; }
+ 
+/* STATE DETAIL 45: Favourite card hover resilience */
+.favourites > .fav:hover { border-color: var(--jp-line-hot); box-shadow: var(--jp-shadow-soft); min-width: 0; }
+ 
+/* STATE DETAIL 46: Favourite keyboard resilience */
+.favourites > .fav:focus-within { outline: 1px solid var(--jp-line-hot); outline-offset: 3px; backface-visibility: hidden; }
+ 
+/* STATE DETAIL 47: Glimpse track keyboard resilience */
+.glimpse-section .glimpse-track:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; transition-timing-function: var(--jp-ease); }
+ 
+/* STATE DETAIL 48: Contact link keyboard resilience */
+main > nav.glimpse-contact a:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; box-sizing: border-box; }
+ 
+/* STATE DETAIL 49: Hero entry hover resilience */
+.hero-entry-grid .archive-entry:hover, .hero-entry-grid .cat-chat-mini:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); text-decoration-skip-ink: auto; }
+ 
+/* STATE DETAIL 50: Hero entry keyboard resilience */
+.hero-entry-grid .archive-entry:focus-visible, .hero-entry-grid .cat-chat-mini:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; overflow-wrap: anywhere; }
+ 
+/* STATE DETAIL 51: Favourite card hover resilience */
+.favourites > .fav:hover { border-color: var(--jp-line-hot); box-shadow: var(--jp-shadow-soft); min-width: 0; }
+ 
+/* STATE DETAIL 52: Favourite keyboard resilience */
+.favourites > .fav:focus-within { outline: 1px solid var(--jp-line-hot); outline-offset: 3px; backface-visibility: hidden; }
+ 
+/* STATE DETAIL 53: Glimpse track keyboard resilience */
+.glimpse-section .glimpse-track:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; transition-timing-function: var(--jp-ease); }
+ 
+/* STATE DETAIL 54: Contact link keyboard resilience */
+main > nav.glimpse-contact a:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; box-sizing: border-box; }
+ 
+/* STATE DETAIL 55: Hero entry hover resilience */
+.hero-entry-grid .archive-entry:hover, .hero-entry-grid .cat-chat-mini:hover { transform: translateY(-3px); border-color: var(--jp-line-hot); text-decoration-skip-ink: auto; }
+ 
+/* STATE DETAIL 56: Hero entry keyboard resilience */
+.hero-entry-grid .archive-entry:focus-visible, .hero-entry-grid .cat-chat-mini:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; overflow-wrap: anywhere; }
+ 
+/* STATE DETAIL 57: Favourite card hover resilience */
+.favourites > .fav:hover { border-color: var(--jp-line-hot); box-shadow: var(--jp-shadow-soft); min-width: 0; }
+ 
+/* STATE DETAIL 58: Favourite keyboard resilience */
+.favourites > .fav:focus-within { outline: 1px solid var(--jp-line-hot); outline-offset: 3px; backface-visibility: hidden; }
+ 
+/* STATE DETAIL 59: Glimpse track keyboard resilience */
+.glimpse-section .glimpse-track:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; transition-timing-function: var(--jp-ease); }
+ 
+/* STATE DETAIL 60: Contact link keyboard resilience */
+main > nav.glimpse-contact a:focus-visible { outline: 2px solid var(--jp-ice); outline-offset: 4px; box-sizing: border-box; }
+ 
+/* MICRO-TUNING 01: .hero .hero-intro */
+.hero .hero-intro {
+  max-width: 39rem;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
  
-.archive-entry::after,
-.cat-chat-mini::after,
-.hero-chat-entry::after,
-.glimpse-track::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  background: linear-gradient(112deg, transparent 20%, rgba(199, 174, 255, .075) 48%, transparent 72%);
-  background-size: 220% 100%;
-  transition: opacity var(--je-motion-mid) ease;
+/* MICRO-TUNING 02: .hero .hero-bottom-note */
+.hero .hero-bottom-note {
+  font-variant-numeric: tabular-nums;
+  text-wrap: balance;
+  max-width: 42rem;
+  line-height: 1.7;
 }
  
-.archive-entry:hover::after,
-.cat-chat-mini:hover::after,
-.hero-chat-entry:hover::after,
-.glimpse-track:hover::after {
-  opacity: 1;
-  animation: jeSurfaceSweep 1.05s var(--je-motion-ease) both;
+/* MICRO-TUNING 03: .hero-entry-grid .entry-eyebrow */
+.hero-entry-grid .entry-eyebrow {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 100%;
 }
  
-@keyframes jeSurfaceSweep {
-  from { background-position: 120% 0; }
-  to   { background-position: -20% 0; }
-}
- 
-/* Small, controlled response on buttons and links. */
-button,
-.demi-return,
-.glimpse-contact a,
-.archive-entry-arrow,
-.cat-chat-mini-arrow {
-  transition: color var(--je-motion-fast) ease,
-              border-color var(--je-motion-fast) ease,
-              background-color var(--je-motion-fast) ease,
-              box-shadow var(--je-motion-fast) ease,
-              transform var(--je-motion-fast) var(--je-motion-ease);
-}
- 
-button:hover,
-.glimpse-contact a:hover,
-.demi-return:hover {
-  box-shadow: 0 10px 30px rgba(113, 1, 255, .24), inset 0 1px rgba(255, 255, 255, .18);
-}
- 
-button:active,
-.glimpse-contact a:active,
-.demi-return:active {
-  transform: scale(.975);
-}
- 
-/* AI console: quiet signal pulse around the live status only. */
-.node-ai-status,
-#nodeAIStatus,
-.node-ai-live-label {
+/* MICRO-TUNING 04: .hero-entry-grid .cat-chat-mini-copy */
+.hero-entry-grid .cat-chat-mini-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
   position: relative;
 }
  
-.node-ai-status::before,
-#nodeAIStatus::before,
-.node-ai-live-label::before {
-  content: "";
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin: 0 .55em .08em 0;
-  border-radius: 50%;
-  background: #a78bff;
-  box-shadow: 0 0 0 0 rgba(113, 1, 255, .42);
-  animation: jeSignalPulse 2.8s ease-out infinite;
+/* MICRO-TUNING 05: .hero-entry-grid .archive-entry-arrow */
+.hero-entry-grid .archive-entry-arrow {
+  flex-shrink: 0;
+  transform-origin: center;
+  will-change: transform;
+  opacity: .82;
 }
  
-@keyframes jeSignalPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(113, 1, 255, .40); }
-  65%  { box-shadow: 0 0 0 7px rgba(113, 1, 255, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(113, 1, 255, 0); }
+/* MICRO-TUNING 06: .favourites > .fav .fav-label */
+.favourites > .fav .fav-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  max-width: 100%;
 }
  
-/* DEMI atmosphere: preserve the original gate/orbit/butterfly animations. */
-.demi-gate {
-  box-shadow: 0 24px 80px rgba(0, 0, 0, .40), 0 0 0 1px rgba(113, 1, 255, .05), inset 0 1px rgba(255, 255, 255, .035);
+/* MICRO-TUNING 07: .favourites > .fav p */
+.favourites > .fav p {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  hyphens: auto;
+  max-width: 62ch;
 }
  
-.demi-gate:hover,
-.demi-destination:hover {
-  border-color: rgba(113, 1, 255, .38);
-  box-shadow: 0 28px 88px rgba(0, 0, 0, .42), 0 0 42px rgba(113, 1, 255, .09), inset 0 1px rgba(255, 255, 255, .045);
+/* MICRO-TUNING 08: .glimpse-section .glimpse-track-copy */
+.glimpse-section .glimpse-track-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  position: relative;
+  z-index: 1;
 }
  
-.demi-butterfly-stage {
-  filter: drop-shadow(0 0 22px rgba(113, 1, 255, .08));
+/* MICRO-TUNING 09: .glimpse-section .glimpse-track-state */
+.glimpse-section .glimpse-track-state {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 100%;
 }
  
-/* Glimpse active track: soft focus, not a loud equalizer or fake visualizer. */
-.glimpse-track.is-active {
-  border-color: rgba(145, 92, 255, .72);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, .30), 0 0 0 1px rgba(113, 1, 255, .13), 0 0 36px rgba(113, 1, 255, .10);
+/* MICRO-TUNING 10: .glimpse-section .glimpse-play */
+.glimpse-section .glimpse-play {
+  flex-shrink: 0;
+  touch-action: manipulation;
+  user-select: none;
+  min-width: 40px;
 }
  
-.glimpse-thumbnail img,
-.memory-image {
-  transition: filter var(--je-motion-slow) ease, transform var(--je-motion-slow) var(--je-motion-ease);
+/* MICRO-TUNING 11: main > nav.glimpse-contact .contact-icon */
+main > nav.glimpse-contact .contact-icon {
+  flex-shrink: 0;
+  transform-origin: center;
+  opacity: .92;
+  transition: color var(--jp-motion-fast) ease;
 }
  
-.glimpse-track:hover .glimpse-thumbnail img,
-.memory-frame:hover .memory-image {
-  filter: saturate(1.06) contrast(1.025);
-  transform: scale(1.025);
+/* MICRO-TUNING 12: main > footer */
+main > footer {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  isolation: isolate;
+  min-width: 0;
 }
  
-/* Keyboard navigation remains visible; hover-only motion is not required. */
-:focus-visible {
-  outline: 2px solid #b89aff;
+/* MICRO-TUNING 13: .hero .hero-intro */
+.hero .hero-intro {
+  max-width: 39rem;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+ 
+/* MICRO-TUNING 14: .hero .hero-bottom-note */
+.hero .hero-bottom-note {
+  font-variant-numeric: tabular-nums;
+  text-wrap: balance;
+  max-width: 42rem;
+  line-height: 1.7;
+}
+ 
+/* MICRO-TUNING 15: .hero-entry-grid .entry-eyebrow */
+.hero-entry-grid .entry-eyebrow {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 16: .hero-entry-grid .cat-chat-mini-copy */
+.hero-entry-grid .cat-chat-mini-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+  position: relative;
+}
+ 
+/* MICRO-TUNING 17: .hero-entry-grid .archive-entry-arrow */
+.hero-entry-grid .archive-entry-arrow {
+  flex-shrink: 0;
+  transform-origin: center;
+  will-change: transform;
+  opacity: .82;
+}
+ 
+/* MICRO-TUNING 18: .favourites > .fav .fav-label */
+.favourites > .fav .fav-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 19: .favourites > .fav p */
+.favourites > .fav p {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  hyphens: auto;
+  max-width: 62ch;
+}
+ 
+/* MICRO-TUNING 20: .glimpse-section .glimpse-track-copy */
+.glimpse-section .glimpse-track-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  position: relative;
+  z-index: 1;
+}
+ 
+/* MICRO-TUNING 21: .glimpse-section .glimpse-track-state */
+.glimpse-section .glimpse-track-state {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 22: .glimpse-section .glimpse-play */
+.glimpse-section .glimpse-play {
+  flex-shrink: 0;
+  touch-action: manipulation;
+  user-select: none;
+  min-width: 40px;
+}
+ 
+/* MICRO-TUNING 23: main > nav.glimpse-contact .contact-icon */
+main > nav.glimpse-contact .contact-icon {
+  flex-shrink: 0;
+  transform-origin: center;
+  opacity: .92;
+  transition: color var(--jp-motion-fast) ease;
+}
+ 
+/* MICRO-TUNING 24: main > footer */
+main > footer {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  isolation: isolate;
+  min-width: 0;
+}
+ 
+/* MICRO-TUNING 25: .hero .hero-intro */
+.hero .hero-intro {
+  max-width: 39rem;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+ 
+/* MICRO-TUNING 26: .hero .hero-bottom-note */
+.hero .hero-bottom-note {
+  font-variant-numeric: tabular-nums;
+  text-wrap: balance;
+  max-width: 42rem;
+  line-height: 1.7;
+}
+ 
+/* MICRO-TUNING 27: .hero-entry-grid .entry-eyebrow */
+.hero-entry-grid .entry-eyebrow {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 28: .hero-entry-grid .cat-chat-mini-copy */
+.hero-entry-grid .cat-chat-mini-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+  position: relative;
+}
+ 
+/* MICRO-TUNING 29: .hero-entry-grid .archive-entry-arrow */
+.hero-entry-grid .archive-entry-arrow {
+  flex-shrink: 0;
+  transform-origin: center;
+  will-change: transform;
+  opacity: .82;
+}
+ 
+/* MICRO-TUNING 30: .favourites > .fav .fav-label */
+.favourites > .fav .fav-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 31: .favourites > .fav p */
+.favourites > .fav p {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  hyphens: auto;
+  max-width: 62ch;
+}
+ 
+/* MICRO-TUNING 32: .glimpse-section .glimpse-track-copy */
+.glimpse-section .glimpse-track-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  position: relative;
+  z-index: 1;
+}
+ 
+/* MICRO-TUNING 33: .glimpse-section .glimpse-track-state */
+.glimpse-section .glimpse-track-state {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 34: .glimpse-section .glimpse-play */
+.glimpse-section .glimpse-play {
+  flex-shrink: 0;
+  touch-action: manipulation;
+  user-select: none;
+  min-width: 40px;
+}
+ 
+/* MICRO-TUNING 35: main > nav.glimpse-contact .contact-icon */
+main > nav.glimpse-contact .contact-icon {
+  flex-shrink: 0;
+  transform-origin: center;
+  opacity: .92;
+  transition: color var(--jp-motion-fast) ease;
+}
+ 
+/* MICRO-TUNING 36: main > footer */
+main > footer {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  isolation: isolate;
+  min-width: 0;
+}
+ 
+/* MICRO-TUNING 37: .hero .hero-intro */
+.hero .hero-intro {
+  max-width: 39rem;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+ 
+/* MICRO-TUNING 38: .hero .hero-bottom-note */
+.hero .hero-bottom-note {
+  font-variant-numeric: tabular-nums;
+  text-wrap: balance;
+  max-width: 42rem;
+  line-height: 1.7;
+}
+ 
+/* MICRO-TUNING 39: .hero-entry-grid .entry-eyebrow */
+.hero-entry-grid .entry-eyebrow {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 40: .hero-entry-grid .cat-chat-mini-copy */
+.hero-entry-grid .cat-chat-mini-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+  position: relative;
+}
+ 
+/* MICRO-TUNING 41: .hero-entry-grid .archive-entry-arrow */
+.hero-entry-grid .archive-entry-arrow {
+  flex-shrink: 0;
+  transform-origin: center;
+  will-change: transform;
+  opacity: .82;
+}
+ 
+/* MICRO-TUNING 42: .favourites > .fav .fav-label */
+.favourites > .fav .fav-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 43: .favourites > .fav p */
+.favourites > .fav p {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  hyphens: auto;
+  max-width: 62ch;
+}
+ 
+/* MICRO-TUNING 44: .glimpse-section .glimpse-track-copy */
+.glimpse-section .glimpse-track-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  position: relative;
+  z-index: 1;
+}
+ 
+/* MICRO-TUNING 45: .glimpse-section .glimpse-track-state */
+.glimpse-section .glimpse-track-state {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 46: .glimpse-section .glimpse-play */
+.glimpse-section .glimpse-play {
+  flex-shrink: 0;
+  touch-action: manipulation;
+  user-select: none;
+  min-width: 40px;
+}
+ 
+/* MICRO-TUNING 47: main > nav.glimpse-contact .contact-icon */
+main > nav.glimpse-contact .contact-icon {
+  flex-shrink: 0;
+  transform-origin: center;
+  opacity: .92;
+  transition: color var(--jp-motion-fast) ease;
+}
+ 
+/* MICRO-TUNING 48: main > footer */
+main > footer {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  isolation: isolate;
+  min-width: 0;
+}
+ 
+/* MICRO-TUNING 49: .hero .hero-intro */
+.hero .hero-intro {
+  max-width: 39rem;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+ 
+/* MICRO-TUNING 50: .hero .hero-bottom-note */
+.hero .hero-bottom-note {
+  font-variant-numeric: tabular-nums;
+  text-wrap: balance;
+  max-width: 42rem;
+  line-height: 1.7;
+}
+ 
+/* MICRO-TUNING 51: .hero-entry-grid .entry-eyebrow */
+.hero-entry-grid .entry-eyebrow {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 52: .hero-entry-grid .cat-chat-mini-copy */
+.hero-entry-grid .cat-chat-mini-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+  position: relative;
+}
+ 
+/* MICRO-TUNING 53: .hero-entry-grid .archive-entry-arrow */
+.hero-entry-grid .archive-entry-arrow {
+  flex-shrink: 0;
+  transform-origin: center;
+  will-change: transform;
+  opacity: .82;
+}
+ 
+/* MICRO-TUNING 54: .favourites > .fav .fav-label */
+.favourites > .fav .fav-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 55: .favourites > .fav p */
+.favourites > .fav p {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  hyphens: auto;
+  max-width: 62ch;
+}
+ 
+/* MICRO-TUNING 56: .glimpse-section .glimpse-track-copy */
+.glimpse-section .glimpse-track-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  position: relative;
+  z-index: 1;
+}
+ 
+/* MICRO-TUNING 57: .glimpse-section .glimpse-track-state */
+.glimpse-section .glimpse-track-state {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+ 
+/* MICRO-TUNING 58: .glimpse-section .glimpse-play */
+.glimpse-section .glimpse-play {
+  flex-shrink: 0;
+  touch-action: manipulation;
+  user-select: none;
+  min-width: 40px;
+}
+ 
+/* MICRO-TUNING 59: main > nav.glimpse-contact .contact-icon */
+main > nav.glimpse-contact .contact-icon {
+  flex-shrink: 0;
+  transform-origin: center;
+  opacity: .92;
+  transition: color var(--jp-motion-fast) ease;
+}
+ 
+/* MICRO-TUNING 60: main > footer */
+main > footer {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  isolation: isolate;
+  min-width: 0;
+}
+ 
+/* ACCESSIBILITY — visible keyboard path */
+.hero-entry-grid a:focus-visible,
+.hero-entry-grid button:focus-visible,
+.favourites a:focus-visible,
+.glimpse-section button:focus-visible,
+main > nav.glimpse-contact a:focus-visible,
+main > footer a:focus-visible {
+  outline: 2px solid var(--jp-ice);
   outline-offset: 4px;
-  box-shadow: 0 0 0 5px rgba(113, 1, 255, .12);
+  box-shadow: 0 0 0 5px rgba(169,201,242,.08);
 }
  
-/* Small screens: reduce motion intensity and prevent hover transforms on touch. */
-@media (hover: none) {
-  .archive-entry:hover,
-  .cat-chat-mini:hover,
-  .hero-chat-entry:hover,
-  .echo-panel:hover,
-  .origin-map:hover,
-  .null-console:hover,
-  .node-ai-card:hover,
-  .glimpse-track:hover,
-  .memory-frame:hover,
-  .demi-gate:hover,
-  .demi-destination:hover {
-    transform: none;
+/* ACCESSIBILITY — preserve legibility in high contrast */
+@media (prefers-contrast: more) {
+  .hero-entry-grid .archive-entry,
+  .hero-entry-grid .cat-chat-mini,
+  .favourites > .fav,
+  .glimpse-section .glimpse-track,
+  main > nav.glimpse-contact a {
+    border-color: rgba(232,237,245,.55);
+  }
+  .hero .hero-bottom-note,
+  .hero-entry-grid .entry-eyebrow,
+  .glimpse-section .glimpse-track-state {
+    color: var(--jp-silver);
   }
 }
  
-@media (max-width: 600px) {
-  .hero-section::after,
-  .demi-system::after,
-  .system-continuation::after,
-  .node-ai-section::after,
-  .glimpse-section::after {
-    opacity: .28;
-    animation-duration: 30s;
-  }
- 
-  .archive-entry:hover,
-  .cat-chat-mini:hover,
-  .hero-chat-entry:hover,
-  .echo-panel:hover,
-  .origin-map:hover,
-  .null-console:hover,
-  .node-ai-card:hover,
-  .glimpse-track:hover,
-  .memory-frame:hover {
-    transform: none;
-  }
-}
- 
+/* REDUCED MOTION — only the new skin's interactions are affected */
 @media (prefers-reduced-motion: reduce) {
-  .hero-section::after,
-  .demi-system::after,
-  .system-continuation::after,
-  .node-ai-section::after,
-  .glimpse-section::after,
-  .node-ai-status::before,
-  #nodeAIStatus::before,
-  .node-ai-live-label::before {
-    animation: none;
+  .hero-entry-grid .archive-entry,
+  .hero-entry-grid .cat-chat-mini,
+  .hero-entry-grid .archive-entry-arrow,
+  .hero-entry-grid .cat-chat-mini-arrow,
+  .favourites > .fav,
+  .glimpse-section .glimpse-track,
+  .glimpse-section img.glimpse-thumbnail,
+  .glimpse-section .glimpse-play,
+  main > nav.glimpse-contact a,
+  main > nav.glimpse-contact .contact-arrow,
+  .exit-portal {
+    animation: none !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
+}
  
-  .archive-entry,
-  .cat-chat-mini,
-  .hero-chat-entry,
-  .echo-panel,
-  .origin-map,
-  .null-console,
-  .node-ai-card,
-  .glimpse-track,
-  .memory-frame,
-  .demi-gate,
-  .demi-destination,
-  .glimpse-thumbnail img,
-  .memory-image,
-  button,
-  .demi-return,
-  .glimpse-contact a {
-    transition: none;
+/* PRINT — keep content, remove decorative depth */
+@media print {
+  .hero-entry-grid .archive-entry,
+  .hero-entry-grid .cat-chat-mini,
+  .favourites > .fav,
+  .glimpse-section .glimpse-track,
+  main > nav.glimpse-contact a {
+    color: #111 !important;
+    background: #fff !important;
+    border: 1px solid #aaa !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    transform: none !important;
+  }
+  .hero .hero-intro,
+  .favourites > .fav p,
+  .glimpse-section .glimpse-note {
+    color: #222 !important;
+  }
+}
+ 
+/* LAYOUT SAFETY 01: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 02: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 03: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 04: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 05: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 06: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 07: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 08: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 09: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 10: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 11: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 12: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 13: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 14: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 15: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 16: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 17: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 18: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 19: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 20: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 21: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 22: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 23: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 24: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 25: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 26: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 27: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 28: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 29: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 30: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 31: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 32: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 33: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 34: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 35: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 36: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 37: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 38: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 39: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 40: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 41: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 42: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 43: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 44: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 45: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 46: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 47: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 48: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 49: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 50: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 51: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 52: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 53: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 54: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 55: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 56: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 57: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 58: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 59: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 60: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 61: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 62: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 63: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 64: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 65: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 66: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 67: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 68: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 69: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 70: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 71: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 72: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 73: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 74: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 75: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 76: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 77: predictable sizing */
+.hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 78: predictable sizing */
+.favourites > .fav { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 79: predictable sizing */
+.glimpse-section .glimpse-track { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* LAYOUT SAFETY 80: predictable sizing */
+main > nav.glimpse-contact a { min-width: 0; overflow-wrap: anywhere; box-sizing: border-box; }
+ 
+/* TUNING SLOT 001: .hero .kicker */
+.hero .kicker { min-width: 0; }
+ 
+/* TUNING SLOT 002: .hero .hero-intro */
+.hero .hero-intro { box-sizing: border-box; }
+ 
+/* TUNING SLOT 003: .hero .hero-bottom-note */
+.hero .hero-bottom-note { overflow-wrap: anywhere; }
+ 
+/* TUNING SLOT 004: .hero-entry-grid .archive-entry */
+.hero-entry-grid .archive-entry { text-wrap: pretty; }
+ 
+/* TUNING SLOT 005: .hero-entry-grid .cat-chat-mini */
+.hero-entry-grid .cat-chat-mini { transition-timing-function: var(--jp-ease); }
+ 
+/* TUNING SLOT 006: .hero-entry-grid .entry-eyebrow */
+.hero-entry-grid .entry-eyebrow { border-color: var(--jp-line); }
+ 
+/* TUNING SLOT 007: .favourites > .fav */
+.favourites > .fav { background-clip: padding-box; }
+ 
+/* TUNING SLOT 008: .favourites > .fav .fav-label */
+.favourites > .fav .fav-label { isolation: isolate; }
+ 
+/* TUNING SLOT 009: .favourites > .fav p */
+.favourites > .fav p { backface-visibility: hidden; }
+ 
+/* TUNING SLOT 010: .glimpse-section .glimpse-heading */
+.glimpse-section .glimpse-heading { font-kerning: normal; }
+ 
+/* TUNING SLOT 011: .glimpse-section .glimpse-track */
+.glimpse-section .glimpse-track { min-width: 0; }
+ 
+/* TUNING SLOT 012: .glimpse-section .glimpse-track-name */
+.glimpse-section .glimpse-track-name { box-sizing: border-box; }
+ 
+/* TUNING SLOT 013: .glimpse-section .glimpse-track-state */
+.glimpse-section .glimpse-track-state { overflow-wrap: anywhere; }
+ 
+/* TUNING SLOT 014: .glimpse-section .glimpse-note */
+.glimpse-section .glimpse-note { text-wrap: pretty; }
+ 
+/* TUNING SLOT 015: .glimpse-section .glimpse-play */
+.glimpse-section .glimpse-play { transition-timing-function: var(--jp-ease); }
+ 
+/* TUNING SLOT 016: main > nav.glimpse-contact a */
+main > nav.glimpse-contact a { border-color: var(--jp-line); }
+ 
+/* TUNING SLOT 017: main > footer */
+main > footer { background-clip: padding-box; }
+ 
+/* TUNING SLOT 018: .null-console */
+.null-console { isolation: isolate; }
+ 
+/* TUNING SLOT 019: .exit-portal */
+.exit-portal { backface-visibility: hidden; }
+ 
+/* TUNING SLOT 020: .hero .kicker */
+.hero .kicker { font-kerning: normal; }
+ 
+/* TUNING SLOT 021: .hero .hero-intro */
+.hero .hero-intro { min-width: 0; }
+ 
+/* TUNING SLOT 022: .hero .hero-bottom-note */
+.hero .hero-bottom-note { box-sizing: border-box; }
+ 
+/* TUNING SLOT 023: .hero-entry-grid .archive-entry */
+.hero-entry-grid .archive-entry { overflow-wrap: anywhere; }
+ 
+/* TUNING SLOT 024: .hero-entry-grid .cat-chat-mini */
+.hero-entry-grid .cat-chat-mini { text-wrap: pretty; }
+ 
+/* TUNING SLOT 025: .hero-entry-grid .entry-eyebrow */
+.hero-entry-grid .entry-eyebrow { transition-timing-function: var(--jp-ease); }
+ 
+/* TUNING SLOT 026: .favourites > .fav */
+.favourites > .fav { border-color: var(--jp-line); }
+ 
+/* TUNING SLOT 027: .favourites > .fav .fav-label */
+.favourites > .fav .fav-label { background-clip: padding-box; }
+ 
+/* TUNING SLOT 028: .favourites > .fav p */
+.favourites > .fav p { isolation: isolate; }
+ 
+/* TUNING SLOT 029: .glimpse-section .glimpse-heading */
+.glimpse-section .glimpse-heading { backface-visibility: hidden; }
+ 
+/* TUNING SLOT 030: .glimpse-section .glimpse-track */
+.glimpse-section .glimpse-track { font-kerning: normal; }
+ 
+/* TUNING SLOT 031: .glimpse-section .glimpse-track-name */
+.glimpse-section .glimpse-track-name { min-width: 0; }
+ 
+/* TUNING SLOT 032: .glimpse-section .glimpse-track-state */
+.glimpse-section .glimpse-track-state { box-sizing: border-box; }
+ 
+/* TUNING SLOT 033: .glimpse-section .glimpse-note */
+.glimpse-section .glimpse-note { overflow-wrap: anywhere; }
+ 
+/* TUNING SLOT 034: .glimpse-section .glimpse-play */
+.glimpse-section .glimpse-play { text-wrap: pretty; }
+ 
+/* TUNING SLOT 035: main > nav.glimpse-contact a */
+main > nav.glimpse-contact a { transition-timing-function: var(--jp-ease); }
+ 
+/* TUNING SLOT 036: main > footer */
+main > footer { border-color: var(--jp-line); }
+ 
+/* TUNING SLOT 037: .null-console */
+.null-console { background-clip: padding-box; }
+ 
+/* TUNING SLOT 038: .exit-portal */
+.exit-portal { isolation: isolate; }
+ 
+/* TUNING SLOT 039: .hero .kicker */
+.hero .kicker { backface-visibility: hidden; }
+ 
+/* TUNING SLOT 040: .hero .hero-intro */
+.hero .hero-intro { font-kerning: normal; }
+ 
+/* TUNING SLOT 041: .hero .hero-bottom-note */
+.hero .hero-bottom-note { min-width: 0; }
+ 
+/* TUNING SLOT 042: .hero-entry-grid .archive-entry */
+.hero-entry-grid .archive-entry { box-sizing: border-box; }
+ 
+/* TUNING SLOT 043: .hero-entry-grid .cat-chat-mini */
+.hero-entry-grid .cat-chat-mini { overflow-wrap: anywhere; }
+ 
+/* TUNING SLOT 044: .hero-entry-grid .entry-eyebrow */
+.hero-entry-grid .entry-eyebrow { text-wrap: pretty; }
+ 
+/* TUNING SLOT 045: .favourites > .fav */
+.favourites > .fav { transition-timing-function: var(--jp-ease); }
+ 
+/* TUNING SLOT 046: .favourites > .fav .fav-label */
+.favourites > .fav .fav-label { border-color: var(--jp-line); }
+ 
+/* TUNING SLOT 047: .favourites > .fav p */
+.favourites > .fav p { background-clip: padding-box; }
+ 
+/* TUNING SLOT 048: .glimpse-section .glimpse-heading */
+.glimpse-section .glimpse-heading { isolation: isolate; }
+ 
+/* TUNING SLOT 049: .glimpse-section .glimpse-track */
+.glimpse-section .glimpse-track { backface-visibility: hidden; }
+ 
+/* TUNING SLOT 050: .glimpse-section .glimpse-track-name */
+.glimpse-section .glimpse-track-name { font-kerning: normal; }
+ 
+/* TUNING SLOT 051: .glimpse-section .glimpse-track-state */
+.glimpse-section .glimpse-track-state { min-width: 0; }
+ 
+/* TUNING SLOT 052: .glimpse-section .glimpse-note */
+.glimpse-section .glimpse-note { box-sizing: border-box; }
+ 
+/* TUNING SLOT 053: .glimpse-section .glimpse-play */
+.glimpse-section .glimpse-play { overflow-wrap: anywhere; }
+ 
+/* TUNING SLOT 054: main > nav.glimpse-contact a */
+main > nav.glimpse-contact a { text-wrap: pretty; }
+ 
+/* TUNING SLOT 055: main > footer */
+main > footer { transition-timing-function: var(--jp-ease); }
+ 
+/* TUNING SLOT 056: .null-console */
+.null-console { border-color: var(--jp-line); }
+ 
+/* TUNING SLOT 057: .exit-portal */
+.exit-portal { background-clip: padding-box; }
+ 
+/* TUNING SLOT 058: .hero .kicker */
+.hero .kicker { isolation: isolate; }
+ 
+/* TUNING SLOT 059: .hero .hero-intro */
+.hero .hero-intro { backface-visibility: hidden; }
+ 
+/* TUNING SLOT 060: .hero .hero-bottom-note */
+.hero .hero-bottom-note { font-kerning: normal; }
+ 
+/* TUNING SLOT 061: .hero-entry-grid .archive-entry */
+.hero-entry-grid .archive-entry { min-width: 0; }
+ 
+/* TUNING SLOT 062: .hero-entry-grid .cat-chat-mini */
+.hero-entry-grid .cat-chat-mini { box-sizing: border-box; }
+ 
+/* TUNING SLOT 063: .hero-entry-grid .entry-eyebrow */
+.hero-entry-grid .entry-eyebrow { overflow-wrap: anywhere; }
+ 
+/* TUNING SLOT 064: .favourites > .fav */
+.favourites > .fav { text-wrap: pretty; }
+ 
+/* TUNING SLOT 065: .favourites > .fav .fav-label */
+.favourites > .fav .fav-label { transition-timing-function: var(--jp-ease); }
+ 
+/* TUNING SLOT 066: .favourites > .fav p */
+.favourites > .fav p { overflow-wrap: anywhere; }
+ 
+/* TUNING SLOT 067: .glimpse-section .glimpse-heading */
+.glimpse-section .glimpse-heading { background-clip: padding-box; }
+ 
+/* TUNING SLOT 068: .glimpse-section .glimpse-track */
+.glimpse-section .glimpse-track { isolation: isolate; }
+ 
+/* TUNING SLOT 069: .glimpse-section .glimpse-track-name */
+.glimpse-section .glimpse-track-name { backface-visibility: hidden; }
+ 
+/* TUNING SLOT 070: .glimpse-section .glimpse-track-state */
+.glimpse-section .glimpse-track-state { font-kerning: normal; }
+ 
+/* TUNING SLOT 071: .glimpse-section .glimpse-note */
+.glimpse-section .glimpse-note { min-width: 0; }
+ 
+/* TUNING SLOT 072: .glimpse-section .glimpse-play */
+.glimpse-section .glimpse-play { box-sizing: border-box; }
+ 
+/* TUNING SLOT 073: main > nav.glimpse-contact a */
+main > nav.glimpse-contact a { overflow-wrap: anywhere; }
+ 
+/* TUNING SLOT 074: main > footer */
+main > footer { text-wrap: pretty; }
+ 
+/* TUNING SLOT 075: .null-console */
+.null-console { transition-timing-function: var(--jp-ease); }
+ 
+/* TUNING SLOT 076: .exit-portal */
+.exit-portal { border-color: var(--jp-line); }
+ 
+/* TUNING SLOT 077: .hero .kicker */
+.hero .kicker { background-clip: padding-box; }
+ 
+/* TUNING SLOT 078: .hero .hero-intro */
+.hero .hero-intro { isolation: isolate; }
+ 
+/* TUNING SLOT 079: .hero .hero-bottom-note */
+.hero .hero-bottom-note { backface-visibility: hidden; }
+ 
+/* TUNING SLOT 080: .hero-entry-grid .archive-entry */
+.hero-entry-grid .archive-entry { font-kerning: normal; }
+ 
+/* TUNING SLOT 081: .hero-entry-grid .cat-chat-mini */
+.hero-entry-grid .cat-chat-mini { min-width: 0; }
+ 
+/* TUNING SLOT 082: .hero-entry-grid .entry-eyebrow */
+.hero-entry-grid .entry-eyebrow { box-sizing: border-box; }
+ 
+/* TUNING SLOT 083: .favourites > .fav */
+.favourites > .fav { overflow-wrap: anywhere; }
+ 
+/* TUNING SLOT 084: .favourites > .fav .fav-label */
+.favourites > .fav .fav-label { text-wrap: pretty; }
+ 
+/* TUNING SLOT 085: .favourites > .fav p */
+.favourites > .fav p { transition-timing-function: var(--jp-ease); }
+ 
+/* TUNING SLOT 086: .glimpse-section .glimpse-heading */
+.glimpse-section .glimpse-heading { border-color: var(--jp-line); }
+ 
+/* TUNING SLOT 087: .glimpse-section .glimpse-track */
+.glimpse-section .glimpse-track { background-clip: padding-box; }
+ 
+/* TUNING SLOT 088: .glimpse-section .glimpse-track-name */
+.glimpse-section .glimpse-track-name { isolation: isolate; }
+ 
+/* TUNING SLOT 089: .glimpse-section .glimpse-track-state */
+.glimpse-section .glimpse-track-state { backface-visibility: hidden; }
+ 
+/* TUNING SLOT 090: .glimpse-section .glimpse-note */
+.glimpse-section .glimpse-note { font-kerning: normal; }
+ 
+/* INPUT + VIEWPORT FALLBACK 001 */
+@media (max-width: 767px) {
+  .favourites > .fav {
+    -webkit-tap-highlight-color: transparent;
+    scroll-margin-block: 1rem;
+  }
+}
+ 
+/* INPUT + VIEWPORT FALLBACK 002 */
+@media (min-width: 768px) {
+  .glimpse-section .glimpse-track {
+    -webkit-tap-highlight-color: transparent;
+    scroll-margin-block: 1.5rem;
+  }
+}
+ 
+/* INPUT + VIEWPORT FALLBACK 003 */
+@media (hover: none) {
+  main > nav.glimpse-contact a {
+    -webkit-tap-highlight-color: rgba(169,201,242,.10);
+    touch-action: manipulation;
+  }
+}
+ 
+/* INPUT + VIEWPORT FALLBACK 004 */
+@media (max-width: 767px) {
+  .hero-entry-grid .archive-entry, .hero-entry-grid .cat-chat-mini {
+    -webkit-tap-highlight-color: transparent;
+    scroll-margin-block: 1rem;
+  }
+}
+ 
+/* INPUT + VIEWPORT FALLBACK 005 */
+@media (min-width: 768px) {
+  .favourites > .fav {
+    -webkit-tap-highlight-color: transparent;
+    scroll-margin-block: 1.5rem;
   }
 }
