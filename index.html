@@ -1933,6 +1933,11 @@ body.demi-memory-closed #after-demi{display:block;}
 .glimpse-section{position:relative;z-index:4;width:min(760px,calc(100% - 30px));margin:100px auto 70px;padding:clamp(22px,5vw,38px);border:1px solid rgba(151,190,255,.2);border-radius:24px;background:radial-gradient(ellipse at 10% 0%,rgba(83,125,202,.13),transparent 45%),linear-gradient(145deg,rgba(13,20,39,.88),rgba(5,8,19,.86));box-shadow:0 24px 90px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.045);backdrop-filter:blur(16px)}
 .glimpse-heading{margin:0 0 24px;font-size:clamp(2.3rem,9vw,4rem);font-weight:650;letter-spacing:-.065em;color:#edf4ff;text-shadow:0 0 34px rgba(123,170,255,.12)}
 .glimpse-tracks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.glimpse-thumbnail,.glimpse-art-fallback{display:block;flex:0 0 58px;width:58px;height:58px;min-width:58px;border-radius:10px;object-fit:cover;object-position:center;background:linear-gradient(145deg,rgba(110,151,225,.2),rgba(19,25,44,.9));border:1px solid rgba(151,190,255,.18)}
+.glimpse-art-fallback{display:grid;place-items:center;color:#a9c8ff;font-size:1.1rem;letter-spacing:.08em}
+.glimpse-track-copy{display:block;flex:1 1 auto;min-width:0;overflow:hidden}
+.glimpse-track .glimpse-play{margin-left:auto}
+@media(max-width:440px){.glimpse-thumbnail,.glimpse-art-fallback{flex-basis:54px;width:54px;height:54px;min-width:54px}}
 .glimpse-track{display:flex;align-items:center;gap:12px;min-width:0;padding:15px 13px;border:1px solid rgba(151,190,255,.16);border-radius:15px;background:linear-gradient(130deg,rgba(12,20,39,.82),rgba(6,10,23,.72));color:#dce8fa;text-align:left;cursor:pointer;transition:border-color .22s,transform .22s,background .22s,box-shadow .22s}
 .glimpse-track:hover,.glimpse-track.is-active{border-color:rgba(151,190,255,.58);background:linear-gradient(130deg,rgba(23,37,66,.9),rgba(8,14,29,.86));transform:translateY(-2px);box-shadow:0 9px 26px rgba(48,89,155,.12)}
 .glimpse-play{display:grid;place-items:center;flex:0 0 36px;height:36px;border-radius:50%;border:1px solid rgba(151,190,255,.34);background:rgba(111,159,231,.07);color:#c6dcff;font-size:.8rem}
@@ -2495,7 +2500,7 @@ main > nav.glimpse-contact a,
   </audio>
   <main>
    <nav class="glimpse-contact" aria-label="Social link">
-    <a href="https://www.instagram.com/cvechz" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile"><span class="contact-icon" aria-hidden="true">◎</span><span>Instagram</span><span class="contact-arrow" aria-hidden="true">↗</span></a>
+    <a href="https://www.instagram.com/cvechz" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile"><span class="contact-icon" aria-hidden="true">◎</span><span>Je</span><span class="contact-arrow" aria-hidden="true">↗</span></a>
    </nav>
    <header class="hero hero-section">
     <div class="hero-kinetic-scene" aria-hidden="true">
@@ -2862,8 +2867,8 @@ main > nav.glimpse-contact a,
    <section class="glimpse-section" id="glimpse" aria-labelledby="glimpseTitle">
     <h2 class="glimpse-heading" id="glimpseTitle">Glimpse</h2>
     <div class="glimpse-tracks" role="group" aria-label="Glimpse songs">
-     <button class="glimpse-track" type="button" data-track="glimpse/song1.mp3" aria-label="Play song one"><img class="glimpse-thumbnail" src="glimpse/cover1.jpg" alt="Song one artwork" loading="lazy"> <span class="glimpse-track-copy"><span class="glimpse-track-name">Track 01</span><span class="glimpse-track-state">Tap to play</span></span> <span class="glimpse-play" aria-hidden="true">▶</span></button>
-     <button class="glimpse-track" type="button" data-track="glimpse/song2.mp3" aria-label="Play song two"><img class="glimpse-thumbnail" src="glimpse/cover2.jpg" alt="Song two artwork" loading="lazy"> <span class="glimpse-track-copy"><span class="glimpse-track-name">Track 02</span><span class="glimpse-track-state">Tap to play</span></span> <span class="glimpse-play" aria-hidden="true">▶</span></button>
+     <button class="glimpse-track" type="button" data-track="glimpse/song1.mp3" aria-label="Play song one"><img class="glimpse-thumbnail" src="glimpse/cover1.jpg" alt="Song one artwork" loading="lazy"> <span class="glimpse-track-copy"><span class="glimpse-track-name">About</span><span class="glimpse-track-state">Tap to play</span></span> <span class="glimpse-play" aria-hidden="true">▶</span></button>
+     <button class="glimpse-track" type="button" data-track="glimpse/song2.mp3" aria-label="Play song two"><img class="glimpse-thumbnail" src="glimpse/cover2.jpg" alt="Song two artwork" loading="lazy"> <span class="glimpse-track-copy"><span class="glimpse-track-name">A</span><span class="glimpse-track-state">Tap to play</span></span> <span class="glimpse-play" aria-hidden="true">▶</span></button>
     </div>
     <audio id="glimpseAudio" preload="none"></audio>
     <p class="glimpse-note" id="glimpseNote">Add two songs and their artwork to the <code>glimpse</code> folder.</p>
@@ -2924,12 +2929,18 @@ main > nav.glimpse-contact a,
  
       if (audio.paused) {
         try {
+          /* Shared audio lock: stop Glimpse before starting floating music. */
+          var glimpsePlayer = document.getElementById("glimpseAudio");
+          if (glimpsePlayer && !glimpsePlayer.paused) glimpsePlayer.pause();
           await audio.play();
           syncMusicUI();
         } catch (error) {
           control.classList.remove("loading");
+          control.classList.remove("playing");
+          button.classList.remove("is-playing");
           label.textContent = "MUSIC ERROR";
-          button.setAttribute("aria-label","Music file could not be played");
+          button.setAttribute("aria-pressed","false");
+          button.setAttribute("aria-label","Music file could not be played. Check that Music.mp3 exists beside index.html.");
         }
       } else {
         audio.pause();
@@ -2941,7 +2952,18 @@ main > nav.glimpse-contact a,
       audio.addEventListener(eventName,function(){ syncMusicUI(); });
     });
  
-    audio.addEventListener("error",function(){ syncMusicUI("error"); });
+    audio.addEventListener("error",function(){
+      syncMusicUI("error");
+      label.textContent = "MUSIC FILE ERROR";
+      button.setAttribute("aria-label","Music file failed to load. Check Music.mp3 beside index.html.");
+    });
+    audio.addEventListener("waiting",function(){
+      if (!audio.paused) {
+        control.classList.add("loading");
+        label.textContent = "MUSIC LOADING";
+      }
+    });
+    audio.addEventListener("canplay",function(){ syncMusicUI(); });
     syncMusicUI();
   }
  
@@ -3363,15 +3385,113 @@ renderHistory();resizeInput();
 })();
 </script>
   <script>
-/* Independent Glimpse audio system. Does not touch the original background player. */
+/* Independent Glimpse audio system. Isolated from the background player and all other page systems. */
 (function(){
- const audio=document.getElementById('glimpseAudio');
- const buttons=Array.from(document.querySelectorAll('.glimpse-track'));
- const note=document.getElementById('glimpseNote');
- if(!audio||!buttons.length)return;
- function paint(active){buttons.forEach(function(b){const on=b===active&& !audio.paused;b.classList.toggle('is-active',on);b.querySelector('.glimpse-play').textContent=on?'Ⅱ':'▶';b.querySelector('.glimpse-track-state').textContent=on?'Now playing':(b===active&&audio.paused?'Paused':'Tap to play');});}
- buttons.forEach(function(button){button.addEventListener('click',async function(){const src=button.dataset.track; if(audio.dataset.current===src&&!audio.paused){audio.pause();paint(button);return;} if(audio.dataset.current!==src){audio.src=src;audio.dataset.current=src;} try{await audio.play();note.textContent='Now playing: '+button.querySelector('.glimpse-track-name').textContent;paint(button);}catch(e){note.textContent='Could not play this track yet. Make sure '+src+' exists in your deployed project.';paint(null);}});});
- audio.addEventListener('ended',function(){paint(null);});audio.addEventListener('pause',function(){paint(null);});audio.addEventListener('play',function(){paint(buttons.find(b=>b.dataset.track===audio.dataset.current)||null);});
+  const audio = document.getElementById('glimpseAudio');
+  const buttons = Array.from(document.querySelectorAll('.glimpse-track'));
+  const note = document.getElementById('glimpseNote');
+  if (!audio || !buttons.length) return;
+ 
+  /* Keep broken artwork from expanding the track row or showing a broken-image icon. */
+  document.querySelectorAll('.glimpse-thumbnail').forEach(function(img){
+    img.addEventListener('error', function(){
+      const fallback = document.createElement('span');
+      fallback.className = 'glimpse-art-fallback';
+      fallback.setAttribute('role', 'img');
+      fallback.setAttribute('aria-label', 'Artwork unavailable');
+      fallback.textContent = '♪';
+      img.replaceWith(fallback);
+    }, {once:true});
+  });
+ 
+  function trackName(button){
+    const node = button && button.querySelector('.glimpse-track-name');
+    return node ? node.textContent.trim() : 'track';
+  }
+  function setNote(message){
+    if (note) note.textContent = message;
+  }
+  function paint(active){
+    buttons.forEach(function(button){
+      const isCurrent = button === active && !audio.paused && !audio.error;
+      button.classList.toggle('is-active', isCurrent);
+      const play = button.querySelector('.glimpse-play');
+      const state = button.querySelector('.glimpse-track-state');
+      if (play) play.textContent = isCurrent ? 'Ⅱ' : '▶';
+      if (state) state.textContent = isCurrent ? 'Now playing' :
+        (button === active && audio.paused ? 'Paused' : 'Tap to play');
+      button.setAttribute('aria-pressed', String(isCurrent));
+    });
+  }
+ 
+  buttons.forEach(function(button){
+    button.setAttribute('aria-pressed', 'false');
+    button.addEventListener('click', async function(){
+      const src = (button.dataset.track || '').trim();
+      if (!src){
+        setNote('This track has no audio file configured.');
+        return;
+      }
+ 
+      if (audio.dataset.current === src && !audio.paused){
+        audio.pause();
+        paint(button);
+        setNote('Paused: ' + trackName(button));
+        return;
+      }
+ 
+      if (audio.dataset.current !== src){
+        audio.pause();
+        audio.dataset.current = src;
+        audio.src = src;
+        audio.load();
+      }
+ 
+      setNote('Loading: ' + trackName(button) + '…');
+      try {
+        /* Shared audio lock: stop floating music before starting a Glimpse track. */
+        const floatingPlayer = document.getElementById('siteAudio');
+        if (floatingPlayer && !floatingPlayer.paused) floatingPlayer.pause();
+        await audio.play();
+        paint(button);
+        setNote('Now playing: ' + trackName(button));
+      } catch (error) {
+        paint(null);
+        setNote('Could not play ' + src + '. Check the file path, filename capitalization, and browser audio support.');
+      }
+    });
+  });
+ 
+  audio.addEventListener('play', function(){
+    const active = buttons.find(function(button){ return button.dataset.track === audio.dataset.current; }) || null;
+    paint(active);
+  });
+  audio.addEventListener('pause', function(){ paint(null); });
+  audio.addEventListener('ended', function(){
+    paint(null);
+    setNote('Track finished. Choose a track to play again.');
+  });
+  audio.addEventListener('error', function(){
+    paint(null);
+    setNote('Audio could not load: ' + (audio.dataset.current || 'selected track') +
+      '. Check that the file exists at that exact path in your deployed project.');
+  });
+})();
+</script>
+  <script>
+/* Final safety net: only one of the two music players can play at once. */
+(function(){
+  const players = [
+    document.getElementById('siteAudio'),
+    document.getElementById('glimpseAudio')
+  ].filter(Boolean);
+  players.forEach(function(activePlayer){
+    activePlayer.addEventListener('play', function(){
+      players.forEach(function(otherPlayer){
+        if (otherPlayer !== activePlayer && !otherPlayer.paused) otherPlayer.pause();
+      });
+    });
+  });
 })();
 </script>
  </body>
