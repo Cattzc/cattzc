@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="en">
  <head>
-  <link rel="stylesheet" href="./jeffs-peak-cinematic-skin-v3.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#03050a">
   <meta name="description" content="Jayé / Yarc personal archive">
   <meta name="color-scheme" content="dark">
-  <title>Jayé ㅤEffs.</title>
+  <title>Jayé ㅤ7Effs.</title>
   <style>
 :root{
   --bg:#03050a;
@@ -664,16 +663,16 @@ section p:last-child{margin-bottom:0}
  
 .memory-frame{
   position:relative;
-  overflow:hidden;
 }
  
-.memory-frame::after{
+.memory::before{
   content:"";
   position:absolute;
   top:0;
   left:-45%;
   width:35%;
   height:100%;
+  z-index:2;
   pointer-events:none;
   background:linear-gradient(
     105deg,
@@ -703,7 +702,7 @@ section p:last-child{margin-bottom:0}
  
 @media (prefers-reduced-motion:reduce){
   .memory-image,
-  .memory-frame::after{
+  .memory::before{
     animation:none;
   }
 }
@@ -713,7 +712,9 @@ section p:last-child{margin-bottom:0}
 }
  
 @media (hover:hover){
-  .memory:hover .memory-image{
+  .memory:hover .memory-image,
+  .js-ready .final-section.show .memory:hover .memory-image{
+    animation:none;
     transform:scale(1.025);
     filter:saturate(1.04) brightness(1.04);
   }
@@ -2425,6 +2426,483 @@ main > nav.glimpse-contact a,
   }
 }
 </style>
+  <style id="peak-navy-css-polish">
+/* Visual-only polish: preserve existing animation and interaction rules. */
+:root {
+  --peak-ink: #050711;
+  --peak-navy: #090E1C;
+  --peak-panel: #0D1425;
+  --peak-panel-raised: #111A2E;
+  --peak-violet: #7101FF;
+  --peak-violet-soft: rgba(113, 1, 255, .16);
+  --peak-edge: rgba(151, 164, 201, .18);
+  --peak-edge-violet: rgba(113, 1, 255, .38);
+  --peak-white: #F4F2FF;
+  --peak-muted: #9BA4BC;
+}
+html { background: var(--peak-ink); }
+body { background-color: var(--peak-ink); }
+/* Instagram / Je pill: restrained signature accent, same layout and behavior. */
+main > nav.glimpse-contact, .glimpse-contact {
+  color: var(--peak-white) !important;
+}
+.glimpse-contact a {
+  background: linear-gradient(145deg, rgba(17, 24, 43, .96), rgba(7, 10, 20, .96)) !important;
+  border-color: var(--peak-edge-violet) !important;
+  color: var(--peak-white) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 8px 24px rgba(0,0,0,.20) !important;
+}
+.glimpse-contact .contact-icon { color: #B98AFF !important; }
+.glimpse-contact .contact-arrow { color: #8F82B2 !important; }
+/* Glimpse section: depth and contrast only; existing two-item structure stays intact. */
+.glimpse-section {
+  background: radial-gradient(ellipse at 12% 0%, rgba(113,1,255,.085), transparent 44%), linear-gradient(155deg, rgba(13,20,37,.98), rgba(5,8,17,.98)) !important;
+  border-color: rgba(113,1,255,.25) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035), 0 20px 58px rgba(0,0,0,.28) !important;
+}
+.glimpse-section h2, .glimpse-section h3 { color: var(--peak-white); }
+.glimpse-section .glimpse-heading, .glimpse-section .glimpse-title {
+  color: var(--peak-white);
+  text-shadow: 0 0 24px rgba(113,1,255,.10);
+}
+.glimpse-tracks { gap: 12px; }
+.glimpse-track {
+  background: linear-gradient(145deg, rgba(17,25,44,.96), rgba(7,11,22,.98)) !important;
+  border-color: var(--peak-edge) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035), 0 8px 24px rgba(0,0,0,.13) !important;
+  color: var(--peak-white) !important;
+}
+.glimpse-track.is-active {
+  border-color: var(--peak-edge-violet) !important;
+  background: linear-gradient(145deg, rgba(29,20,53,.98), rgba(8,12,25,.98)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 8px 28px rgba(36,9,74,.20) !important;
+}
+.glimpse-thumbnail, .glimpse-art-fallback {
+  border: 1px solid rgba(177,143,255,.22);
+  background-color: var(--peak-panel);
+}
+.glimpse-art-fallback { color: #C5A6FF !important; }
+.glimpse-track-name { color: #F4F2FF !important; }
+.glimpse-track-state, .glimpse-note { color: var(--peak-muted) !important; }
+.glimpse-play {
+  border-color: rgba(113,1,255,.34) !important;
+  background: rgba(113,1,255,.12) !important;
+  color: #D7BEFF !important;
+}
+@media (max-width: 520px) {
+  .glimpse-section { padding-left: clamp(15px, 4.5vw, 22px); padding-right: clamp(15px, 4.5vw, 22px); }
+  .glimpse-tracks { gap: 9px; }
+  .glimpse-track { min-width: 0; }
+}
+</style>
+  <style id="postai-archive-layer-styles">
+/* POST-AI ARCHIVE LAYER — isolated styles; existing systems remain untouched. */
+.postai-section {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  padding: clamp(58px, 8vw, 96px) clamp(12px, 2.5vw, 20px);
+  border-top: 1px solid rgba(151, 184, 226, .13);
+  background:
+    radial-gradient(ellipse at 88% 4%, rgba(74, 117, 180, .075), transparent 38%),
+    linear-gradient(180deg, rgba(4, 9, 17, .94), rgba(3, 5, 10, .98));
+  color: #e8edf5;
+  overflow: clip;
+}
+.postai-section:nth-of-type(even) {
+  background:
+    radial-gradient(ellipse at 8% 10%, rgba(88, 106, 159, .075), transparent 42%),
+    linear-gradient(180deg, rgba(5, 10, 19, .96), rgba(3, 5, 10, .98));
+}
+.postai-wrap { width: min(100%, 760px); margin: 0 auto; min-width: 0; }
+.postai-topline { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 18px; color: #8093ad; font: 600 .59rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .15em; text-transform: uppercase; }
+.postai-status { display: inline-flex; align-items: center; gap: 8px; color: #9fb2c9; }
+.postai-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #94c8b4; box-shadow: 0 0 10px rgba(148, 200, 180, .38); }
+.postai-heading { width: 100%; max-width: 100%; margin: 26px 0 17px !important; color: #edf3fc; font-size: clamp(2.4rem, 8.6vw, 4.45rem) !important; font-weight: 760 !important; line-height: .98 !important; letter-spacing: -.065em !important; text-wrap: balance; }
+.postai-heading em { color: #a9c9f2; font-style: normal; }
+.postai-lead { max-width: 620px; margin: 0 0 28px !important; color: #9aa9bc !important; font-size: clamp(.9rem, 2.4vw, 1rem) !important; line-height: 1.82 !important; }
+.postai-micro-label { display: block; color: #8297b3; font: 650 .58rem/1.65 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .15em; text-transform: uppercase; }
+.postai-footnote { margin: 15px 0 0 !important; color: #68788c !important; font: 500 .69rem/1.7 ui-monospace, SFMono-Regular, Menlo, monospace !important; letter-spacing: .01em; }
+.postai-signal-card, .postai-reading-card, .postai-lens-card {
+  position: relative; min-width: 0; padding: clamp(20px, 4.7vw, 30px);
+  border: 1px solid rgba(151, 185, 231, .19); border-radius: 18px;
+  background: radial-gradient(ellipse at 90% 0%, rgba(106, 151, 208, .1), transparent 44%), linear-gradient(145deg, rgba(14, 24, 40, .86), rgba(5, 9, 17, .95));
+  box-shadow: 0 18px 55px rgba(0, 0, 0, .2), inset 0 1px rgba(255, 255, 255, .025);
+}
+.postai-signal-card h3, .postai-reading-card h3 { margin: 11px 0 8px; color: #eaf1fc; font-size: clamp(1.3rem, 5vw, 1.8rem); line-height: 1.15; letter-spacing: -.04em; }
+.postai-signal-card > p:not(.postai-progress-copy), .postai-reading-card > p:not(.postai-footnote) { color: #94a5bc; font-size: .87rem; line-height: 1.75; }
+.postai-button { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; gap: 10px; padding: 11px 15px; border: 1px solid rgba(166, 194, 234, .23); border-radius: 10px; background: rgba(114, 149, 198, .08); color: #d9e7fa; font: 650 .78rem/1.3 var(--font-body, ui-sans-serif, system-ui, sans-serif); cursor: pointer; text-align: center; transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+.postai-button-primary { border-color: rgba(177, 206, 247, .4); background: linear-gradient(135deg, #dce8f8, #a9c8ed); color: #0b1524; }
+.postai-button-quiet { background: transparent; color: #91a4bd; }
+.postai-button:hover:not(:disabled) { border-color: rgba(183, 211, 250, .56); background-color: rgba(132, 168, 219, .15); }
+.postai-button-primary:hover:not(:disabled) { background: #eef5ff; }
+.postai-button:active:not(:disabled) { transform: translateY(1px); }
+.postai-button:disabled { opacity: .42; cursor: not-allowed; }
+.postai-lens-switch { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 12px; }
+.postai-lens { min-height: 40px; padding: 9px 12px; border: 1px solid rgba(149, 181, 224, .19); border-radius: 999px; background: transparent; color: #94a6be; font: 600 .68rem/1.3 var(--font-body, ui-sans-serif, system-ui, sans-serif); cursor: pointer; }
+.postai-lens.is-active { border-color: rgba(172, 204, 247, .43); background: rgba(119, 160, 216, .13); color: #dceafb; }
+.postai-lens-card { min-height: 150px; }
+.postai-lens-card p { margin: 14px 0 0 !important; color: #d2ddeb !important; font-size: clamp(.97rem, 2.5vw, 1.13rem) !important; line-height: 1.9 !important; }
+.postai-reading-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin-top: 18px; }
+.postai-game-entry { display: grid; grid-template-columns: 68px minmax(0, 1fr); gap: 18px; align-items: start; padding: clamp(20px, 4.6vw, 28px); border: 1px solid rgba(162, 194, 236, .25); border-radius: 20px; background: radial-gradient(ellipse at 0% 0%, rgba(103, 149, 211, .12), transparent 55%), linear-gradient(145deg, rgba(13, 23, 40, .9), rgba(4, 7, 14, .97)); box-shadow: 0 22px 65px rgba(0, 0, 0, .24); }
+.postai-game-glyph { display: grid; place-items: center; width: 62px; height: 62px; border: 1px solid rgba(168, 198, 239, .33); border-radius: 18px; background: linear-gradient(145deg, rgba(132, 171, 224, .14), rgba(32, 53, 81, .16)); color: #c0d9f8; font: 400 2rem/1 Georgia, serif; box-shadow: inset 0 1px rgba(255,255,255,.05), 0 10px 30px rgba(0,0,0,.16); }
+.postai-game-entry-copy { min-width: 0; }
+.postai-game-entry-copy h3 { margin: 9px 0 7px; color: #ecf3fc; font-size: clamp(1.35rem, 5vw, 1.9rem); line-height: 1.2; letter-spacing: -.04em; }
+.postai-game-entry-copy p { margin: 0 !important; color: #95a6bc !important; font-size: .84rem !important; line-height: 1.8 !important; }
+.postai-game-stats { display: flex; flex-wrap: wrap; gap: 9px 18px; margin-top: 18px; color: #7e95b2; font: 600 .58rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+.postai-game-launch { grid-column: 1 / -1; width: 100%; min-height: 50px; margin-top: 1px; }
+.postai-game-dialog { width: min(980px, calc(100vw - 20px)); max-width: none; max-height: min(94dvh, 980px); margin: auto; padding: 0; overflow: auto; overscroll-behavior: contain; border: 1px solid rgba(161, 194, 239, .29); border-radius: 22px; background: radial-gradient(ellipse at 50% 0%, rgba(71, 112, 174, .16), transparent 45%), linear-gradient(180deg, #08111f, #03060d 80%); color: #e7eef9; box-shadow: 0 35px 110px rgba(0,0,0,.55); }
+.postai-game-dialog::backdrop { background: rgba(1, 3, 8, .82); backdrop-filter: blur(10px); }
+.postai-game-shell { padding: clamp(16px, 4vw, 32px); }
+.postai-game-head { position: sticky; top: 0; z-index: 5; display: flex; background: linear-gradient(180deg, #08111f 92%, rgba(8, 17, 31, .96)); justify-content: space-between; align-items: flex-start; gap: 16px; padding-bottom: 19px; border-bottom: 1px solid rgba(154, 185, 226, .15); }
+.postai-game-head h2 { margin: 7px 0 0 !important; color: #edf4ff; font-size: clamp(1.75rem, 5vw, 2.65rem) !important; line-height: 1 !important; letter-spacing: -.055em !important; }
+.postai-close-game { display: grid; flex: 0 0 42px; place-items: center; width: 42px; height: 42px; border: 1px solid rgba(155, 184, 226, .24); border-radius: 50%; background: rgba(255,255,255,.025); color: #c7d7ec; font: 300 1.7rem/1 var(--font-body, ui-sans-serif, system-ui, sans-serif); cursor: pointer; }
+.postai-game-summary { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 14px; padding: 14px 0; color: #879db9; font: 600 .57rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+.postai-mode-picker { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+.postai-mode { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-width: 0; min-height: 112px; padding: 12px 10px; border: 1px solid rgba(145, 177, 218, .17); border-radius: 12px; background: rgba(12, 22, 37, .62); color: #92a6bf; text-align: left; cursor: pointer; }
+.postai-mode > span { color: #7590b2; font: 600 .56rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.postai-mode strong { color: #c4d3e7; font-size: .73rem; line-height: 1.35; }
+.postai-mode small { color: #75869d; font-size: .65rem; line-height: 1.4; }
+.postai-mode.is-active { border-color: rgba(163, 197, 242, .43); background: linear-gradient(145deg, rgba(46, 72, 107, .42), rgba(12, 23, 39, .83)); }
+.postai-mode.is-active strong { color: #ecf4ff; }
+.postai-game-play { min-width: 0; margin-top: 17px; padding: clamp(15px, 3.5vw, 24px); border: 1px solid rgba(145, 177, 218, .15); border-radius: 15px; background: rgba(2, 5, 11, .53); }
+.postai-game-instructions { margin: 0 0 20px !important; color: #9eafc4 !important; font-size: .8rem !important; line-height: 1.8 !important; }
+.postai-puzzle { min-width: 0; }
+.postai-puzzle h3 { margin: 10px 0 20px; color: #edf4ff; font-size: clamp(1.2rem, 4vw, 1.8rem); line-height: 1.4; letter-spacing: -.025em; overflow-wrap: anywhere; }
+.postai-answer-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 8px 10px; }
+.postai-answer-form label { grid-column: 1 / -1; color: #91a4bd; font-size: .72rem; }
+.postai-answer-form input { width: 100%; min-width: 0; min-height: 45px; padding: 10px 12px; border: 1px solid rgba(154, 187, 231, .26); border-radius: 9px; background: #070d17; color: #eff5ff; font: 600 1rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.postai-answer-form input:focus-visible { outline: 2px solid #9bbfe9; outline-offset: 2px; }
+.postai-inline-hint { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; width: 100%; margin-top: 10px; padding: 11px 0 4px; border: 0; background: none; color: #abc5e8; font-size: .72rem; text-align: left; cursor: pointer; }
+.postai-inline-hint span { color: #7e8fa4; font: 600 .57rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .06em; }
+.postai-inline-hint:disabled { opacity: .45; cursor: not-allowed; }
+.postai-hint, .postai-puzzle-feedback { margin: 13px 0 0 !important; color: #9ebbdc !important; font-size: .78rem !important; line-height: 1.7 !important; }
+.postai-choice-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.postai-choice { display: flex; align-items: flex-start; gap: 10px; min-width: 0; padding: 13px 12px; border: 1px solid rgba(148, 180, 221, .18); border-radius: 10px; background: rgba(12, 22, 36, .7); color: #c7d5e8; font-size: .77rem; line-height: 1.6; text-align: left; cursor: pointer; }
+.postai-choice > * { min-width: 0; }
+.postai-choice:hover:not(:disabled), .postai-choice:focus-visible { border-color: rgba(166, 201, 247, .43); background: rgba(25, 43, 67, .78); }
+.postai-choice.is-wrong { border-color: rgba(211, 151, 160, .42); color: #c5a8ae; }
+.postai-choice:disabled { cursor: default; opacity: .75; }
+.postai-code-guesses { display: grid; gap: 6px; padding-left: 20px; margin: 15px 0 0; color: #8396af; }
+.postai-code-guesses li { padding: 7px 8px; border-bottom: 1px solid rgba(140, 169, 209, .1); font-size: .71rem; }
+.postai-code-guesses code { margin-right: 12px; color: #dbe9fb; font: 700 .83rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .2em; }
+.postai-code-guesses li span { color: #8da3bf; }
+.postai-mode-complete { padding: 8px 0; }
+.postai-mode-complete h3 { margin: 9px 0; color: #e7f1ff; font-size: 1.4rem; letter-spacing: -.035em; }
+.postai-mode-complete p { color: #9aacc2; font-size: .82rem; line-height: 1.8; }
+.postai-memory-sequence { display: grid; place-items: center; min-height: 92px; margin: 14px 0; padding: 14px 8px; border: 1px solid rgba(152, 185, 230, .17); border-radius: 12px; background: radial-gradient(ellipse, rgba(90, 128, 183, .12), transparent 70%); color: #e2efff; font: 600 clamp(1.25rem, 5vw, 2rem)/1.8 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .13em; text-align: center; overflow-wrap: anywhere; }
+.postai-symbol-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 7px; margin: 14px 0; }
+.postai-symbol { min-width: 0; aspect-ratio: 1; border: 1px solid rgba(147, 181, 226, .2); border-radius: 9px; background: linear-gradient(145deg, rgba(23, 39, 61, .84), rgba(6, 12, 22, .95)); color: #d7e7fc; font-size: clamp(1.05rem, 4vw, 1.5rem); cursor: pointer; }
+.postai-symbol:disabled { opacity: .3; cursor: not-allowed; }
+.postai-symbol:active:not(:disabled) { background: rgba(112, 157, 217, .32); }
+.postai-game-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 15px; }
+.postai-game-footer p { flex: 1; min-width: 0; margin: 0 !important; color: #7f93ae !important; font-size: .68rem !important; line-height: 1.6 !important; }
+.postai-game-footer .postai-button { min-height: 37px; padding: 8px 10px; font-size: .65rem; }
+.postai-game-note { margin: 13px 0 0 !important; color: #5f7189 !important; font: 500 .61rem/1.65 ui-monospace, SFMono-Regular, Menlo, monospace !important; }
+.postai-section button:focus-visible, .postai-section a:focus-visible, .postai-game-dialog button:focus-visible { outline: 2px solid #b1cef2; outline-offset: 3px; }
+@media (max-width: 600px) {
+  .postai-section { padding: 55px 12px 62px; }
+  .postai-topline { font-size: .53rem; letter-spacing: .11em; }
+  .postai-heading { margin-top: 23px !important; font-size: clamp(2.25rem, 10.5vw, 3.45rem) !important; }
+  .postai-game-entry { grid-template-columns: 50px minmax(0, 1fr); gap: 13px; }
+  .postai-game-glyph { width: 48px; height: 48px; border-radius: 14px; font-size: 1.55rem; }
+  .postai-mode-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .postai-mode { min-height: 94px; }
+  .postai-game-dialog { width: calc(100vw - 12px); max-height: calc(100dvh - 12px); border-radius: 15px; }
+  .postai-game-shell { padding: 13px; }
+  .postai-choice-list { grid-template-columns: 1fr; }
+  .postai-answer-form { grid-template-columns: 1fr; }
+  .postai-answer-form label { grid-column: auto; }
+  .postai-game-footer { align-items: flex-start; flex-direction: column; }
+  .postai-game-footer .postai-button { align-self: flex-start; }
+}
+@media (max-width: 360px) {
+  .postai-lens-switch { display: grid; grid-template-columns: 1fr; }
+  .postai-lens { width: 100%; text-align: left; }
+  .postai-mode-picker { gap: 5px; }
+  .postai-mode { padding: 10px 8px; }
+  .postai-game-summary { font-size: .51rem; }
+  .postai-symbol-grid { gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .postai-section *, .postai-game-dialog * { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+ 
+/* Spacing and softer ambient light for the post-chat archive only. */
+.node-ai-section + .postai-section { margin-top: clamp(22px, 4vw, 42px); }
+.postai-section + .postai-section { margin-top: clamp(22px, 4vw, 42px); }
+.postai-section {
+  background:
+    radial-gradient(ellipse at 88% 4%, rgba(74, 117, 180, .045), transparent 38%),
+    linear-gradient(180deg, rgba(4, 9, 17, .94), rgba(3, 5, 10, .98));
+}
+.postai-section:nth-of-type(even) {
+  background:
+    radial-gradient(ellipse at 8% 10%, rgba(88, 106, 159, .045), transparent 42%),
+    linear-gradient(180deg, rgba(5, 10, 19, .96), rgba(3, 5, 10, .98));
+}
+.postai-status-dot { box-shadow: 0 0 6px rgba(148, 200, 180, .22); }
+.postai-signal-card, .postai-reading-card, .postai-lens-card {
+  background: radial-gradient(ellipse at 90% 0%, rgba(106, 151, 208, .06), transparent 44%), linear-gradient(145deg, rgba(14, 24, 40, .86), rgba(5, 9, 17, .95));
+}
+.postai-game-entry {
+  background: radial-gradient(ellipse at 0% 0%, rgba(103, 149, 211, .07), transparent 55%), linear-gradient(145deg, rgba(13, 23, 40, .9), rgba(4, 7, 14, .97));
+}
+.postai-game-glyph {
+  background: linear-gradient(145deg, rgba(132, 171, 224, .08), rgba(32, 53, 81, .12));
+}
+ 
+</style>
+  <style id="premium-section-separation-12-to-15">
+/* Sections 12–15 only: give each chapter a distinct framed surface, not one continuous scroll. */
+main > #postAI-signal-room,
+main > #postAI-second-reading,
+main > #postAI-reading-memory,
+main > #postAI-impossible {
+  width: calc(100% - 40px);
+  max-width: 1120px;
+  margin-inline: auto;
+  margin-block: 56px 0 !important;
+  border: 1px solid rgba(151, 184, 226, .22);
+  border-radius: 24px;
+  overflow: clip;
+  box-shadow: 0 18px 52px rgba(0, 0, 0, .24), inset 0 1px rgba(255, 255, 255, .025);
+}
+/* Section 12 begins as a separate chapter after the AI conversation, without styling the chat itself. */
+main > #nodeAISection + #postAI-signal-room {
+  margin-top: 58px !important;
+}
+/* Each chapter gets its own subtle surface tone while keeping the original dark-blue palette. */
+main > #postAI-signal-room {
+  background: radial-gradient(ellipse at 88% 0%, rgba(100, 151, 216, .095), transparent 42%), linear-gradient(160deg, rgba(8, 15, 27, .99), rgba(3, 6, 12, .99));
+  border-color: rgba(151, 184, 226, .25);
+}
+main > #postAI-second-reading {
+  background: radial-gradient(ellipse at 8% 0%, rgba(126, 147, 204, .10), transparent 44%), linear-gradient(160deg, rgba(9, 13, 25, .99), rgba(3, 6, 12, .99));
+  border-color: rgba(160, 177, 226, .24);
+}
+main > #postAI-reading-memory {
+  background: radial-gradient(ellipse at 90% 0%, rgba(109, 176, 171, .075), transparent 43%), linear-gradient(160deg, rgba(6, 17, 23, .99), rgba(3, 6, 12, .99));
+  border-color: rgba(137, 190, 190, .23);
+}
+main > #postAI-impossible {
+  background: radial-gradient(ellipse at 8% 0%, rgba(120, 157, 226, .11), transparent 45%), linear-gradient(160deg, rgba(8, 15, 29, .99), rgba(3, 6, 12, .99));
+  border-color: rgba(153, 187, 238, .28);
+}
+/* Keep each section's content inset inside its framed panel. */
+main > #postAI-signal-room,
+main > #postAI-second-reading,
+main > #postAI-reading-memory,
+main > #postAI-impossible {
+  padding: clamp(34px, 6vw, 64px) clamp(18px, 3.2vw, 32px);
+}
+@media (min-width: 900px) {
+  main > #postAI-signal-room,
+  main > #postAI-second-reading,
+  main > #postAI-reading-memory,
+  main > #postAI-impossible { margin-block-start: 72px !important; }
+  main > #nodeAISection + #postAI-signal-room { margin-top: 64px !important; }
+}
+@media (max-width: 600px) {
+  main > #postAI-signal-room,
+  main > #postAI-second-reading,
+  main > #postAI-reading-memory,
+  main > #postAI-impossible {
+    width: calc(100% - 28px);
+    margin-block-start: 44px !important;
+    border-radius: 20px;
+    padding: 34px 18px 38px;
+  }
+  main > #nodeAISection + #postAI-signal-room { margin-top: 48px !important; }
+}
+</style>
+  <style id="premium-chapter-separation-v2">
+/* Premium chapter separation: visual-only override for archive sections 12–15.
+   Deliberately does not target the AI chat, Demi content, or animation systems. */
+.postai-section.postai-signal-room,
+.postai-section.postai-reread-section,
+.postai-section.postai-reading-section,
+.postai-section.postai-game-section {
+  box-sizing: border-box;
+  width: calc(100% - clamp(28px, 7vw, 88px));
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: clamp(132px, 14vw, 184px) !important;
+  margin-bottom: 0;
+  padding: clamp(34px, 5.5vw, 76px) clamp(20px, 4.3vw, 64px) clamp(40px, 6vw, 82px);
+  border: 1px solid rgba(156, 183, 225, .24);
+  border-top-color: rgba(177, 202, 241, .34);
+  border-radius: clamp(22px, 3.2vw, 34px);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255,255,255,.035);
+  overflow: hidden;
+}
+/* First archive panel: create a deliberate pause after the AI conversation. */
+.node-ai-section + .postai-section.postai-signal-room {
+  margin-top: clamp(172px, 18vw, 220px) !important;
+}
+/* Keep the four panels distinct using restrained, different surface lighting. */
+.postai-section.postai-signal-room {
+  background:
+    radial-gradient(ellipse at 92% 0%, rgba(104, 145, 211, .105), transparent 38%),
+    linear-gradient(145deg, rgba(8, 15, 28, .99), rgba(3, 6, 12, .99) 70%);
+}
+.postai-section.postai-reread-section {
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(127, 115, 192, .095), transparent 42%),
+    linear-gradient(145deg, rgba(11, 13, 27, .99), rgba(4, 6, 13, .99) 72%);
+  border-color: rgba(155, 151, 220, .25);
+}
+.postai-section.postai-reading-section {
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(92, 157, 157, .085), transparent 40%),
+    linear-gradient(145deg, rgba(6, 19, 23, .99), rgba(3, 7, 12, .99) 72%);
+  border-color: rgba(120, 180, 176, .23);
+}
+.postai-section.postai-game-section {
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(117, 147, 211, .11), transparent 42%),
+    linear-gradient(145deg, rgba(9, 15, 28, .99), rgba(3, 6, 12, .99) 72%);
+  border-color: rgba(148, 176, 225, .29);
+}
+/* Small chapter marker: makes each panel read like a new page, not a continuous article. */
+.postai-section.postai-signal-room::before,
+.postai-section.postai-reread-section::before,
+.postai-section.postai-reading-section::before,
+.postai-section.postai-game-section::before {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 3px;
+  margin: 0 0 clamp(28px, 4vw, 46px);
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(178, 205, 244, .9), rgba(178, 205, 244, .12));
+  box-shadow: 0 0 18px rgba(134, 171, 232, .12);
+}
+.postai-section.postai-reread-section::before {
+  background: linear-gradient(90deg, rgba(190, 177, 245, .9), rgba(190, 177, 245, .12));
+}
+.postai-section.postai-reading-section::before {
+  background: linear-gradient(90deg, rgba(139, 207, 194, .9), rgba(139, 207, 194, .12));
+}
+.postai-section.postai-game-section::before {
+  background: linear-gradient(90deg, rgba(178, 205, 244, .9), rgba(178, 205, 244, .12));
+}
+.postai-section.postai-signal-room .postai-wrap,
+.postai-section.postai-reread-section .postai-wrap,
+.postai-section.postai-reading-section .postai-wrap,
+.postai-section.postai-game-section .postai-wrap {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 600px) {
+  .postai-section.postai-signal-room,
+  .postai-section.postai-reread-section,
+  .postai-section.postai-reading-section,
+  .postai-section.postai-game-section {
+    width: calc(100% - 32px);
+    margin-top: 128px !important;
+    padding: 34px 20px 42px;
+    border-radius: 25px;
+  }
+  .node-ai-section + .postai-section.postai-signal-room {
+    margin-top: 156px !important;
+  }
+  .postai-section.postai-signal-room::before,
+  .postai-section.postai-reread-section::before,
+  .postai-section.postai-reading-section::before,
+  .postai-section.postai-game-section::before {
+    margin-bottom: 30px;
+  }
+}
+ 
+</style>
+  <style id="chapter-gap-specificity-fix">
+/* Final spacing override: ID-level specificity beats older section rules. */
+main > section#postAI-signal-room,
+main > section#postAI-second-reading,
+main > section#postAI-reading-memory,
+main > section#postAI-impossible {
+  margin-top: 210px !important;
+  margin-block-start: 210px !important;
+  margin-bottom: 0 !important;
+}
+main > section#nodeAISection + section#postAI-signal-room {
+  margin-top: 240px !important;
+  margin-block-start: 240px !important;
+}
+@media (max-width: 600px) {
+  main > section#postAI-signal-room,
+  main > section#postAI-second-reading,
+  main > section#postAI-reading-memory,
+  main > section#postAI-impossible {
+    margin-top: 160px !important;
+    margin-block-start: 160px !important;
+  }
+  main > section#nodeAISection + section#postAI-signal-room {
+    margin-top: 190px !important;
+    margin-block-start: 190px !important;
+  }
+}
+</style>
+  <style id="verified-panel-gap-override-v4">
+/* Final balanced spacing: slightly tighter than v3, still clearly separated. */
+main > section[id="postAI-signal-room"],
+main > section[id="postAI-second-reading"],
+main > section[id="postAI-reading-memory"],
+main > section[id="postAI-impossible"] {
+  margin-block-start: 210px !important;
+  margin-top: 210px !important;
+}
+main > section[id="nodeAISection"] + section[id="postAI-signal-room"] {
+  margin-block-start: 250px !important;
+  margin-top: 250px !important;
+}
+@media (max-width: 600px) {
+  main > section[id="postAI-signal-room"],
+  main > section[id="postAI-second-reading"],
+  main > section[id="postAI-reading-memory"],
+  main > section[id="postAI-impossible"] {
+    margin-block-start: 170px !important;
+    margin-top: 170px !important;
+  }
+  main > section[id="nodeAISection"] + section[id="postAI-signal-room"] {
+    margin-block-start: 200px !important;
+    margin-top: 200px !important;
+  }
+}
+</style>
+  <style id="final-even-less-panel-gap-override">
+/* Slightly tighter section spacing; only the targeted gaps are adjusted. */
+main > section#postAI-signal-room,
+main > section#postAI-second-reading,
+main > section#postAI-reading-memory,
+main > section#postAI-impossible {
+  margin-top: 155px !important;
+  margin-block-start: 155px !important;
+  margin-bottom: 0 !important;
+}
+main > section#nodeAISection + section#postAI-signal-room {
+  margin-top: 190px !important;
+  margin-block-start: 190px !important;
+}
+@media (max-width: 600px) {
+  main > section#postAI-signal-room,
+  main > section#postAI-second-reading,
+  main > section#postAI-reading-memory,
+  main > section#postAI-impossible {
+    margin-top: 120px !important;
+    margin-block-start: 120px !important;
+  }
+  main > section#nodeAISection + section#postAI-signal-room {
+    margin-top: 145px !important;
+    margin-block-start: 145px !important;
+  }
+}
+</style>
  </head>
  <body>
   <div class="big-star" aria-hidden="true"></div>
@@ -2864,6 +3342,115 @@ main > nav.glimpse-contact a,
      </div>
      <p class="node-ai-footer-line">A new system / after the last memory</p>
     </div>
+   </section>
+   <section class="postai-section postai-signal-room" id="postAI-signal-room" aria-labelledby="postAI-signal-title">
+    <div class="postai-wrap">
+     <div class="postai-topline">
+      <span>12 / THE SIGNAL ROOM</span><span class="postai-status"><span class="postai-status-dot" aria-hidden="true"></span> LOCAL ARCHIVE</span>
+     </div>
+     <h2 class="postai-heading" id="postAI-signal-title">Not everything reveals itself <em>at once.</em></h2>
+     <p class="postai-lead">A quiet transition into the archive’s next layer: explore different perspectives, save a reading position, or try a local logic challenge. These features stay separate from the AI conversation above.</p>
+     <div class="postai-signal-card">
+      <div class="postai-micro-label">ANOTHER WAY TO READ THE ARCHIVE</div>
+      <h3>A different perspective is waiting.</h3>
+      <p>Try the reading lenses to see how context can change an interpretation without changing the observations themselves.</p>
+      <button class="postai-button postai-button-primary" id="postAI-next-action" type="button">Open the second reading <span aria-hidden="true">↗</span></button>
+     </div>
+     <p class="postai-footnote">The reading lenses, position marker, and puzzle engine operate locally in this page. They do not call the AI backend.</p>
+    </div>
+   </section>
+   <section class="postai-section postai-reread-section" id="postAI-second-reading" aria-labelledby="postAI-reread-title">
+    <div class="postai-wrap">
+     <div class="postai-topline">
+      <span>13 / SECOND READING</span><span>CONTEXT CHANGES THE FRAME</span>
+     </div>
+     <h2 class="postai-heading" id="postAI-reread-title">Same evidence. <em>Different reading.</em></h2>
+     <p class="postai-lead">Choose a lens. The observations stay the same; what changes is the question you bring to them.</p>
+     <div class="postai-lens-switch" role="group" aria-label="Choose a reading lens">
+      <button class="postai-lens is-active" type="button" data-lens="surface" aria-pressed="true">First impression</button>
+      <button class="postai-lens" type="button" data-lens="context" aria-pressed="false">More context</button>
+      <button class="postai-lens" type="button" data-lens="uncertainty" aria-pressed="false">What remains unknown</button>
+     </div>
+     <div class="postai-lens-card" aria-live="polite" aria-atomic="true">
+      <span class="postai-micro-label" id="postAI-lens-label">LENS 01 / SURFACE</span>
+      <p id="postAI-lens-copy">A pause can look like an absence. On a first reading, the missing part may become the whole story.</p>
+     </div>
+     <div class="postai-reading-actions">
+      <button class="postai-button postai-button-quiet" id="postAI-surprise-lens" type="button">Switch perspective ↗</button>
+      <button class="postai-button postai-button-quiet" id="postAI-copy-reading" type="button">Copy this reading</button>
+     </div>
+     <p class="postai-footnote" id="postAI-lens-status" aria-live="polite">Choose a lens to change the interpretation, not the underlying facts.</p>
+     <p class="postai-footnote">A change in interpretation is not automatically a change in fact.</p>
+    </div>
+ </section>
+ <section class="postai-section postai-reading-section" id="postAI-reading-memory" aria-labelledby="postAI-reading-title">
+    <div class="postai-wrap">
+     <div class="postai-topline">
+      <span>14 / READING MEMORY</span><span>THIS DEVICE ONLY</span>
+     </div>
+     <h2 class="postai-heading" id="postAI-reading-title">Leave a place marker. <em>Come back cleanly.</em></h2>
+     <p class="postai-lead">The page can remember roughly where you were, so a refresh or accidental close does not have to mean starting from the top. You choose when to resume.</p>
+     <div class="postai-reading-card">
+      <div class="postai-micro-label">LAST SAVED POSITION</div>
+      <h3 id="postAI-reading-heading">No place marker yet.</h3>
+      <p id="postAI-reading-meta">Scroll through the archive and this card will update quietly.</p>
+      <div class="postai-reading-actions">
+       <button class="postai-button postai-button-primary" id="postAI-resume-reading" type="button" disabled>Resume reading ↗</button>
+       <button class="postai-button postai-button-quiet" id="postAI-save-reading" type="button">Save this spot</button>
+       <button class="postai-button postai-button-quiet" id="postAI-clear-reading" type="button">Forget marker</button>
+      </div>
+      <p class="postai-footnote" id="postAI-reading-status" aria-live="polite">The marker stays in this browser only.</p>
+     </div>
+    </div>
+   </section>
+   <section class="postai-section postai-game-section" id="postAI-impossible" aria-labelledby="postAI-game-title">
+    <div class="postai-wrap">
+     <div class="postai-topline">
+      <span>15 / THE IMPOSSIBLE</span><span>2 MODES / UNLIMITED REASONING</span>
+     </div>
+     <h2 class="postai-heading" id="postAI-game-title">A game that does not <em>play fair.</em></h2>
+     <p class="postai-lead">The rules are simple. The answers are not always obvious. Work through pattern recognition and logic deduction. Every puzzle is stored locally, with no AI, network requests, or external services.</p>
+     <div class="postai-game-entry">
+      <div class="postai-game-glyph" aria-hidden="true">
+       <span>∴</span>
+      </div>
+      <div class="postai-game-entry-copy">
+       <span class="postai-micro-label">CHALLENGE NODE / LOCAL PUZZLE ENGINE</span>
+       <h3>Think before you tap.</h3>
+       <p>A growing puzzle bank, difficulty controls, streak scoring, hints, and explanations. Your progress is stored on this device.</p>
+       <div class="postai-game-stats">
+        <span id="postAI-game-best">BEST SCORE / 0</span><span id="postAI-game-wins">ROUNDS CLEARED / 0</span>
+       </div>
+      </div>
+      <button class="postai-button postai-button-primary postai-game-launch" id="postAI-open-game" type="button" aria-haspopup="dialog" aria-controls="postAI-game-dialog">Enter the challenge <span aria-hidden="true">↗</span></button>
+     </div>
+    </div>
+    <dialog class="postai-game-dialog" id="postAI-game-dialog" aria-labelledby="postAI-dialog-title">
+     <div class="postai-game-shell">
+      <div class="postai-game-head">
+       <div>
+        <span class="postai-micro-label">NODE 15 / ACTIVE CHALLENGE</span>
+        <h2 id="postAI-dialog-title">The Impossible</h2>
+       </div>
+       <button class="postai-close-game" id="postAI-close-game" type="button" aria-label="Exit the challenge">×</button>
+      </div>
+      <div class="postai-game-summary">
+       <span id="postAI-game-mode-label">CHOOSE A MODE</span><span id="postAI-game-progress-label">ROUND 01</span><span id="postAI-game-score-label">SCORE 000</span>
+      </div>
+      <div class="postai-mode-picker" id="postAI-mode-picker" role="group" aria-label="Challenge modes">
+       <button type="button" class="postai-mode is-active" data-game-mode="pattern" aria-pressed="true"><span>01</span><strong>Pattern &amp; Sequence</strong><small>Find the hidden rule.</small></button>
+       <button type="button" class="postai-mode" data-game-mode="logic" aria-pressed="false"><span>02</span><strong>Logic &amp; Deduction</strong><small>Prove what follows.</small></button>
+      </div>
+      <div class="postai-game-play" id="postAI-game-play" aria-live="polite" aria-atomic="true">
+       <p>Choose a mode and difficulty to begin.</p>
+      </div>
+      <div class="postai-game-footer">
+       <p id="postAI-game-feedback" role="status" aria-live="polite">No timer. No penalty for thinking.</p>
+       <button class="postai-button postai-button-quiet" id="postAI-game-reset" type="button">Reset this mode</button>
+      </div>
+      <p class="postai-game-note">Local challenge engine · No AI · No external requests · Progress stays on this device.</p>
+     </div>
+    </dialog>
    </section>
    <section class="glimpse-section" id="glimpse" aria-labelledby="glimpseTitle">
     <h2 class="glimpse-heading" id="glimpseTitle">Glimpse</h2>
@@ -3495,5 +4082,397 @@ renderHistory();resizeInput();
   });
 })();
 </script>
+  <script>
+/* ================================================================
+   POST-AI ARCHIVE LAYER
+   Isolated namespace: no existing AI, Demi, touch-FX, or Glimpse logic
+   is edited or reused. Storage is namespaced and always failure-safe.
+   ================================================================ */
+(function () {
+  'use strict';
+ 
+  const $ = (id) => document.getElementById(id);
+  const STORAGE = {
+    reading: 'jaye-effs:postai:reading:v1',
+    game: 'jaye-effs:postai:game:v1'
+  };
+  let storageAvailable = true;
+  const safeRead = (key, fallback) => {
+    try {
+      const value = localStorage.getItem(key);
+      if (value === null) return fallback;
+      try { return JSON.parse(value); }
+      catch (_) {
+        try { localStorage.removeItem(key); } catch (storageError) { storageAvailable = false; }
+        return fallback;
+      }
+    } catch (_) { storageAvailable = false; return fallback; }
+  };
+  const safeWrite = (key, value) => {
+    try { localStorage.setItem(key, JSON.stringify(value)); return true; }
+    catch (_) { storageAvailable = false; return false; }
+  };
+  const safeRemove = (key) => {
+    try { localStorage.removeItem(key); return true; }
+    catch (_) { storageAvailable = false; return false; }
+  };
+  /* Second-reading lens: three explicit interpretive frames. */
+  const nextAction = $('postAI-next-action');
+  if (nextAction) nextAction.addEventListener('click', () => {
+    const target = $('postAI-second-reading');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+ 
+  const lenses = {
+    surface: { label: 'LENS 01 / SURFACE', copy: 'A pause can look like an absence. On a first reading, the missing part may become the whole story.' },
+    context: { label: 'LENS 02 / CONTEXT', copy: 'A pause may have several causes: hesitation, interruption, care, uncertainty, or no intended meaning at all. Context can narrow the possibilities, but it rarely proves one by itself.' },
+    uncertainty: { label: 'LENS 03 / UNCERTAINTY', copy: 'The record does not reveal why the pause happened. A careful reading keeps that unknown visible instead of filling it with the most satisfying explanation.' }
+  };
+  const lensLabel = $('postAI-lens-label');
+  const lensCopy = $('postAI-lens-copy');
+  document.querySelectorAll('[data-lens]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const content = lenses[button.dataset.lens];
+      if (!content) return;
+      document.querySelectorAll('[data-lens]').forEach((other) => {
+        const active = other === button;
+        other.classList.toggle('is-active', active);
+        other.setAttribute('aria-pressed', String(active));
+      });
+      if (lensLabel) lensLabel.textContent = content.label;
+      if (lensCopy) lensCopy.textContent = content.copy;
+    });
+  });
+  const lensButtons=Array.from(document.querySelectorAll('[data-lens]'));
+  const lensStatus=$('postAI-lens-status');
+  function activateLens(key){
+    const content=lenses[key];if(!content)return;
+    lensButtons.forEach(button=>{const active=button.dataset.lens===key;button.classList.toggle('is-active',active);button.setAttribute('aria-pressed',String(active));});
+    if(lensLabel)lensLabel.textContent=content.label;if(lensCopy)lensCopy.textContent=content.copy;
+    if(lensStatus)lensStatus.textContent='Active frame: '+content.label.split('/').pop().trim()+'. The underlying record has not changed.';
+  }
+  const surpriseLens=$('postAI-surprise-lens');
+  if(surpriseLens)surpriseLens.addEventListener('click',()=>{const active=lensButtons.find(b=>b.getAttribute('aria-pressed')==='true');const choices=Object.keys(lenses).filter(k=>!active||k!==active.dataset.lens);activateLens(choices[Math.floor(Math.random()*choices.length)]||'surface');});
+  const copyReading=$('postAI-copy-reading');
+  if(copyReading)copyReading.addEventListener('click',async()=>{
+    const text=(lensLabel?lensLabel.textContent+'\n':'')+(lensCopy?lensCopy.textContent:'');
+    try{if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(text);else{const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();const ok=document.execCommand('copy');area.remove();if(!ok)throw new Error('copy unavailable');}if(lensStatus)lensStatus.textContent='Reading copied. The record itself remains unchanged.';}
+    catch(_){if(lensStatus)lensStatus.textContent='Copy is unavailable in this browser. You can still select the text manually.';}
+  });
+ 
+  /* Reading Memory: remember the last visible section, not every pixel. */
+  const readingHeading = $('postAI-reading-heading');
+  const readingMeta = $('postAI-reading-meta');
+  const resumeButton = $('postAI-resume-reading');
+  const readingStatus = $('postAI-reading-status');
+  let savedReading = safeRead(STORAGE.reading, null);
+  let activeSection = null;
+  let savePending = false;
+  let lastSavedAt = 0;
+  const pageSections = Array.from(document.querySelectorAll('main > section'));
+  function readableHeading(section) {
+    const heading = section && section.querySelector('h1, h2, h3');
+    return heading ? heading.textContent.replace(/\s+/g, ' ').trim() : 'Archive';
+  }
+  function renderReadingMarker() {
+    if (savedReading && Number.isFinite(savedReading.y)) {
+      if (readingHeading) readingHeading.textContent = savedReading.heading || 'Saved place marker';
+      if (readingMeta) {
+        const when = Number.isFinite(savedReading.at) ? new Date(savedReading.at).toLocaleString() : '';
+        readingMeta.textContent = 'Saved' + (when ? ' ' + when : '') + '. Resume near this point in the archive.';
+      }
+      if (resumeButton) resumeButton.disabled = false;
+    } else {
+      if (readingHeading) readingHeading.textContent = 'No place marker yet.';
+      if (readingMeta) readingMeta.textContent = 'Scroll through the archive and this card will update quietly.';
+      if (resumeButton) resumeButton.disabled = true;
+    }
+    if (readingStatus) readingStatus.textContent = storageAvailable ? 'The marker stays in this browser only.' : 'Local storage is blocked; this marker may not persist.';
+  }
+  function saveReadingMarker(force) {
+    if (document.getElementById('postAI-game-dialog')?.open) return;
+    const now = Date.now();
+    if (!force && now - lastSavedAt < 700) return;
+    const position = window.scrollY || window.pageYOffset || 0;
+    if (position < 12 && !force) return;
+    const heading = readableHeading(activeSection || pageSections.reduce((best, section) => {
+      const rect = section.getBoundingClientRect();
+      const distance = Math.abs(rect.top - Math.min(window.innerHeight * 0.25, 180));
+      return !best || distance < best.distance ? { section, distance } : best;
+    }, null)?.section);
+    const next = { y: Math.max(0, Math.round(position)), heading, at: now };
+    savedReading = next;
+    lastSavedAt = now;
+    const saved = safeWrite(STORAGE.reading, next);
+    renderReadingMarker();
+    if (!saved && readingStatus) readingStatus.textContent = 'This browser is blocking local storage; the marker may not survive a refresh.';
+  }
+  window.addEventListener('scroll', () => {
+    if (savePending) return;
+    savePending = true;
+    window.requestAnimationFrame(() => { savePending = false; saveReadingMarker(false); });
+  }, { passive: true });
+  window.addEventListener('pagehide', () => saveReadingMarker(true), { passive: true });
+  if ('IntersectionObserver' in window) {
+    const readingObserver = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) activeSection = visible.target;
+    }, { rootMargin: '-12% 0px -55% 0px', threshold: [0, 0.1, 0.25, 0.5] });
+    pageSections.forEach((section) => readingObserver.observe(section));
+  }
+  if (resumeButton) resumeButton.addEventListener('click', () => {
+    if (!savedReading || !Number.isFinite(savedReading.y)) return;
+    window.scrollTo({ top: savedReading.y, behavior: 'smooth' });
+    if (readingStatus) readingStatus.textContent = 'Returning to ' + (savedReading.heading || 'your saved place') + '.';
+  });
+  const saveReadingButton=$('postAI-save-reading');
+  if(saveReadingButton)saveReadingButton.addEventListener('click',()=>{saveReadingMarker(true);if(readingStatus)readingStatus.textContent='Place marker saved for '+((savedReading&&savedReading.heading)||readableHeading(activeSection))+'. This stays on this device.';});
+  const clearReading = $('postAI-clear-reading');
+  if (clearReading) clearReading.addEventListener('click', () => {
+    savedReading = null;
+    safeRemove(STORAGE.reading);
+    renderReadingMarker();
+    if (readingStatus) readingStatus.textContent = storageAvailable ? 'Place marker forgotten.' : 'This browser is blocking storage, so removal could not be confirmed.';
+  });
+  renderReadingMarker();
+ 
+  /* THE IMPOSSIBLE — local challenge engine v2
+   Self-contained puzzle logic. No AI, API, network, or external dependencies. */
+  const gameDialog = $('postAI-game-dialog');
+  const gameSection = $('postAI-impossible');
+  const gameLaunch = $('postAI-open-game');
+  const gameClose = $('postAI-close-game');
+  const gamePlay = $('postAI-game-play');
+  const gameFeedback = $('postAI-game-feedback');
+  const modeLabel = $('postAI-game-mode-label');
+  const progressLabel = $('postAI-game-progress-label');
+  const scoreLabel = $('postAI-game-score-label');
+  const bestLabel = $('postAI-game-best');
+  const winsLabel = $('postAI-game-wins');
+  const modeButtons = Array.from(document.querySelectorAll('#postAI-mode-picker [data-game-mode]'));
+  const $game = (id) => document.getElementById(id);
+  const escapeGame = (v) => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const bank = {
+    pattern: [
+      {q:'2, 6, 12, 20, 30, ?',a:'42',h:'Compare the gaps between terms.',e:'The gaps are +4, +6, +8, +10, then +12.'},
+      {q:'3, 7, 15, 31, 63, ?',a:'127',h:'Each term is built from the previous one.',e:'Double each term and add 1.'},
+      {q:'1, 2, 6, 24, 120, ?',a:'720',h:'The multiplier increases by one each time.',e:'Multiply by 2, 3, 4, 5, then 6.'},
+      {q:'5, 9, 17, 33, 65, ?',a:'129',h:'Look at the gaps: they double.',e:'The gaps are 4, 8, 16, 32, 64.'},
+      {q:'1, 4, 9, 16, 25, ?',a:'36',h:'These are familiar perfect powers.',e:'They are consecutive squares: 1² through 6².'},
+      {q:'2, 3, 5, 8, 12, 17, ?',a:'23',h:'The amount added grows by one.',e:'Add +1, +2, +3, +4, +5, then +6.'},
+      {q:'81, 27, 9, 3, ?',a:'1',h:'The same division repeats.',e:'Each term is divided by 3.'},
+      {q:'4, 7, 13, 25, 49, ?',a:'97',h:'The gaps are 3, 6, 12, 24…',e:'The gap doubles each time, so add 48.'},
+      {q:'1, 1, 2, 3, 5, 8, ?',a:'13',h:'Each term depends on the two before it.',e:'Add the previous two terms.'},
+      {q:'10, 20, 18, 36, 34, 68, ?',a:'66',h:'Two operations alternate.',e:'Multiply by 2, subtract 2, repeat.'},
+      {q:'7, 14, 28, 56, ?',a:'112',h:'One operation repeats.',e:'Every term doubles.'},
+      {q:'1, 8, 27, 64, ?',a:'125',h:'Think of cubes, not squares.',e:'These are 1³, 2³, 3³, 4³, 5³.'},
+      {q:'13, 11, 8, 4, -1, ?',a:'-7',h:'The subtracted number changes each time.',e:'Subtract 2, 3, 4, 5, then 6.'},
+      {q:'2, 5, 11, 23, 47, ?',a:'95',h:'Double, then add the same small amount.',e:'Each term is doubled and then increased by 1.'},
+      {q:'100, 81, 64, 49, 36, ?',a:'25',h:'Ignore the first unusual-looking token; focus on square numbers descending.',e:'The intended descending squares are 10², 9², 8², 7², 6², 5².'},
+      {q:'6, 11, 21, 41, 81, ?',a:'161',h:'Compare each term with twice the previous term.',e:'Double then subtract 1.'},
+      {q:'3, 6, 11, 18, 27, ?',a:'38',h:'The gaps are odd numbers increasing by two.',e:'Add 3, 5, 7, 9, then 11.'},
+      {q:'64, 32, 16, 8, ?',a:'4',h:'Each step halves the previous term.',e:'Divide by 2 each time.'},
+      {q:'9, 18, 21, 42, 45, ?',a:'90',h:'The operations alternate between scaling and a small addition.',e:'Multiply by 2, add 3, repeat.'},
+      {q:'1, 3, 7, 15, 31, ?',a:'63',h:'Double each term and add one.',e:'The sequence follows ×2 + 1.'},
+      {q:'2, 10, 30, 68, 130, ?',a:'222',h:'Compare each term with its position cubed.',e:'The terms are n³+n for n=1,2,3…; next is 6³+6 = 222.'},
+      {q:'50, 45, 39, 32, 24, ?',a:'15',h:'The subtraction increases by one.',e:'Subtract 5, 6, 7, 8, then 9.'},
+      {q:'1, 4, 10, 22, 46, ?',a:'94',h:'The gaps double each time.',e:'Add 3, 6, 12, 24, then 48.'},
+      {q:'12, 15, 21, 30, 42, ?',a:'57',h:'The gaps grow by three.',e:'Add 3, 6, 9, 12, then 15.'},
+      {q:'4, 9, 16, 25, 36, ?',a:'49',h:'These are consecutive square numbers.',e:'The terms are 2², 3², 4², 5², 6², then 7² = 49.'},
+      {q:'2, 6, 18, 54, ?',a:'162',h:'One multiplier repeats.',e:'Each term is multiplied by 3, so 54 × 3 = 162.'},
+      {q:'7, 10, 16, 25, 37, ?',a:'52',h:'The gaps rise by three each time.',e:'Add 3, 6, 9, 12, then 15. The next term is 52.'},
+      {q:'3, 5, 9, 17, 33, ?',a:'65',h:'Compare each term with twice the previous one.',e:'Each step is ×2 − 1: 33 × 2 − 1 = 65.'},
+      {q:'144, 72, 36, 18, ?',a:'9',h:'The same operation repeats.',e:'Each term is half the previous term: 18 ÷ 2 = 9.'},
+      {q:'1, 4, 13, 40, 121, ?',a:'364',h:'Multiply, then add one.',e:'Each term is previous × 3 + 1. Therefore 121 × 3 + 1 = 364.'},
+      {q:'11, 22, 44, 88, ?',a:'176',h:'Every term doubles.',e:'88 × 2 = 176.'},
+      {q:'20, 18, 15, 11, 6, ?',a:'0',h:'The amount subtracted grows by one.',e:'Subtract 2, 3, 4, 5, then 6. The next term is 0.'},
+      {q:'8, 13, 21, 34, 55, ?',a:'89',h:'Build each term from the two before it.',e:'This is Fibonacci-style addition: 34 + 55 = 89.'},
+      {q:'2, 12, 36, 80, 150, ?',a:'252',h:'Multiply the square of each position by one more than that position.',e:'The terms follow n²(n + 1): at n = 6, 36 × 7 = 252.'},
+      {q:'6, 13, 27, 55, ?',a:'111',h:'Double each term and add one.',e:'55 × 2 + 1 = 111.'},
+      {q:'90, 81, 73, 66, 60, ?',a:'55',h:'The subtracted amount decreases by one each step.',e:'Subtract 9, 8, 7, 6, then 5. The next term is 55.'}
+    ],
+    logic: [
+      {q:'All V are W. No W are X. What must be true?',o:['Some V are X','No V are X','All X are V','Nothing follows'],a:1,h:'Follow the two statements as a chain.',e:'Every V is inside W, and W never overlaps X. Therefore V cannot overlap X.'},
+      {q:'If the alarm is armed, the light is red. The light is not red. What follows?',o:['The alarm is armed','The alarm is not armed','The alarm is broken','Nothing follows'],a:1,h:'Use the rule in reverse by denying its result.',e:'If armed always implies red, not-red means the alarm is not armed.'},
+      {q:'Some artists are pilots. Every pilot is trained. Which must be true?',o:['Every artist is trained','Some artists are trained','No artists are trained','Every trained person is a pilot'],a:1,h:'Track only the group guaranteed to exist.',e:'The artists who are pilots must be trained, so some artists are trained.'},
+      {q:'A code is either blue or green, never both. It is not blue. What colour is it?',o:['Blue','Green','Both','Cannot tell'],a:1,h:'There are exactly two options.',e:'With only blue or green possible, not blue means green.'},
+      {q:'Mira is older than Jo. Jo is older than Ren. Who is youngest?',o:['Mira','Jo','Ren','Cannot tell'],a:2,h:'Put the three people in order.',e:'Mira > Jo > Ren, so Ren is youngest.'},
+      {q:'Every sealed file is encrypted. File K is not encrypted. What follows?',o:['K is sealed','K is not sealed','K is deleted','Nothing follows'],a:1,h:'A sealed file must satisfy the encryption rule.',e:'If K were sealed it would be encrypted. It is not, so it is not sealed.'},
+      {q:'Only members can enter the archive. Nia entered the archive. What must be true?',o:['Nia is a member','Nia owns the archive','All members entered','No visitors exist'],a:0,h:'Translate “only members” into a necessary condition.',e:'Entering requires membership, so Nia is a member.'},
+      {q:'Four boxes are in a row. Red is left of blue; blue is left of gold. Which order is forced for these three?',o:['Gold, blue, red','Red, blue, gold','Blue, red, gold','Gold, red, blue'],a:1,h:'Combine the left-of constraints.',e:'Red must precede blue, and blue must precede gold.'},
+      {q:'If P then Q. Q is true. Does that prove P?',o:['Yes, always','No, Q may have another cause','P is false','Q is impossible'],a:1,h:'A result can have more than one cause.',e:'P implies Q does not mean Q implies P.'},
+      {q:'No silver keys open the vault. This key opened the vault. What follows?',o:['It is silver','It is not silver','It is gold','It is broken'],a:1,h:'Compare the key with the forbidden group.',e:'A silver key cannot open the vault; this one did, so it is not silver.'},
+      {q:'A is before B. C is after B. Which must be true?',o:['C is before A','A is before C','B is before A','A and C are equal'],a:1,h:'Join the two ordering facts.',e:'A before B before C means A is before C.'},
+      {q:'Every glim is a tor. Some tors are nels. What is guaranteed about glims and nels?',o:['All glims are nels','No glims are nels','Some glims are nels','No overlap is guaranteed'],a:3,h:'The “some tors” group may be separate from glims.',e:'Both groups are tors, but their overlap is not established.'},
+      {q:'Exactly one of switches A and B is on. A is off. What is B?',o:['Off','On','Broken','Unknown'],a:1,h:'Exactly one must be on.',e:'If A is off, B must be on to satisfy the condition.'},
+      {q:'If the door is locked, the sensor is active. The sensor is active. What can you conclude?',o:['The door is locked','The door is unlocked','Not enough information','The sensor is faulty'],a:2,h:'The rule gives a necessary result, not a unique cause.',e:'An active sensor does not prove the door is locked.'},
+      {q:'All poets are readers. No reader is careless. Which follows?',o:['Some poets are careless','No poet is careless','All readers are poets','No poets exist'],a:1,h:'Poets belong to the reader group.',e:'Since no reader is careless, no poet can be careless.'},
+      {q:'Five is greater than three; three is greater than one. Which is smallest?',o:['5','3','1','Cannot tell'],a:2,h:'Arrange the values from greatest to least.',e:'5 > 3 > 1, so 1 is smallest.'},
+      {q:'A statement says: “If the pass is valid, the gate opens.” The gate stayed closed. What follows under this rule?',o:['The pass was valid','The pass was not valid','The gate opened later','The gate is always broken'],a:1,h:'The stated implication rules out one possibility.',e:'A valid pass guarantees an open gate; a closed gate means the pass was not valid under the given rule.'},
+      {q:'Some books are rare. All rare things are catalogued. What follows?',o:['Some books are catalogued','All books are rare','No books are catalogued','All catalogued things are books'],a:0,h:'Follow the existing “some” group.',e:'The books that are rare must be catalogued, so some books are catalogued.'},
+      {q:'If either A or B is selected, C is selected. C is not selected. What follows?',o:['A or B was selected','Neither A nor B was selected','A was selected','B was selected'],a:1,h:'The condition says either choice would require C.',e:'Since C is absent, neither A nor B can have been selected.'},
+      {q:'A red token is heavier than a white token. A white token is heavier than a black token. Which is lightest?',o:['Red','White','Black','Cannot tell'],a:2,h:'Combine the comparisons.',e:'Red > white > black, so black is lightest.'},
+      {q:'All active nodes are visible. Node Z is invisible. What follows?',o:['Z is active','Z is not active','Z is visible','All nodes are inactive'],a:1,h:'An active node must be visible.',e:'Because Z is invisible, it cannot be active.'},
+      {q:'Exactly one person tells the truth. A says “B is lying.” B says “C is lying.” C says “A and B are both lying.” Who tells the truth?',o:['A only','B only','C only','None of them'],a:1,h:'Assume each possible truth-teller and check all three statements consistently.',e:'Only B can be telling the truth: then A is lying, and C is lying because A is not telling the truth.'},
+      {q:'Every member has an ID. Rowan has no ID. What follows?',o:['Rowan is a member','Rowan is not a member','Rowan lost a wallet','Nothing follows'],a:1,h:'Membership requires an ID.',e:'Without an ID, Rowan does not meet the stated condition for membership.'},
+      {q:'Every amber file is archived. File M is amber. What follows?',o:['File M is archived','Every archived file is amber','File M is deleted','Nothing follows'],a:0,h:'Apply the rule to the named file.',e:'The rule says every amber file is archived, and M is amber; therefore M is archived.'},
+      {q:'No silent alarm sends a sound. This alarm sent a sound. What must be true?',o:['It is silent','It is not a silent alarm','It is broken','All alarms send sound'],a:1,h:'A member of the silent group cannot have this property.',e:'Because silent alarms do not send sound, an alarm that did send sound is not in that group.'},
+      {q:'A is taller than B. C is taller than A. Who is tallest?',o:['A','B','C','Cannot determine'],a:2,h:'Combine the two comparisons.',e:'C > A > B, so C is tallest.'},
+      {q:'Some maps are old. Every old map is fragile. What follows?',o:['Some maps are fragile','Every map is fragile','No maps are fragile','Every fragile thing is a map'],a:0,h:'Carry the existing “some maps” group through the rule.',e:'The maps that are old are fragile, so at least some maps are fragile.'},
+      {q:'If the key fits, the lock turns. The lock did not turn. Under the rule, what follows?',o:['The key fit','The key did not fit','The lock was removed','Nothing follows'],a:1,h:'Denying the guaranteed result rules out the condition.',e:'If a fitting key always turns the lock, a lock that did not turn means the key did not fit under the stated rule.'},
+      {q:'Only registered players may enter. Sol entered. What follows?',o:['Sol is registered','All registered players entered','Sol owns the venue','Nothing follows'],a:0,h:'“Only registered players” states a requirement for entry.',e:'Entry requires registration, so Sol must be registered.'},
+      {q:'Exactly one of doors A and B is open. B is open. What is A?',o:['Open','Closed','Locked forever','Cannot tell'],a:1,h:'The condition excludes both doors being open.',e:'Since exactly one door is open and B is open, A must be closed.'},
+      {q:'All Norns are quiet. Some quiet things are blue. What is guaranteed about Norns and blue things?',o:['All Norns are blue','Some Norns are blue','No Norns are blue','Their overlap is not established'],a:3,h:'The “some quiet things” could be outside the Norn group.',e:'Both Norns and some blue things are quiet, but the statements do not establish an overlap.'},
+      {q:'A report is filed before review. Review happens before approval. Which must be true?',o:['Approval before filing','Filing before approval','Review before filing','All happen together'],a:1,h:'Chain the order in the stated direction.',e:'Filing precedes review, which precedes approval; therefore filing precedes approval.'},
+      {q:'If P is selected, Q is excluded. Q is selected. What follows?',o:['P is selected','P is excluded','Both are selected','No conclusion'],a:1,h:'The rule forbids P and Q from being selected together.',e:'Because selecting P would exclude Q, Q being selected means P was not selected.'},
+      {q:'Every token is either round or square, and none is both. Token T is not round. What shape is T?',o:['Round','Square','Both','Neither'],a:1,h:'The rule gives two exhaustive, mutually exclusive options.',e:'Since every token is round or square and T is not round, T must be square.'},
+      {q:'Three folders are ordered. Green is before White. Black is after White. Which order is forced?',o:['Black, White, Green','Green, White, Black','White, Green, Black','Green, Black, White'],a:1,h:'Combine the before/after constraints.',e:'Green precedes White, and Black follows White: Green → White → Black.'}
+    ]
+  };
+  const gameData = safeRead(STORAGE.game, {}) || {};
+  function normalizeSeen(raw){
+    const result={pattern:{easy:[],hard:[]},logic:{easy:[],hard:[]}};
+    ['pattern','logic'].forEach(mode=>{
+      const source=raw&&raw[mode];
+      if(source&&Array.isArray(source.easy)&&Array.isArray(source.hard)){
+        result[mode].easy=source.easy.filter(id=>typeof id==='string');
+        result[mode].hard=source.hard.filter(id=>typeof id==='string');
+      }else if(Array.isArray(source)){
+        const split=Math.ceil(bank[mode].length/2);
+        source.forEach(id=>{const i=Number(String(id).split('-').pop());const d=Number.isFinite(i)&&i>=split?'hard':'easy';if(typeof id==='string'&&!result[mode][d].includes(id))result[mode][d].push(id);});
+      }
+    });
+    return result;
+  }
+  const state = {
+    mode:'pattern', difficulty:'easy',
+    score:Number.isFinite(gameData.score)?Math.max(0,gameData.score):0,
+    best:Number.isFinite(gameData.best)?Math.max(0,gameData.best):0,
+    cleared:Number.isFinite(gameData.cleared)?Math.max(0,gameData.cleared):0,
+    streak:0, hintUsed:false, answered:false, current:null, currentId:'',
+    seen:normalizeSeen(gameData.seen),
+    history:Array.isArray(gameData.history)?gameData.history.filter(x=>x&&typeof x==='object').slice(-80):[],
+    session:0
+  };
+  const modeNames={pattern:'PATTERN & SEQUENCE',logic:'LOGIC & DEDUCTION'};
+  function persistGame(){
+    const data={score:state.score,best:state.best,cleared:state.cleared,seen:state.seen,history:state.history.slice(-80)};
+    safeWrite(STORAGE.game,data);
+    if(bestLabel)bestLabel.textContent='BEST SCORE / '+state.best;
+    if(winsLabel)winsLabel.textContent='ROUNDS CLEARED / '+state.cleared;
+    if(scoreLabel)scoreLabel.textContent='SCORE '+String(state.score).padStart(3,'0');
+  }
+  function feedback(t){if(gameFeedback)gameFeedback.textContent=t;}
+  function updateModeButtons(){modeButtons.forEach(b=>{const on=b.dataset.gameMode===state.mode;b.classList.toggle('is-active',on);b.setAttribute('aria-pressed',String(on));});if(modeLabel)modeLabel.textContent=modeNames[state.mode];}
+  function shuffle(list){const a=list.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+  function pool(){const all=bank[state.mode].map((p,i)=>({ ...p, _id:state.mode+'-'+i }));const cut=Math.ceil(all.length/2);return all.filter((p,i)=>state.difficulty==='hard'?i>=cut:i<cut);}
+  function nextPuzzle(){
+    const all=pool();let seen=state.seen[state.mode][state.difficulty];
+    if(seen.length>=all.length){seen=[];state.seen[state.mode][state.difficulty]=[];feedback('This difficulty cycle is complete. A fresh shuffled cycle has started; earlier questions may return.');}
+    const candidates=all.filter(p=>!seen.includes(p._id));
+    const pick=shuffle(candidates)[0]||all[0];state.seen[state.mode][state.difficulty]=seen.concat(pick._id);
+    state.current=pick;state.currentId=pick._id;state.hintUsed=false;state.answered=false;state.session++;
+    renderPuzzle();
+  }
+  function renderPuzzle(){
+    if(!state.current)return;
+    const p=state.current,idx=state.seen[state.mode][state.difficulty].length,limit=pool().length;
+    if(progressLabel)progressLabel.textContent='ROUND '+String(idx).padStart(2,'0')+' / '+String(limit).padStart(2,'0');
+    const choices=state.mode==='logic'
+      ? '<div class="postai-choice-list">'+p.o.map((v,i)=>'<button type="button" class="postai-choice" data-choice="'+i+'">'+String.fromCharCode(65+i)+'<span>'+escapeGame(v)+'</span></button>').join('')+'</div>'
+      : '<form id="postAI-v2-answer-form" class="postai-answer-form"><label for="postAI-v2-answer">Your answer</label><input id="postAI-v2-answer" autocomplete="off" inputmode="numeric" required><button class="postai-button postai-button-primary" type="submit">Submit answer</button></form>';
+    gamePlay.innerHTML='<p class="postai-game-instructions">Difficulty: <strong>'+state.difficulty.toUpperCase()+'</strong>. Think it through. Hints reduce the reward; explanations appear after you solve or reveal the answer.</p><div class="postai-puzzle"><span class="postai-micro-label">'+modeNames[state.mode]+' / '+state.difficulty.toUpperCase()+' / '+String(state.session).padStart(3,'0')+'</span><h3>'+escapeGame(p.q)+'</h3>'+choices+'<div class="postai-game-actions"><button class="postai-inline-hint" id="postAI-v2-hint" type="button">Reveal hint · −20</button><button class="postai-inline-hint" id="postAI-v2-skip" type="button">Skip question ↗</button></div><p id="postAI-v2-hint-text" class="postai-hint" hidden></p><p id="postAI-v2-result" class="postai-puzzle-feedback" aria-live="polite"></p><div id="postAI-v2-explanation" hidden></div></div>';
+    const form=$game('postAI-v2-answer-form');
+    if(form)form.addEventListener('submit',e=>{e.preventDefault();checkAnswer($game('postAI-v2-answer').value.trim());});
+    gamePlay.querySelectorAll('[data-choice]').forEach(b=>b.addEventListener('click',()=>checkAnswer(Number(b.dataset.choice))));
+    $game('postAI-v2-hint').addEventListener('click',()=>{
+      if(state.hintUsed||state.answered)return;state.hintUsed=true;state.score=Math.max(0,state.score-20);persistGame();
+      const h=$game('postAI-v2-hint-text');h.hidden=false;h.textContent=state.current.h;feedback('Hint used. The solve reward is reduced for this question.');
+    });
+    $game('postAI-v2-skip').addEventListener('click',()=>{state.streak=0;feedback('Question skipped. No answer revealed; moving to a fresh challenge.');nextPuzzle();});
+    feedback('Challenge ready. No timer pressure: find the rule, then check your reasoning.');
+  }
+  function checkAnswer(answer){
+    if(state.answered)return;
+    const p=state.current;const correct=state.mode==='logic'?answer===p.a:String(answer).trim().toLowerCase()===String(p.a).trim().toLowerCase();
+    const result=$game('postAI-v2-result');
+    if(correct){
+      state.answered=true;state.streak++;
+      const base=state.difficulty==='hard'?160:100;
+      const points=Math.max(25,base+Math.min(40,(state.streak-1)*5));
+      state.score+=points;state.best=Math.max(state.best,state.score);state.cleared++;state.history.push({id:state.currentId,at:Date.now(),mode:state.mode,difficulty:state.difficulty});
+      result.textContent='Correct. +'+points+' points. Streak: '+state.streak+(state.hintUsed?' (hint cost was applied once).':'.');
+      revealExplanation(true);persistGame();feedback('Solved. Explanation unlocked; continue when ready.');
+      const buttons=gamePlay.querySelectorAll('button,input');buttons.forEach(b=>{if(!b.id.includes('next'))b.disabled=true;});
+      const next=document.createElement('button');next.type='button';next.className='postai-button postai-button-primary';next.textContent='Next question →';next.addEventListener('click',nextPuzzle);gamePlay.querySelector('.postai-puzzle').appendChild(next);
+    }else{
+      state.streak=0;result.textContent='Not quite. Re-check the rule and try again.';const wrap=$game('postAI-v2-explanation');wrap.hidden=false;wrap.innerHTML='<p class="postai-footnote">Keep reasoning: one incorrect attempt does not end the round.</p>';
+      if(state.mode==='logic'&&typeof answer==='number'){const b=gamePlay.querySelector('[data-choice="'+answer+'"]');if(b)b.classList.add('is-wrong');}
+    }
+  }
+  function revealExplanation(correct){
+    const p=state.current,wrap=$game('postAI-v2-explanation');if(!wrap)return;wrap.hidden=false;
+    wrap.innerHTML='<p><strong>'+(correct?'Why it works':'Solution')+'</strong></p><p>'+escapeGame(p.e)+'</p><p><strong>Answer:</strong> '+escapeGame(p.a)+'</p>';
+  }
+  function addDifficultyControl(){
+    if(!gamePlay||$game('postAI-v2-difficulty'))return;
+    const control=document.createElement('div');control.id='postAI-v2-difficulty';control.className='postai-game-actions';
+    control.innerHTML='<span class="postai-micro-label">DIFFICULTY</span><button type="button" class="postai-inline-hint" data-difficulty="easy" aria-pressed="true">Easy</button><button type="button" class="postai-inline-hint" data-difficulty="hard" aria-pressed="false">Hard</button>';
+    gamePlay.before(control);
+    control.querySelectorAll('[data-difficulty]').forEach(b=>b.addEventListener('click',()=>{
+      state.difficulty=b.dataset.difficulty;control.querySelectorAll('[data-difficulty]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+      feedback('Difficulty set to '+state.difficulty+'. Loading a fresh question from that pool.');nextPuzzle();
+    }));
+  }
+  function renderMode(){updateModeButtons();addDifficultyControl();nextPuzzle();}
+  modeButtons.forEach(b=>b.addEventListener('click',()=>{if(!['pattern','logic'].includes(b.dataset.gameMode))return;state.mode=b.dataset.gameMode;renderMode();}));
+  const resetButton=$('postAI-game-reset');
+  if(resetButton)resetButton.addEventListener('click',()=>{
+    state.seen[state.mode]={easy:[],hard:[]};state.streak=0;state.current=null;persistGame();renderMode();feedback('Both difficulty cycles for '+modeNames[state.mode]+' have been reset. Total and best scores remain.');
+  });
+  function openGame(){
+    if(!gameDialog||typeof gameDialog.showModal!=='function'){feedback('This browser cannot open the challenge dialog.');return;}
+    if(!gameDialog.open)gameDialog.showModal();renderMode();if(gameClose)gameClose.focus();
+  }
+  function closeGame(){if(gameDialog&&gameDialog.open)gameDialog.close();}
+  if(gameLaunch)gameLaunch.addEventListener('click',openGame);
+  if(gameClose)gameClose.addEventListener('click',closeGame);
+  if(gameDialog){
+    gameDialog.addEventListener('click',e=>{if(e.target===gameDialog)closeGame();});
+    gameDialog.addEventListener('close',()=>{persistGame();if(gameLaunch)gameLaunch.focus({preventScroll:true});if(gameSection)gameSection.scrollIntoView({behavior:'smooth',block:'center'});});
+  }
+  persistGame();
+})();
+ 
+ 
+</script>
+  <style id="verified-final-gap-override">
+/* Final spacing override: deliberately placed last so earlier duplicate rules cannot override it. */
+html body main > section#postAI-signal-room,
+html body main > section#postAI-second-reading,
+html body main > section#postAI-reading-memory,
+html body main > section#postAI-impossible {
+  margin-top: 130px !important;
+  margin-block-start: 130px !important;
+  margin-bottom: 0 !important;
+}
+html body main > section#nodeAISection + section#postAI-signal-room {
+  margin-top: 155px !important;
+  margin-block-start: 155px !important;
+}
+@media (max-width: 700px) {
+  html body main > section#postAI-signal-room,
+  html body main > section#postAI-second-reading,
+  html body main > section#postAI-reading-memory,
+  html body main > section#postAI-impossible {
+    margin-top: 105px !important;
+    margin-block-start: 105px !important;
+  }
+  html body main > section#nodeAISection + section#postAI-signal-room {
+    margin-top: 125px !important;
+    margin-block-start: 125px !important;
+  }
+}
+</style>
  </body>
 </html>
