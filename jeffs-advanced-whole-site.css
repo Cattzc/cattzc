@@ -1,0 +1,879 @@
+/*
+  J.EFFS — Advanced whole-site visual stylesheet
+  Companion stylesheet for index_glimpse_about_a_je.html
+  CSS ONLY: no HTML/JS edits, no animation/keyframe/transition declarations.
+  Load this stylesheet AFTER the page's existing styles for the overrides to apply.
+*/
+ 
+:root {
+  --je-bg: #03050a;
+  --je-bg-raised: #080d17;
+  --je-panel: rgba(10, 16, 29, .78);
+  --je-panel-strong: rgba(12, 19, 34, .94);
+  --je-line: rgba(155, 177, 220, .15);
+  --je-line-strong: rgba(113, 1, 255, .48);
+  --je-text: #f3f5ff;
+  --je-muted: #a7b1c7;
+  --je-dim: #707c94;
+  --je-accent: #7101ff;
+  --je-accent-soft: rgba(113, 1, 255, .14);
+  --je-accent-glow: rgba(113, 1, 255, .22);
+  --je-radius-sm: 12px;
+  --je-radius-md: 18px;
+  --je-radius-lg: 26px;
+  --je-radius-xl: 34px;
+  --je-shadow: 0 24px 70px rgba(0, 0, 0, .34);
+  --je-content-width: 760px;
+  color-scheme: dark;
+}
+ 
+html {
+  background: var(--je-bg);
+  color: var(--je-text);
+  scrollbar-color: rgba(113, 1, 255, .58) #05070d;
+  scrollbar-width: thin;
+}
+ 
+body {
+  color: var(--je-text);
+  background:
+    radial-gradient(ellipse at 50% -12%, rgba(49, 31, 91, .23), transparent 43%),
+    radial-gradient(ellipse at 100% 48%, rgba(30, 44, 88, .11), transparent 35%),
+    var(--je-bg);
+  font-family: var(--font-body, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+ 
+::selection { color: #fff; background: rgba(113, 1, 255, .58); }
+:focus-visible { outline: 2px solid #a66cff; outline-offset: 4px; }
+ 
+/* Keep the original mobile layout guard and sizing behavior intact. */
+main {
+  color: var(--je-text);
+}
+ 
+main > section,
+main > header,
+main > footer,
+main > .hero,
+main > .system-continuation,
+main > .demi-system,
+main > .node-ai-section,
+main > .glimpse-section {
+  min-width: 0;
+}
+ 
+/* Shared type system: improves hierarchy without changing content or motion. */
+h1, h2, h3, h4,
+.hero-name-stack,
+.demi-gate-copy,
+.sys-title,
+.final-name,
+#glimpseTitle,
+#nodeAITitle {
+  color: var(--je-text);
+  text-wrap: balance;
+  letter-spacing: -.035em;
+}
+ 
+p, .hero-intro, .final-copy, .demi-story-copy,
+.demi-gate-foot, .sys-sub, .glimpse-note {
+  color: var(--je-muted);
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+ 
+.kicker, .section-number, .entry-eyebrow, .hero-bottom-note,
+.demi-eyebrow, .demi-butterfly-label, .sys-kicker,
+.afterstory-label, .node-ai-live-label, .glimpse-track-state {
+  color: #a995ff;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+ 
+/* First view / hero: cinematic framing, restrained purple signature. */
+.hero-section {
+  isolation: isolate;
+  background-color: transparent;
+  background-image:
+    radial-gradient(ellipse at 84% 18%, rgba(113, 1, 255, .13), transparent 33%),
+    radial-gradient(ellipse at 12% 70%, rgba(32, 57, 108, .13), transparent 39%);
+}
+ 
+.hero-section::before {
+  border-color: rgba(113, 1, 255, .10);
+  pointer-events: none;
+}
+ 
+.hero-name-stack {
+  color: #faf8ff;
+  text-shadow: 0 0 36px rgba(113, 1, 255, .12);
+}
+ 
+.hero-name-second { color: #c7b7ff; }
+.hero-intro { max-width: 42ch; }
+.hero-rule {
+  background: linear-gradient(90deg, rgba(113, 1, 255, .8), rgba(113, 1, 255, .04));
+  opacity: .8;
+}
+ 
+.hero-entry-grid { gap: 12px; }
+.cat-chat-mini,
+.archive-entry,
+.hero-chat-entry {
+  color: var(--je-text);
+  background: linear-gradient(145deg, rgba(16, 22, 39, .86), rgba(7, 10, 19, .88));
+  border: 1px solid var(--je-line);
+  border-radius: var(--je-radius-md);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .18), inset 0 1px rgba(255, 255, 255, .025);
+  min-width: 0;
+}
+ 
+.cat-chat-mini-copy,
+.archive-entry-copy,
+.entry-eyebrow { color: var(--je-muted); }
+.cat-chat-mini-mark,
+.archive-entry-icon { color: #c9b7ff; }
+.cat-chat-mini-arrow,
+.archive-entry-arrow { color: #a982ff; }
+.hero-live-dot { background-color: #9b66ff; }
+ 
+/* Common section surfaces. These selectors intentionally avoid animation properties. */
+#aboutArchive,
+.favourites,
+section:not(.hero-section):not(.demi-system):not(.system-continuation):not(.glimpse-section):not(.node-ai-section),
+.system-continuation,
+.node-ai-section,
+.glimpse-section {
+  color: var(--je-text);
+}
+ 
+#aboutArchive,
+.favourites,
+.system-continuation,
+.node-ai-section,
+.glimpse-section {
+  position: relative;
+  border: 1px solid rgba(155, 177, 220, .105);
+  border-radius: var(--je-radius-xl);
+  background: linear-gradient(155deg, rgba(11, 17, 31, .78), rgba(4, 7, 14, .62));
+  box-shadow: 0 22px 65px rgba(0, 0, 0, .17), inset 0 1px rgba(255, 255, 255, .025);
+}
+ 
+.section-number { color: #a58aff; }
+.final-copy { color: #c0c7d9; }
+.fav, .fav-label { color: var(--je-muted); }
+ 
+/* DEMI system: dark glass console, clear control hierarchy. */
+.demi-system {
+  color: var(--je-text);
+  background:
+    radial-gradient(ellipse at 50% 12%, rgba(113, 1, 255, .10), transparent 43%),
+    linear-gradient(180deg, rgba(7, 11, 21, .96), rgba(3, 5, 10, .98));
+  border-color: rgba(113, 1, 255, .16);
+}
+ 
+.demi-system-header { border-color: var(--je-line); }
+.demi-gate {
+  border-color: rgba(113, 1, 255, .2);
+  background: linear-gradient(155deg, rgba(14, 18, 35, .86), rgba(5, 8, 16, .92));
+  border-radius: var(--je-radius-xl);
+  box-shadow: var(--je-shadow), inset 0 1px rgba(255, 255, 255, .035);
+}
+ 
+.demi-gate-copy { color: #f4f0ff; }
+.demi-gate-console,
+.demi-destination,
+.demi-warp,
+.memory-frame,
+.memory-wrap {
+  border-color: var(--je-line);
+  border-radius: var(--je-radius-lg);
+}
+ 
+.demi-enter,
+#demiEnter,
+#demiReturn,
+#originHelpBtn,
+#nullButton,
+#originHelpClose,
+#nodeAISend,
+#nodeAINewWhisper,
+#nodeAICopyChat,
+#nodeAIClearChat,
+#echoRandom,
+#glimpseAudio,
+.glimpse-play {
+  color: #fff;
+  border: 1px solid rgba(166, 112, 255, .5);
+  background: linear-gradient(135deg, #7101ff, #4a0ab8);
+  box-shadow: 0 8px 26px rgba(113, 1, 255, .2), inset 0 1px rgba(255, 255, 255, .16);
+  border-radius: 999px;
+}
+ 
+.demi-dest-intro,
+.demi-arrival,
+.demi-story-copy,
+.demi-closing,
+.afterstory-line { color: var(--je-muted); }
+ 
+.memory-frame {
+  background: rgba(7, 10, 19, .78);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .24);
+}
+.memory-image { border-radius: var(--je-radius-md); }
+.memory-caption { color: #d7d0f5; }
+.demi-return { color: #d8caff; }
+ 
+/* Continuation / Echo / Origin panels. */
+.system-continuation { padding-inline: clamp(16px, 3vw, 30px); }
+.sys-title { color: #f5f2ff; }
+.sys-sub { max-width: 58ch; }
+ 
+.echo-panel,
+.signal-map,
+.origin-map,
+.null-console,
+.console-row,
+#originHelp,
+#nullResult,
+#echoDisplay,
+#echoWords {
+  color: var(--je-text);
+  background: linear-gradient(145deg, rgba(13, 19, 34, .82), rgba(5, 8, 16, .88));
+  border: 1px solid var(--je-line);
+  border-radius: var(--je-radius-md);
+}
+ 
+.echo-head,
+.origin-head { border-color: var(--je-line); }
+.echo-word,
+.signal-cell,
+.signal-index { color: #d1c5ff; }
+#echoDisplay { min-height: 72px; }
+#originHelp { color: var(--je-muted); }
+#nullResult { overflow-wrap: anywhere; }
+ 
+/* AI / chat interface. */
+.node-ai-section {
+  background:
+    radial-gradient(ellipse at 95% 0%, rgba(113, 1, 255, .12), transparent 34%),
+    linear-gradient(160deg, rgba(10, 16, 30, .95), rgba(4, 7, 14, .96));
+  border-color: rgba(113, 1, 255, .2);
+}
+ 
+#nodeAISection,
+.node-ai-section { min-width: 0; }
+#nodeAITranscript {
+  background: rgba(2, 4, 10, .58);
+  border: 1px solid var(--je-line);
+  border-radius: var(--je-radius-md);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(113, 1, 255, .45) transparent;
+}
+ 
+.node-ai-chip,
+.node-ai-tool {
+  color: #d9d0ff;
+  background: rgba(113, 1, 255, .09);
+  border: 1px solid rgba(113, 1, 255, .22);
+  border-radius: 999px;
+}
+ 
+#nodeAIInput,
+#nodeAIForm input,
+#nodeAIForm textarea,
+#nodeAIForm select,
+input, textarea, select {
+  color: var(--je-text);
+  background: rgba(4, 7, 15, .92);
+  border: 1px solid rgba(155, 177, 220, .2);
+  border-radius: var(--je-radius-sm);
+  min-width: 0;
+}
+ 
+#nodeAIInput::placeholder,
+input::placeholder,
+textarea::placeholder { color: #77839a; }
+ 
+/* Glimpse / music tracks — retain both existing tracks and all playback logic. */
+.glimpse-section {
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(113, 1, 255, .12), transparent 35%),
+    linear-gradient(155deg, rgba(10, 15, 28, .94), rgba(4, 7, 14, .96));
+  border-color: rgba(113, 1, 255, .2);
+}
+ 
+#glimpseTitle { color: #f5f0ff; }
+#glimpseNote { color: var(--je-muted); }
+.glimpse-track {
+  min-width: 0;
+  border: 1px solid rgba(155, 177, 220, .14);
+  border-radius: var(--je-radius-lg);
+  background: linear-gradient(145deg, rgba(15, 21, 38, .88), rgba(6, 9, 18, .94));
+  box-shadow: 0 14px 38px rgba(0, 0, 0, .2), inset 0 1px rgba(255, 255, 255, .025);
+}
+ 
+.glimpse-track.is-active {
+  border-color: rgba(113, 1, 255, .62);
+  background: linear-gradient(145deg, rgba(28, 17, 52, .9), rgba(7, 9, 20, .96));
+  box-shadow: 0 16px 42px rgba(0, 0, 0, .25), 0 0 0 1px rgba(113, 1, 255, .09);
+}
+ 
+.glimpse-thumbnail {
+  border: 1px solid rgba(175, 149, 255, .18);
+  border-radius: var(--je-radius-md);
+  overflow: hidden;
+  background: #0b0d19;
+}
+ 
+.glimpse-track-copy { min-width: 0; }
+.glimpse-track-name { color: #f2edff; overflow-wrap: anywhere; }
+.glimpse-track-state { color: #b6a2ff; }
+.glimpse-contact a {
+  color: #e5dcff;
+  background: rgba(10, 13, 25, .84);
+  border: 1px solid rgba(113, 1, 255, .3);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+}
+ 
+/* Footer and quiet details. */
+footer {
+  color: var(--je-dim);
+  border-color: var(--je-line);
+}
+footer a { color: #c6b2ff; }
+hr { border-color: var(--je-line); }
+ 
+/* Media assets never overflow narrow devices. */
+img, video, canvas, svg, iframe { max-width: 100%; }
+img { height: auto; }
+button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+button, input, textarea, select { font: inherit; }
+button { color: inherit; }
+a { color: #c8b7ff; text-decoration-color: rgba(200, 183, 255, .35); text-underline-offset: .2em; }
+ 
+@media (min-width: 900px) {
+  :root { --je-content-width: 820px; }
+  #aboutArchive,
+  .favourites,
+  .system-continuation,
+  .node-ai-section,
+  .glimpse-section { box-shadow: 0 28px 85px rgba(0, 0, 0, .22), inset 0 1px rgba(255, 255, 255, .025); }
+}
+ 
+@media (max-width: 600px) {
+  :root {
+    --je-radius-lg: 22px;
+    --je-radius-xl: 26px;
+  }
+ 
+  body { font-size: 15px; }
+  .hero-section { background-position: center top; }
+  .hero-entry-grid { grid-template-columns: minmax(0, 1fr); }
+  .cat-chat-mini, .archive-entry, .hero-chat-entry { width: 100%; min-width: 0; }
+  #aboutArchive,
+  .favourites,
+  .system-continuation,
+  .node-ai-section,
+  .glimpse-section { border-radius: var(--je-radius-lg); }
+  .glimpse-track { gap: 12px; padding: 12px; }
+  .glimpse-thumbnail { max-width: 100%; }
+  .glimpse-contact { max-width: calc(100% - 28px); }
+  #nodeAITranscript { max-width: 100%; overflow-x: hidden; }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  /* Deliberately no motion overrides: existing page animations remain untouched. */
+}
+ 
+/* ================================================================
+   PEAK PASS — deeper component coverage, CSS only
+   No script, animation, keyframe, or transition behavior is added.
+   ================================================================ */
+ 
+:root {
+  --je-surface-1: rgba(10, 15, 29, .88);
+  --je-surface-2: rgba(7, 11, 21, .94);
+  --je-edge: rgba(173, 185, 221, .16);
+  --je-edge-hot: rgba(113, 1, 255, .42);
+  --je-lilac: #cbbaff;
+  --je-copy: #c0c9dc;
+}
+ 
+/* Make section rhythm consistent while leaving original layout rules in place. */
+.hero-section,
+#aboutArchive,
+.favourites,
+.demi-system,
+.system-continuation,
+.node-ai-section,
+.glimpse-section,
+footer {
+  overflow-wrap: anywhere;
+}
+ 
+#aboutArchive,
+.favourites,
+.demi-system,
+.system-continuation,
+.node-ai-section,
+.glimpse-section {
+  background-clip: padding-box;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, .22), inset 0 1px rgba(255, 255, 255, .035);
+}
+ 
+/* Hero cards and archive links */
+.hero-entry-grid { align-items: stretch; }
+.cat-chat-mini,
+.archive-entry,
+.hero-chat-entry {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--je-edge);
+  background-color: var(--je-surface-1);
+}
+.cat-chat-mini-copy,
+.archive-entry-copy,
+.hero-intro,
+.final-intro,
+.final-note { color: var(--je-copy); }
+.archive-entry-icon,
+.cat-chat-mini-mark { flex-shrink: 0; }
+ 
+/* Favourites / story typography */
+.favourites { color: var(--je-text); }
+.fav { color: #e3e8f6; }
+.fav-label { color: var(--je-muted); }
+.final-name { color: #f5f1ff; }
+.final-tag { color: var(--je-lilac); }
+.final-signoff { color: #d7ccff; }
+.demi-emphasis,
+.demi-emphasis-soft { color: #e2d8ff; }
+ 
+/* DEMI: preserve every gate, orbit, butterfly, warp and destination effect. */
+.demi-system { min-width: 0; }
+.demi-system-header,
+.demi-dest-topline,
+.demi-gate-console { color: var(--je-muted); }
+.demi-gate-console { background-color: rgba(3, 6, 14, .58); }
+.demi-gate-foot { color: #9da8c0; }
+.demi-gate-core { isolation: isolate; }
+.demi-core-mark { color: #f8f4ff; }
+.demi-destination { background-color: #050812; }
+.demi-dest-intro,
+.demi-story-copy,
+.demi-closing { color: var(--je-copy); }
+.demi-return { border-color: var(--je-edge-hot); }
+.demi-warp { color: var(--je-text); }
+.demi-warp-code,
+.demi-warp-kicker { color: var(--je-lilac); }
+.demi-butterfly-label { color: #c7b5ff; }
+ 
+/* Origin / Echo / Null controls */
+.echo-panel,
+.signal-map,
+.origin-map,
+.null-console { min-width: 0; }
+.echo-random,
+#echoRandom,
+#originHelpBtn,
+#originHelpClose,
+#nullButton,
+#demiReturn,
+#nodeAISend,
+#nodeAINewWhisper,
+#nodeAICopyChat,
+#nodeAIClearChat,
+#glimpseAudio {
+  min-height: 42px;
+  font-weight: 650;
+  letter-spacing: .01em;
+}
+.echo-word { overflow-wrap: anywhere; }
+.signal-cell { min-width: 0; }
+#originHelpTitle,
+.origin-label { color: var(--je-lilac); }
+#nullResult,
+#echoDisplay,
+#echoWords { overflow-wrap: anywhere; }
+ 
+/* AI console: presentation only; input, transcript and actions remain as-is. */
+.node-ai-wrap,
+.node-ai-card,
+.node-ai-transcript,
+#nodeAITranscript,
+.node-ai-composer-row,
+.node-ai-controls,
+.node-ai-tools { min-width: 0; }
+.node-ai-card {
+  background: linear-gradient(150deg, rgba(13, 19, 35, .94), rgba(5, 8, 16, .96));
+  border: 1px solid var(--je-edge);
+  border-radius: var(--je-radius-lg);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .03);
+}
+.node-ai-card-head,
+.node-ai-top { border-color: var(--je-line); }
+.node-ai-title { color: #f4f0ff; }
+.node-ai-intro,
+.node-ai-context,
+.node-ai-foot { color: var(--je-copy); }
+.node-ai-status { color: #c8b7ff; }
+.node-ai-bubble {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  border-radius: 16px;
+}
+.node-ai-composer-row { align-items: end; }
+.node-ai-input,
+#nodeAIInput,
+#nodeAIForm input,
+#nodeAIForm textarea { width: 100%; }
+.node-ai-prompts { min-width: 0; }
+.node-ai-chip,
+.node-ai-tool { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+ 
+/* Glimpse / audio cards */
+.glimpse-heading { color: #f5f0ff; }
+.glimpse-tracks { min-width: 0; }
+.glimpse-track { align-items: center; }
+.glimpse-track-name { line-height: 1.35; }
+.glimpse-play { flex-shrink: 0; }
+.glimpse-contact { min-width: 0; }
+.glimpse-contact a { overflow-wrap: anywhere; }
+ 
+/* Form fields and keyboard focus: accessibility without motion changes. */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #b99aff;
+  outline-offset: 3px;
+}
+input:disabled,
+textarea:disabled,
+select:disabled,
+button:disabled { cursor: not-allowed; opacity: .62; }
+textarea { resize: vertical; }
+ 
+/* Protect against long text, narrow screens, and media overflow. */
+.node-ai-bubble,
+.node-ai-context,
+.demi-story-copy,
+.demi-closing,
+.final-copy,
+.glimpse-note { overflow-wrap: anywhere; }
+ 
+@media (min-width: 760px) {
+  .hero-entry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .node-ai-card { padding: clamp(18px, 2.5vw, 30px); }
+}
+ 
+@media (max-width: 600px) {
+  .demi-gate,
+  .demi-destination,
+  .echo-panel,
+  .signal-map,
+  .origin-map,
+  .null-console,
+  .node-ai-card { max-width: 100%; }
+  .demi-gate-copy,
+  .sys-title,
+  .node-ai-title,
+  #glimpseTitle { overflow-wrap: anywhere; }
+  .node-ai-composer-row { grid-template-columns: minmax(0, 1fr); }
+  .node-ai-controls,
+  .node-ai-tools { flex-wrap: wrap; }
+  .glimpse-contact a { max-width: 100%; }
+}
+ 
+/* =====================================================================
+   J.EFFS — CINEMATIC MOTION PASS
+   Built for index_glimpse_about_a_je.html.
+   Adds CSS-only ambient motion and interaction feedback; does not replace
+   the page's existing keyframes or JavaScript-driven interactions.
+   ===================================================================== */
+ 
+:root {
+  --je-motion-ease: cubic-bezier(.2, .75, .2, 1);
+  --je-motion-fast: 220ms;
+  --je-motion-mid: 420ms;
+  --je-motion-slow: 900ms;
+}
+ 
+/* Fine, slow ambient light: stays behind content and never captures input. */
+.hero-section,
+.demi-system,
+.system-continuation,
+.node-ai-section,
+.glimpse-section {
+  isolation: isolate;
+}
+ 
+.hero-section::after,
+.demi-system::after,
+.system-continuation::after,
+.node-ai-section::after,
+.glimpse-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: .55;
+  background: radial-gradient(ellipse at 12% 8%, rgba(113, 1, 255, .10), transparent 34%),
+              radial-gradient(ellipse at 88% 82%, rgba(63, 104, 190, .075), transparent 38%);
+  background-size: 140% 140%;
+  animation: jeAtmosphereDrift 22s ease-in-out infinite alternate;
+}
+ 
+@keyframes jeAtmosphereDrift {
+  0%   { background-position: 0% 0%; opacity: .32; }
+  50%  { opacity: .62; }
+  100% { background-position: 100% 100%; opacity: .4; }
+}
+ 
+/* Interactive surfaces respond with lift and light, without changing layout. */
+.archive-entry,
+.cat-chat-mini,
+.hero-chat-entry,
+.echo-panel,
+.origin-map,
+.null-console,
+.node-ai-card,
+.glimpse-track,
+.memory-frame,
+.demi-gate,
+.demi-destination {
+  transform: translateZ(0);
+  transition: border-color var(--je-motion-mid) var(--je-motion-ease),
+              box-shadow var(--je-motion-mid) var(--je-motion-ease),
+              background-color var(--je-motion-mid) var(--je-motion-ease),
+              transform var(--je-motion-mid) var(--je-motion-ease);
+}
+ 
+.archive-entry:hover,
+.cat-chat-mini:hover,
+.hero-chat-entry:hover,
+.echo-panel:hover,
+.origin-map:hover,
+.null-console:hover,
+.node-ai-card:hover,
+.glimpse-track:hover,
+.memory-frame:hover {
+  border-color: rgba(143, 89, 255, .48);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .30), 0 0 28px rgba(113, 1, 255, .075), inset 0 1px rgba(255, 255, 255, .045);
+  transform: translateY(-3px);
+}
+ 
+.archive-entry:active,
+.cat-chat-mini:active,
+.hero-chat-entry:active,
+.glimpse-track:active {
+  transform: translateY(-1px) scale(.995);
+}
+ 
+/* Fine light sweep on existing archive/music cards. */
+.archive-entry,
+.cat-chat-mini,
+.hero-chat-entry,
+.glimpse-track {
+  isolation: isolate;
+}
+ 
+.archive-entry::after,
+.cat-chat-mini::after,
+.hero-chat-entry::after,
+.glimpse-track::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(112deg, transparent 20%, rgba(199, 174, 255, .075) 48%, transparent 72%);
+  background-size: 220% 100%;
+  transition: opacity var(--je-motion-mid) ease;
+}
+ 
+.archive-entry:hover::after,
+.cat-chat-mini:hover::after,
+.hero-chat-entry:hover::after,
+.glimpse-track:hover::after {
+  opacity: 1;
+  animation: jeSurfaceSweep 1.05s var(--je-motion-ease) both;
+}
+ 
+@keyframes jeSurfaceSweep {
+  from { background-position: 120% 0; }
+  to   { background-position: -20% 0; }
+}
+ 
+/* Small, controlled response on buttons and links. */
+button,
+.demi-return,
+.glimpse-contact a,
+.archive-entry-arrow,
+.cat-chat-mini-arrow {
+  transition: color var(--je-motion-fast) ease,
+              border-color var(--je-motion-fast) ease,
+              background-color var(--je-motion-fast) ease,
+              box-shadow var(--je-motion-fast) ease,
+              transform var(--je-motion-fast) var(--je-motion-ease);
+}
+ 
+button:hover,
+.glimpse-contact a:hover,
+.demi-return:hover {
+  box-shadow: 0 10px 30px rgba(113, 1, 255, .24), inset 0 1px rgba(255, 255, 255, .18);
+}
+ 
+button:active,
+.glimpse-contact a:active,
+.demi-return:active {
+  transform: scale(.975);
+}
+ 
+/* AI console: quiet signal pulse around the live status only. */
+.node-ai-status,
+#nodeAIStatus,
+.node-ai-live-label {
+  position: relative;
+}
+ 
+.node-ai-status::before,
+#nodeAIStatus::before,
+.node-ai-live-label::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 .55em .08em 0;
+  border-radius: 50%;
+  background: #a78bff;
+  box-shadow: 0 0 0 0 rgba(113, 1, 255, .42);
+  animation: jeSignalPulse 2.8s ease-out infinite;
+}
+ 
+@keyframes jeSignalPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(113, 1, 255, .40); }
+  65%  { box-shadow: 0 0 0 7px rgba(113, 1, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(113, 1, 255, 0); }
+}
+ 
+/* DEMI atmosphere: preserve the original gate/orbit/butterfly animations. */
+.demi-gate {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .40), 0 0 0 1px rgba(113, 1, 255, .05), inset 0 1px rgba(255, 255, 255, .035);
+}
+ 
+.demi-gate:hover,
+.demi-destination:hover {
+  border-color: rgba(113, 1, 255, .38);
+  box-shadow: 0 28px 88px rgba(0, 0, 0, .42), 0 0 42px rgba(113, 1, 255, .09), inset 0 1px rgba(255, 255, 255, .045);
+}
+ 
+.demi-butterfly-stage {
+  filter: drop-shadow(0 0 22px rgba(113, 1, 255, .08));
+}
+ 
+/* Glimpse active track: soft focus, not a loud equalizer or fake visualizer. */
+.glimpse-track.is-active {
+  border-color: rgba(145, 92, 255, .72);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .30), 0 0 0 1px rgba(113, 1, 255, .13), 0 0 36px rgba(113, 1, 255, .10);
+}
+ 
+.glimpse-thumbnail img,
+.memory-image {
+  transition: filter var(--je-motion-slow) ease, transform var(--je-motion-slow) var(--je-motion-ease);
+}
+ 
+.glimpse-track:hover .glimpse-thumbnail img,
+.memory-frame:hover .memory-image {
+  filter: saturate(1.06) contrast(1.025);
+  transform: scale(1.025);
+}
+ 
+/* Keyboard navigation remains visible; hover-only motion is not required. */
+:focus-visible {
+  outline: 2px solid #b89aff;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 5px rgba(113, 1, 255, .12);
+}
+ 
+/* Small screens: reduce motion intensity and prevent hover transforms on touch. */
+@media (hover: none) {
+  .archive-entry:hover,
+  .cat-chat-mini:hover,
+  .hero-chat-entry:hover,
+  .echo-panel:hover,
+  .origin-map:hover,
+  .null-console:hover,
+  .node-ai-card:hover,
+  .glimpse-track:hover,
+  .memory-frame:hover,
+  .demi-gate:hover,
+  .demi-destination:hover {
+    transform: none;
+  }
+}
+ 
+@media (max-width: 600px) {
+  .hero-section::after,
+  .demi-system::after,
+  .system-continuation::after,
+  .node-ai-section::after,
+  .glimpse-section::after {
+    opacity: .28;
+    animation-duration: 30s;
+  }
+ 
+  .archive-entry:hover,
+  .cat-chat-mini:hover,
+  .hero-chat-entry:hover,
+  .echo-panel:hover,
+  .origin-map:hover,
+  .null-console:hover,
+  .node-ai-card:hover,
+  .glimpse-track:hover,
+  .memory-frame:hover {
+    transform: none;
+  }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  .hero-section::after,
+  .demi-system::after,
+  .system-continuation::after,
+  .node-ai-section::after,
+  .glimpse-section::after,
+  .node-ai-status::before,
+  #nodeAIStatus::before,
+  .node-ai-live-label::before {
+    animation: none;
+  }
+ 
+  .archive-entry,
+  .cat-chat-mini,
+  .hero-chat-entry,
+  .echo-panel,
+  .origin-map,
+  .null-console,
+  .node-ai-card,
+  .glimpse-track,
+  .memory-frame,
+  .demi-gate,
+  .demi-destination,
+  .glimpse-thumbnail img,
+  .memory-image,
+  button,
+  .demi-return,
+  .glimpse-contact a {
+    transition: none;
+  }
+}
