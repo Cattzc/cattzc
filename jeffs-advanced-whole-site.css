@@ -764,8 +764,10 @@ main > footer::before {
   background: linear-gradient(90deg, transparent, var(--jp4-line-strong), transparent);
 }
  
+/* This progress bar sits directly under <body>, outside the scoped token hosts.
+   Use literal palette values here so its gradient never depends on inherited vars. */
 .scroll-progress span {
-  background: linear-gradient(90deg, rgba(169, 201, 242, 0.18), var(--jp4-ice) 54%, var(--jp4-frost));
+  background: linear-gradient(90deg, rgba(169, 201, 242, 0.18), #a9c9f2 54%, #dce9f8);
   box-shadow: 0 0 9px rgba(169, 201, 242, 0.12);
 }
  
