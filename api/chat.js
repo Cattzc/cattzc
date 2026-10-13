@@ -1,7 +1,7 @@
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = "openai/gpt-oss-20b";
 
-const MAX_MESSAGES = 20;
+const MAX_MESSAGES = 30;
 const MAX_MESSAGE_CHARS = 8000;
 const MAX_TOTAL_CHARS = 24000;
 // Keep provider prompts smaller to reduce token-per-minute pressure.
@@ -291,7 +291,18 @@ INTERACTION EXECUTION PROTOCOL
 - If a correction reveals an error, acknowledge it briefly, fix the answer, and do not defend the earlier mistake for its own sake.
 `;
 
+const CONCISENESS_DIRECTIVE = `
+CONCISENESS — ALWAYS FOLLOW
+- Default to short or medium-length replies. Give the direct answer first.
+- Keep simple questions to 1–3 sentences. For normal questions, use a few concise sentences or up to 3–5 bullets when that is clearer.
+- Include only information that answers the user's actual question or is necessary for accuracy, safety, or a useful next step. Do not add unrelated background, repeat the question, recap the conversation, or pad the answer with filler.
+- For multi-part questions, answer every requested part briefly. For complex or high-stakes topics, provide enough detail to be accurate and safe, but stay focused.
+- Expand only when the user asks for detail, a full explanation, examples, a long story, or a specific longer format. Respect explicit length requests.
+- Keep a natural conversational tone. Do not announce that you are being concise.
+`;
+
 const CAT_INSTRUCTIONS = [
+  CONCISENESS_DIRECTIVE,
   CORE_IDENTITY,
   INSTRUCTION_PRECEDENCE,
   CREATOR_LOYALTY_DIRECTIVE,
@@ -677,7 +688,7 @@ async function callGroq(messages, options = {}) {
         messages,
         temperature: options.temperature ?? 0.75,
         max_completion_tokens:
-          options.maxCompletionTokens ?? 1200,
+          options.maxCompletionTokens ?? 500,
         reasoning_effort: "low"
       })
     });
@@ -849,7 +860,7 @@ export default async function handler(req, res) {
 
     const reply = await callGroq(modelMessages, {
       temperature,
-      maxCompletionTokens: 1200
+      maxCompletionTokens: 500
     });
 
     return res.status(200).json({
