@@ -758,6 +758,32 @@ export default async function handler(req, res) {
   try {
     const lastUserText = messages[messages.length - 1].content;
 
+    // Dedicated public-contact path. Keep ordinary chat on the existing Groq flow.
+    const contactIntent = /\b(contact|contact info|contact details|reach (?:you|jaye|the creator)|instagram|gmail|email address|e-?mail me|dm (?:you|jaye|the creator)|meet (?:you|jaye|the creator)|meeting|appointment|book (?:a )?(?:call|meeting|appointment)|schedule (?:a )?(?:call|meeting)|collab(?:oration)?|business inquiry|work with (?:you|jaye|the creator))\b/i.test(lastUserText);
+
+    if (contactIntent) {
+      const instagramUrl = String(process.env.CAT_INSTAGRAM_URL || '').trim();
+      const contactEmail = String(process.env.CAT_CONTACT_EMAIL || '').trim();
+      const available = [];
+
+      if (instagramUrl) available.push(`Instagram: ${instagramUrl}`);
+      if (contactEmail) available.push(`Email: ${contactEmail}`);
+
+      let contactReply;
+      if (available.length) {
+        contactReply = `You can reach Jaye here:\n${available.join('\n')}\n\nFor meetings, calls, appointments, or collaborations, please contact him directly to arrange a suitable time. I can share the contact details, but I can't book or confirm an appointment myself.`;
+      } else {
+        contactReply = "I don't have Jaye's public contact details available right now. Please try again later.";
+      }
+
+      return res.status(200).json({
+        reply: contactReply,
+        sources: [],
+        webSearchUsed: false,
+        webSearchConfigured: Boolean(process.env.TAVILY_API_KEY)
+      });
+    }
+
     let searchResults = null;
 
     if (
