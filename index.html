@@ -4185,6 +4185,84 @@ body.parent-space-open main{z-index:30!important}
   #parent-interface-open .parent-entry-saturn{width:136px;height:136px;right:7px;top:74px}
 }
 </style>
+<style id="archive-gateway-exterior-redesign">
+/* Gateway exterior only: original portal artwork, premium surfaces, restrained motion. */
+#archiveInterfaces.archive-interface-launcher{position:relative;isolation:isolate;overflow:hidden;padding:clamp(20px,4.2vw,34px);border:1px solid rgba(151,184,242,.2);border-radius:26px;background:radial-gradient(ellipse at 50% 0%,rgba(95,132,210,.17),transparent 48%),radial-gradient(ellipse at 92% 80%,rgba(124,91,210,.09),transparent 42%),linear-gradient(155deg,rgba(12,18,31,.96),rgba(3,6,13,.98) 72%);box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 28px 90px rgba(0,0,0,.28),0 0 0 1px rgba(255,255,255,.012)}
+#archiveInterfaces.archive-interface-launcher::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.42;background:linear-gradient(115deg,transparent 15%,rgba(159,194,255,.035) 48%,transparent 78%)}
+#archiveInterfaces .archive-gateway-art{position:relative;width:100%;height:clamp(150px,29vw,238px);max-width:680px;margin:-5px auto 12px;overflow:hidden;isolation:isolate}
+#archiveInterfaces .archive-gateway-art svg{display:block;width:100%;height:100%;overflow:visible}
+#archiveInterfaces .gateway-portal-bloom{animation:gatewayBloom 7s ease-in-out infinite alternate;transform-origin:320px 120px}
+#archiveInterfaces .gateway-portal-orbit{stroke-dasharray:3 9;animation:gatewayOrbit 42s linear infinite;transform-origin:320px 120px}
+#archiveInterfaces .gateway-star{transform-box:fill-box;transform-origin:center;animation:gatewayStar 4.8s ease-in-out infinite}
+#archiveInterfaces .gateway-star:nth-of-type(2n){animation-delay:-1.7s}
+#archiveInterfaces .archive-gateway-art::after{content:"";position:absolute;left:8%;right:8%;bottom:7%;height:1px;background:linear-gradient(90deg,transparent,rgba(143,186,255,.32),rgba(202,188,255,.24),transparent)}
+#archiveInterfaces .archive-launcher-heading{text-align:center;position:relative;margin:0 auto 22px}
+#archiveInterfaces .archive-launcher-heading>span{display:inline-flex;align-items:center;gap:10px;color:#b7d0ff;font-size:.62rem;letter-spacing:.22em}
+#archiveInterfaces .archive-launcher-heading>span::before,#archiveInterfaces .archive-launcher-heading>span::after{content:"";display:block;width:24px;height:1px;background:linear-gradient(90deg,transparent,rgba(158,195,255,.65))}
+#archiveInterfaces .archive-launcher-heading>span::after{transform:scaleX(-1)}
+#archiveInterfaces .archive-launcher-heading p{margin:10px 0 0;color:#9baac2;font-size:.88rem;letter-spacing:.005em}
+#archiveInterfaces .archive-launcher-grid{gap:13px}
+#archiveInterfaces .archive-launch-card{position:relative;isolation:isolate;overflow:hidden;min-height:154px;padding:20px;border-radius:17px;border-color:rgba(146,183,248,.23);background:radial-gradient(ellipse at 100% 0%,rgba(101,151,235,.12),transparent 53%),linear-gradient(145deg,rgba(19,31,51,.92),rgba(5,9,17,.98) 76%);box-shadow:inset 0 1px 0 rgba(255,255,255,.045);transition:transform .28s cubic-bezier(.16,1,.3,1),border-color .28s ease,box-shadow .28s ease,background .28s ease}
+#archiveInterfaces .archive-launch-card::before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:0;background:linear-gradient(115deg,transparent 20%,rgba(172,207,255,.1) 48%,transparent 75%);transform:translateX(-65%);transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .25s ease}
+#archiveInterfaces .archive-launch-card::after{content:"";position:absolute;top:0;left:18px;right:18px;height:1px;background:linear-gradient(90deg,transparent,rgba(159,197,255,.5),transparent);opacity:.65}
+#archiveInterfaces .archive-launch-card--two{border-color:rgba(177,164,255,.24);background:radial-gradient(ellipse at 100% 0%,rgba(139,112,230,.14),transparent 53%),linear-gradient(145deg,rgba(25,23,48,.94),rgba(6,8,17,.98) 76%)}
+#archiveInterfaces .archive-launch-index{font-size:.57rem;letter-spacing:.16em;color:#a8caff}
+#archiveInterfaces .archive-launch-card--two .archive-launch-index{color:#c0b7ff}
+#archiveInterfaces .archive-launch-card strong{max-width:15ch;font-size:clamp(1.08rem,3.5vw,1.4rem);line-height:1.2;letter-spacing:-.04em;text-wrap:balance}
+#archiveInterfaces .archive-launch-range{font-size:.55rem;letter-spacing:.09em;color:#8096b9}
+#archiveInterfaces .archive-launch-card--two .archive-launch-range{color:#a39acb}
+#archiveInterfaces .archive-launch-range b{display:grid;place-items:center;width:28px;height:28px;border:1px solid rgba(153,190,255,.18);border-radius:50%;font-size:.95rem;font-weight:500;color:#d5e4ff;transition:transform .25s ease,background .25s ease}
+#archiveInterfaces .archive-launch-card--two .archive-launch-range b{border-color:rgba(189,177,255,.2);color:#e0d9ff}
+@media(hover:hover){#archiveInterfaces .archive-launch-card:hover{transform:translateY(-4px);border-color:rgba(157,197,255,.58);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 18px 38px rgba(0,0,0,.25),0 0 28px rgba(99,150,237,.07)}#archiveInterfaces .archive-launch-card:hover::before{opacity:1;transform:translateX(65%)}#archiveInterfaces .archive-launch-card:hover .archive-launch-range b{transform:translate(2px,-2px);background:rgba(134,186,255,.1)}#archiveInterfaces .archive-launch-card--two:hover{border-color:rgba(189,177,255,.58)}}
+#archiveInterfaces .archive-launch-card:focus-visible{outline:2px solid #c3d9ff;outline-offset:4px;border-color:rgba(179,208,255,.75)}
+#archiveInterfaces .archive-launch-card:active{transform:translateY(-1px) scale(.995)}
+@keyframes gatewayBloom{from{opacity:.52;transform:scale(.97)}to{opacity:.9;transform:scale(1.035)}}
+@keyframes gatewayOrbit{to{transform:rotate(360deg)}}
+@keyframes gatewayStar{0%,100%{opacity:.28;transform:scale(.75)}48%{opacity:.95;transform:scale(1.2)}}
+@media(max-width:520px){#archiveInterfaces.archive-interface-launcher{padding:18px 14px 15px;border-radius:22px}#archiveInterfaces .archive-gateway-art{height:clamp(138px,42vw,190px);margin-bottom:6px}#archiveInterfaces .archive-launcher-heading{margin-bottom:18px}#archiveInterfaces .archive-launcher-heading p{font-size:.82rem}#archiveInterfaces .archive-launch-card{min-height:126px;padding:17px}#archiveInterfaces .archive-launch-card strong{font-size:1.12rem}}
+@media(prefers-reduced-motion:reduce){#archiveInterfaces .gateway-portal-bloom,#archiveInterfaces .gateway-portal-orbit,#archiveInterfaces .gateway-star{animation:none!important}#archiveInterfaces .archive-launch-card,#archiveInterfaces .archive-launch-card::before,#archiveInterfaces .archive-launch-range b{transition:none!important}#archiveInterfaces .archive-launch-card::before{display:none}}
+/* Obsidian + deep-navy gateway pass. Keep the site's existing font family throughout. */
+#archiveInterfaces.archive-interface-launcher{border-color:rgba(125,166,231,.22);background:radial-gradient(ellipse at 50% 0%,rgba(59,105,177,.19),transparent 48%),radial-gradient(ellipse at 4% 100%,rgba(30,70,130,.13),transparent 42%),radial-gradient(ellipse at 100% 100%,rgba(89,91,163,.08),transparent 40%),linear-gradient(155deg,#10141d 0%,#080d18 48%,#05070d 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 30px 100px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.012)}
+#archiveInterfaces.archive-interface-launcher::before{opacity:.58;background:linear-gradient(115deg,transparent 15%,rgba(155,193,255,.035) 48%,transparent 78%)}
+#archiveInterfaces .archive-gateway-art{filter:saturate(1.08)}
+#archiveInterfaces .archive-gateway-art::after{background:linear-gradient(90deg,transparent,rgba(116,174,255,.38),rgba(172,177,255,.25),transparent)}
+#archiveInterfaces .archive-launcher-heading>span{font-family:inherit;color:#b9d5ff;font-size:.62rem;font-weight:650;letter-spacing:.2em;text-transform:uppercase}
+#archiveInterfaces .archive-launcher-heading>span::before,#archiveInterfaces .archive-launcher-heading>span::after{background:linear-gradient(90deg,transparent,rgba(116,174,255,.7))}
+#archiveInterfaces .archive-launcher-heading p{color:#aab7cc;font-size:.87rem;line-height:1.65;letter-spacing:.005em}
+#archiveInterfaces .archive-launch-card{min-height:160px;padding:22px;border-radius:16px;border-color:rgba(119,164,235,.23);background:radial-gradient(ellipse at 100% 0%,rgba(61,111,190,.16),transparent 55%),linear-gradient(145deg,rgba(20,31,49,.97),rgba(8,13,23,.99) 76%);box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 8px 26px rgba(0,0,0,.15)}
+#archiveInterfaces .archive-launch-card::after{left:22px;right:22px;background:linear-gradient(90deg,transparent,rgba(125,176,255,.48),transparent);opacity:.75}
+#archiveInterfaces .archive-launch-card--two{border-color:rgba(151,157,241,.25);background:radial-gradient(ellipse at 100% 0%,rgba(94,103,190,.17),transparent 55%),linear-gradient(145deg,rgba(24,27,48,.97),rgba(8,11,21,.99) 76%)}
+#archiveInterfaces .archive-launch-index{color:#9fc5ff;font-size:.59rem;letter-spacing:.17em}
+#archiveInterfaces .archive-launch-card--two .archive-launch-index{color:#b7bdff}
+#archiveInterfaces .archive-launch-card strong{font-family:inherit;font-size:clamp(1.15rem,3.6vw,1.48rem);font-weight:650;line-height:1.2;letter-spacing:-.025em;color:#e4edff}
+#archiveInterfaces .archive-launch-card--two strong{color:#cbd3ff}
+#archiveInterfaces .archive-launch-range{color:#8da6c9;font-size:.56rem;letter-spacing:.1em}
+#archiveInterfaces .archive-launch-card--two .archive-launch-range{color:#a5addb}
+#archiveInterfaces .archive-launch-range b{border-color:rgba(124,174,255,.25);color:#d6e6ff;background:rgba(54,103,177,.08)}
+#archiveInterfaces .archive-launch-card--two .archive-launch-range b{border-color:rgba(160,165,244,.28);color:#e0e3ff}
+@media(hover:hover){#archiveInterfaces .archive-launch-card:hover{transform:translateY(-3px);border-color:rgba(130,181,255,.58);box-shadow:inset 0 1px 0 rgba(255,255,255,.075),0 20px 42px rgba(0,0,0,.3),0 0 30px rgba(62,126,220,.1)}#archiveInterfaces .archive-launch-card--two:hover{border-color:rgba(164,169,255,.58);box-shadow:inset 0 1px 0 rgba(255,255,255,.075),0 20px 42px rgba(0,0,0,.3),0 0 30px rgba(100,105,210,.1)}}
+#archiveInterfaces .archive-launch-card:focus-visible{outline-color:#b9d5ff;border-color:rgba(150,192,255,.76)}
+@media(max-width:520px){#archiveInterfaces .archive-launch-card{min-height:128px;padding:17px}#archiveInterfaces .archive-launch-card strong{font-size:1.18rem}#archiveInterfaces .archive-launch-index{letter-spacing:.13em}}
+</style>
+<style id="jaye-chat-contact-card-style">
+/* Contact card styles are confined to the Cat AI transcript. */
+.node-ai-contact-card{width:min(100%,340px);margin:2px 0 8px;align-self:flex-start;overflow:hidden;border:1px solid rgba(164,190,245,.24);border-radius:13px;background:radial-gradient(ellipse at 100% 0%,rgba(139,123,235,.15),transparent 50%),linear-gradient(145deg,rgba(17,27,46,.98),rgba(5,9,17,.99));box-shadow:0 8px 22px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.045);color:#e9f0ff}
+.node-ai-contact-card__top{display:flex;align-items:center;gap:9px;padding:10px 11px 8px}
+.node-ai-contact-card__avatar{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border:1px solid rgba(176,199,255,.35);border-radius:10px;background:linear-gradient(145deg,rgba(127,165,244,.24),rgba(157,132,239,.12));color:#e4edff;font-size:.9rem;font-weight:800;letter-spacing:-.05em;box-shadow:inset 0 1px rgba(255,255,255,.1),0 0 16px rgba(112,146,230,.08)}
+.node-ai-contact-card__identity{min-width:0;flex:1}
+.node-ai-contact-card__eyebrow{display:block;margin-bottom:2px;color:#9fb8e9;font:600 .48rem/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.13em;text-transform:uppercase}
+.node-ai-contact-card__name{display:block;color:#f0f4ff;font-size:.92rem;font-weight:750;letter-spacing:-.025em;line-height:1.2}
+.node-ai-contact-card__handle{display:block;margin-top:2px;color:#9baac5;font-size:.68rem;line-height:1.35}
+.node-ai-contact-card__rule{height:1px;margin:0 11px;background:linear-gradient(90deg,rgba(159,190,245,.2),rgba(159,190,245,.04))}
+.node-ai-contact-card__bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 11px 10px}
+.node-ai-contact-card__note{color:#7f90ae;font-size:.59rem;line-height:1.35}
+.node-ai-contact-card__action{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:32px;flex:0 0 auto;padding:0 10px;border:1px solid rgba(198,216,255,.42);border-radius:9px;background:linear-gradient(135deg,#e3ecff,#b8cdf6);color:#111b2b;text-decoration:none;font-size:.67rem;font-weight:750;white-space:nowrap;transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
+.node-ai-contact-card__action:hover,.node-ai-contact-card__action:focus-visible{transform:translateY(-1px);box-shadow:0 7px 22px rgba(113,151,224,.18);filter:brightness(1.04)}
+.node-ai-contact-card__action:focus-visible{outline:2px solid #d8e6ff;outline-offset:3px}
+.node-ai-contact-card__action span[aria-hidden="true"]{font-size:.9rem}
+@media(max-width:420px){.node-ai-contact-card{width:min(100%,320px)}.node-ai-contact-card__top{padding:9px 10px 7px;gap:8px}.node-ai-contact-card__bottom{gap:6px;padding:7px 10px 9px}.node-ai-contact-card__action{min-height:30px;padding:0 8px;font-size:.64rem}.node-ai-contact-card__rule{margin-inline:10px}}
+@media(prefers-reduced-motion:reduce){.node-ai-contact-card__action{transition:none}}
+</style>
 </head>
  <body>
   <div class="big-star" aria-hidden="true"></div>
@@ -4308,7 +4386,7 @@ body.parent-space-open main{z-index:30!important}
       <p>ἄρρητον.</p>
      </div>
      <div class="jarchive-rule" aria-hidden="true"></div>
-     <div class="jarchive-signature archive-enter">“In the making. By design.”</div>
+     <div class="jarchive-signature archive-enter">a roo</div>
      <div class="jarchive-colophon archive-enter">
       <span><span aria-hidden="true">✧</span> CHARACTER · VISION · EVOLUTION</span>
       <span class="jarchive-end">END.</span>
@@ -4316,6 +4394,23 @@ body.parent-space-open main{z-index:30!important}
     </div>
    </section>
    <section class="archive-interface-launcher" id="archiveInterfaces" aria-label="Choose an archive interface">
+    <div class="archive-gateway-art" aria-hidden="true">
+     <svg viewBox="0 0 640 250" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+       <linearGradient id="gatewayEdge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c6e1ff" stop-opacity=".82"/><stop offset=".48" stop-color="#81b4ff" stop-opacity=".28"/><stop offset="1" stop-color="#c4b7ff" stop-opacity=".72"/></linearGradient>
+       <linearGradient id="gatewayCore" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8d1ff" stop-opacity=".22"/><stop offset=".58" stop-color="#7b91ff" stop-opacity=".07"/><stop offset="1" stop-color="#c7b9ff" stop-opacity="0"/></linearGradient>
+       <radialGradient id="gatewayLight"><stop offset="0" stop-color="#b9dcff" stop-opacity=".55"/><stop offset=".36" stop-color="#7daaff" stop-opacity=".16"/><stop offset="1" stop-color="#7daaff" stop-opacity="0"/></radialGradient>
+       <filter id="gatewayBlur"><feGaussianBlur stdDeviation="12"/></filter>
+      </defs>
+      <ellipse class="gateway-portal-bloom" cx="320" cy="116" rx="166" ry="105" fill="url(#gatewayLight)" filter="url(#gatewayBlur)"/>
+      <g fill="none" stroke="url(#gatewayEdge)" stroke-width="1"><path d="M104 218V112C104 43 194 18 320 18s216 25 216 94v106" opacity=".23"/><path d="M139 218V115c0-57 74-80 181-80s181 23 181 80v103" opacity=".34"/><path d="M174 218V119c0-43 58-62 146-62s146 19 146 62v99" opacity=".52"/><path d="M210 218V123c0-30 42-44 110-44s110 14 110 44v95" opacity=".72"/><path d="M246 218V128c0-17 28-27 74-27s74 10 74 27v90" opacity=".88"/></g>
+      <path d="M246 218V128c0-17 28-27 74-27s74 10 74 27v90Z" fill="url(#gatewayCore)" stroke="url(#gatewayEdge)" stroke-opacity=".48"/>
+      <path d="M320 101v117M246 218h148" stroke="#a8cfff" stroke-opacity=".35" stroke-width=".8"/>
+      <g class="gateway-portal-orbit" fill="none" stroke="#a5caff" stroke-opacity=".38" stroke-width=".8"><ellipse cx="320" cy="120" rx="236" ry="40" transform="rotate(-13 320 120)"/><ellipse cx="320" cy="120" rx="236" ry="40" transform="rotate(13 320 120)"/></g>
+      <g fill="#e8f3ff"><circle class="gateway-star" cx="113" cy="76" r="1.5"/><circle class="gateway-star" cx="188" cy="42" r="1.1"/><circle class="gateway-star" cx="252" cy="31" r="1.4"/><circle class="gateway-star" cx="388" cy="38" r="1.2"/><circle class="gateway-star" cx="462" cy="61" r="1.5"/><circle class="gateway-star" cx="525" cy="105" r="1.1"/><circle class="gateway-star" cx="151" cy="164" r="1.1"/><circle class="gateway-star" cx="490" cy="177" r="1.4"/><circle class="gateway-star" cx="287" cy="191" r="1.1"/><circle class="gateway-star" cx="354" cy="184" r="1.2"/></g>
+      <path d="M320 10v15M312.5 17.5h15" stroke="#d9eaff" stroke-opacity=".8" stroke-width=".8"/>
+     </svg>
+    </div>
     <div class="archive-launcher-heading"><span>CONTINUE THE ARCHIVE</span><p>Two separate spaces. Choose where to enter.</p></div>
     <div class="archive-launcher-grid">
      <a class="archive-launch-card" href="#archive-interface-one"><span class="archive-launch-index">INTERFACE / 01</span><strong>The Personal Record</strong><span class="archive-launch-range">SECTIONS 02—05 <b aria-hidden="true">↗</b></span></a>
@@ -5261,7 +5356,10 @@ function renderHistory(){if(!history.length)return;transcript.replaceChildren();
 function getContext(){if(!contextToggle.checked)return undefined;const title=document.title;const headings=[...document.querySelectorAll('main h1, main h2, main h3')].slice(0,18).map(x=>x.textContent.trim()).filter(Boolean);const bodyText=[...document.querySelectorAll('.demi-system,.system-continuation,.demi-afterstory')].map(x=>x.innerText||'').join('\n').trim().slice(0,1800);return {pageTitle:title,headings,storyContext:bodyText}}
 async function request(route,payload,signal){if(!navigator.onLine)throw new Error('You appear to be offline. Reconnect and try again.');const now=Date.now();if(now-lastRequestAt<1200)throw new Error('Wait a moment before sending another message.');if(requestCount>=24)throw new Error('Session request limit reached. Clear the conversation to start a fresh session.');lastRequestAt=now;requestCount++;const controller=new AbortController();activeController=controller;const timer=setTimeout(()=>controller.abort(),12000);if(signal)signal.addEventListener('abort',()=>controller.abort(),{once:true});try{const response=await fetch(endpoint+route,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),cache:'no-store',signal:controller.signal});let data;try{data=await response.json()}catch(_){throw new Error('The backend returned an unreadable response.')}if(!response.ok)throw new Error(typeof data.error==='string'?data.error.slice(0,180):'The backend could not complete the request.');return data}catch(e){if(e.name==='AbortError')throw e;throw e}finally{clearTimeout(timer);if(activeController===controller)activeController=null}}
 function addCopyAction(bubble,text){const actions=document.createElement('div');actions.className='node-ai-bubble-actions';const copy=document.createElement('button');copy.type='button';copy.textContent='Copy reply';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(text);setStatus('Reply copied.','success')}catch(_){setStatus('Clipboard is unavailable in this browser.','error')}});actions.appendChild(copy);bubble.appendChild(actions)}
-async function sendMessage(rawText){const text=String(rawText||'').trim();if(busy||!text)return;busy=true;send.disabled=true;send.querySelector('span:first-child').textContent='Wait';input.value='';resizeInput();const userBubble=addBubble('user',text);const waiting=addBubble('assistant','',true);setStatus('Waiting for the signal…');const messages=[...history.slice(-10),{role:'user',content:text}];try{const data=await request('/chat',{messages,style:mode.value,context:getContext()});const reply=typeof data.reply==='string'?data.reply.trim():typeof data.text==='string'?data.text.trim():'';if(!reply)throw new Error('The backend returned no reply.');waiting.classList.remove('waiting');waiting.textContent=reply.slice(0,1800);history.push({role:'user',content:text},{role:'assistant',content:reply.slice(0,1800)});history=history.slice(-12);persist();addCopyAction(waiting,reply.slice(0,1800));setStatus('A reply came through.','success')}catch(e){if(e.name==='AbortError'){waiting.remove();setStatus('Request stopped. Your message was not saved.','normal')}else{waiting.remove();input.value=text;resizeInput();setStatus(e.message||'Could not reach the signal.','error');const retry=addBubble('assistant','The reply did not come through. Your message is back in the composer so you can retry.');retry.dataset.retry='true'}}finally{busy=false;send.disabled=false;send.querySelector('span:first-child').textContent='Send';scrollTranscript()}}
+function isJayeContactRequest(text){const value=String(text||'').toLowerCase();const asksContact=/\b(contact|reach|message|dm|instagram|connect|talk to|speak to|appointment|booking|book)\b/.test(value);const mentionsJaye=/\b(jaye|jayé|effs|yarc|him|her|them)\b/.test(value);return (asksContact&&mentionsJaye)||(/\b(appointment|booking|book)\b/.test(value)&&/\b(jaye|jayé|effs|yarc|with)\b/.test(value))}
+function addJayeContactCard(){if(transcript.querySelector('.node-ai-contact-card'))return;const card=document.createElement('article');card.className='node-ai-contact-card';card.setAttribute('aria-label','Jaye contact card');const top=document.createElement('div');top.className='node-ai-contact-card__top';const avatar=document.createElement('div');avatar.className='node-ai-contact-card__avatar';avatar.setAttribute('aria-hidden','true');avatar.textContent='J.';const identity=document.createElement('div');identity.className='node-ai-contact-card__identity';const eyebrow=document.createElement('span');eyebrow.className='node-ai-contact-card__eyebrow';eyebrow.textContent='CONTACT / DIRECT';const name=document.createElement('strong');name.className='node-ai-contact-card__name';name.textContent='Jaye';const handle=document.createElement('span');handle.className='node-ai-contact-card__handle';handle.textContent='Instagram · @7avcns';identity.append(eyebrow,name,handle);top.append(avatar,identity);const rule=document.createElement('div');rule.className='node-ai-contact-card__rule';const bottom=document.createElement('div');bottom.className='node-ai-contact-card__bottom';const note=document.createElement('span');note.className='node-ai-contact-card__note';note.textContent='Open the profile to contact Jaye directly.';const action=document.createElement('a');action.className='node-ai-contact-card__action';action.href='https://www.instagram.com/7avcns/';action.target='_blank';action.rel='noopener noreferrer';action.setAttribute('aria-label','Open Jaye’s Instagram profile in a new tab');action.append(document.createTextNode('Open Instagram '));const arrow=document.createElement('span');arrow.setAttribute('aria-hidden','true');arrow.textContent='↗';action.appendChild(arrow);bottom.append(note,action);card.append(top,rule,bottom);transcript.appendChild(card);scrollTranscript()}
+function contactSafeReply(reply){const cleaned=String(reply||'').replace(/https?:\/\/\S+|www\.\S+|(?:instagram\.com|instagr\.am)\/\S+/gi,'').replace(/\s{2,}/g,' ').trim();return cleaned||'Here’s Jaye’s contact card.'}
+async function sendMessage(rawText){const text=String(rawText||'').trim();if(busy||!text)return;const showContactCard=isJayeContactRequest(text);busy=true;send.disabled=true;send.querySelector('span:first-child').textContent='Wait';input.value='';resizeInput();addBubble('user',text);const waiting=addBubble('assistant','',true);setStatus('Waiting for the signal…');const messages=[...history.slice(-10),{role:'user',content:text}];try{const data=await request('/chat',{messages,style:mode.value,context:getContext()});const rawReply=typeof data.reply==='string'?data.reply.trim():typeof data.text==='string'?data.text.trim():'';if(!rawReply)throw new Error('The backend returned no reply.');const reply=showContactCard?contactSafeReply(rawReply):rawReply;waiting.classList.remove('waiting');waiting.textContent=reply.slice(0,1800);history.push({role:'user',content:text},{role:'assistant',content:reply.slice(0,1800)});history=history.slice(-12);persist();addCopyAction(waiting,reply.slice(0,1800));if(showContactCard)addJayeContactCard();setStatus('A reply came through.','success')}catch(e){if(e.name==='AbortError'){waiting.remove();setStatus('Request stopped. Your message was not saved.','normal')}else{waiting.remove();input.value=text;resizeInput();setStatus(e.message||'Could not reach the signal.','error');const retry=addBubble('assistant',showContactCard?'Here’s a direct way to reach Jaye.':'The reply did not come through. Your message is back in the composer so you can retry.');retry.dataset.retry='true';if(showContactCard)addJayeContactCard()}}finally{busy=false;send.disabled=false;send.querySelector('span:first-child').textContent='Send';scrollTranscript()}}
 form.addEventListener('submit',e=>{e.preventDefault();sendMessage(input.value)});
 input.addEventListener('input',resizeInput);
 input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();form.requestSubmit()}});
