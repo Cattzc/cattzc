@@ -4,6 +4,9 @@ const GROQ_MODEL = "openai/gpt-oss-20b";
 const MAX_MESSAGES = 20;
 const MAX_MESSAGE_CHARS = 8000;
 const MAX_TOTAL_CHARS = 24000;
+// Keep provider prompts smaller to reduce token-per-minute pressure.
+const GROQ_MAX_HISTORY_MESSAGES = 12;
+const GROQ_MAX_HISTORY_CHARS = 12000;
 const MAX_CONTEXT_CHARS = 5000;
 const BODY_SOFT_LIMIT_BYTES = 64000;
 
@@ -403,6 +406,26 @@ function validateMessages(messages) {
   return valid;
 }
 
+function compactMessagesForGroq(messages) {
+  // Preserve the newest user message and the most recent conversation context.
+  // Drop only the oldest whole messages when the provider prompt would be too large.
+  const kept = [];
+  let totalChars = 0;
+
+  for (let i = messages.length - 1; i >= 0; i -= 1) {
+    const message = messages[i];
+    const nextChars = message.content.length;
+
+    if (kept.length >= GROQ_MAX_HISTORY_MESSAGES) break;
+    if (kept.length > 0 && totalChars + nextChars > GROQ_MAX_HISTORY_CHARS) break;
+
+    kept.unshift(message);
+    totalChars += nextChars;
+  }
+
+  return kept.length ? kept : messages.slice(-1);
+}
+
 function validateContext(rawContext) {
   if (rawContext == null) {
     return null;
@@ -668,14 +691,24 @@ async function callGroq(messages, options = {}) {
     }
 
     if (!response.ok) {
+      const providerCode = String(
+        data?.error?.code || data?.error?.type || "unknown_provider_error"
+      ).slice(0, 120);
+      const retryAfter = response.headers.get("retry-after");
+
+      // Log only provider status/code and retry timing; never log credentials or prompts.
       console.error(
         "Groq API request failed:",
         response.status,
-        data?.error?.code || "unknown_provider_error"
+        providerCode,
+        retryAfter ? `retry-after=${retryAfter}` : "retry-after=not-provided"
       );
 
       const error = new Error("AI provider request failed");
-      error.code = "PROVIDER_ERROR";
+      error.code = response.status === 429 ? "RATE_LIMITED" : "PROVIDER_ERROR";
+      if (retryAfter && /^\d{1,6}$/.test(retryAfter.trim())) {
+        error.retryAfter = Math.max(1, Number(retryAfter.trim()));
+      }
       throw error;
     }
 
@@ -793,13 +826,14 @@ export default async function handler(req, res) {
       searchResults = await searchWeb(lastUserText);
     }
 
+    const groqHistory = compactMessagesForGroq(messages);
     const modelMessages = [
       {
         role: "system",
         content: CAT_INSTRUCTIONS
       },
       ...buildAugmentedMessages(
-        messages,
+        groqHistory,
         style,
         context,
         searchResults
@@ -844,6 +878,19 @@ export default async function handler(req, res) {
         res,
         504,
         "Cat took too long to respond. Please try again."
+      );
+    }
+
+    if (error?.code === "RATE_LIMITED") {
+      if (error.retryAfter) {
+        res.setHeader("Retry-After", String(error.retryAfter));
+      }
+      return jsonError(
+        res,
+        429,
+        error.retryAfter
+          ? `Cat is temporarily busy because the AI service is rate-limited. Please try again in about ${error.retryAfter} seconds.`
+          : "Cat is temporarily busy because the AI service reached a rate limit. Please wait a little and try again."
       );
     }
 
