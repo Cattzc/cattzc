@@ -9,9 +9,9 @@ const MAX_TOTAL_CHARS = 24000;
 // Keep provider prompts smaller to reduce token-per-minute pressure.
 // Messages actually sent to the model. Raised from 12 so the model sees the same 20-message window;
 // GROQ_MAX_HISTORY_CHARS below still caps the prompt size, so token cost stays bounded.
-const GROQ_MAX_HISTORY_MESSAGES = 20;
-const GROQ_MAX_HISTORY_CHARS = 12000;
-const MAX_CONTEXT_CHARS = 5000;
+const GROQ_MAX_HISTORY_MESSAGES = 8;
+const GROQ_MAX_HISTORY_CHARS = 4000;
+const MAX_CONTEXT_CHARS = 1800;
 const BODY_SOFT_LIMIT_BYTES = 64000;
 
 const SEARCH_TIMEOUT_MS = 1500;
@@ -495,14 +495,14 @@ function validateContext(rawContext) {
   const headings = Array.isArray(rawContext.headings)
     ? rawContext.headings
         .filter((item) => typeof item === "string")
-        .slice(0, 18)
-        .map((item) => item.trim().slice(0, 140))
+        .slice(0, 8)
+        .map((item) => item.trim().slice(0, 100))
         .filter(Boolean)
     : [];
 
   const storyContext =
     typeof rawContext.storyContext === "string"
-      ? rawContext.storyContext.trim().slice(0, 3000)
+      ? rawContext.storyContext.trim().slice(0, 1000)
       : "";
 
   const result = {
@@ -587,7 +587,7 @@ async function searchWeb(query) {
 
     const results = [];
 
-    for (const item of rawResults.slice(0, 5)) {
+    for (const item of rawResults.slice(0, 3)) {
       if (!item || typeof item !== "object") continue;
 
       const title = String(
@@ -600,7 +600,7 @@ async function searchWeb(query) {
 
       const content = String(item.content || "")
         .replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, " ")
-        .slice(0, 1100);
+        .slice(0, 500);
 
       let parsedUrl;
 
