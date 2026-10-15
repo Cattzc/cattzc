@@ -2,7 +2,7 @@ const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = "openai/gpt-oss-20b";
 
 const MAX_MESSAGES = 20;
-const MAX_MESSAGE_CHARS = 8000;
+const MAX_MESSAGE_CHARS = 500;
 const MAX_TOTAL_CHARS = 24000;
 // Keep provider prompts smaller to reduce token-per-minute pressure.
 const GROQ_MAX_HISTORY_MESSAGES = 12;
