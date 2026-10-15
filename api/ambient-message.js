@@ -16,6 +16,7 @@ const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const MODEL = "openai/gpt-oss-20b";
 const REQUEST_TIMEOUT_MS = 7500;
 const MAX_WORDS = 25;
+const MAX_CHARS = 220; // Matches index.html ambient whisper display limit.
 const RECENT_OUTPUT_LIMIT = 64;
 const RECENT_FALLBACK_LIMIT = 120;
 const RARE_EVENT_CHANCE = 0.035;
@@ -316,8 +317,14 @@ function getContext(body) {
     ? body.context
     : {};
   const vibe = typeof raw.vibe === "string" && VIBES.has(raw.vibe) ? raw.vibe : "";
+  const headings = Array.isArray(raw.headings)
+    ? raw.headings.slice(0, 18).map(item => cleanText(item, 120)).filter(Boolean)
+    : [];
   return {
     pageTitle: cleanText(raw.pageTitle, 90),
+    // Current index.html sends headings + storyContext. Legacy fields remain supported.
+    headings,
+    storyContext: cleanText(raw.storyContext, 1800),
     section: cleanText(raw.section, 90),
     topic: cleanText(raw.topic, 100),
     vibe
@@ -326,7 +333,7 @@ function getContext(body) {
 
 function inferVibe(context) {
   if (context.vibe && VIBES.has(context.vibe)) return context.vibe;
-  const words = `${context.pageTitle} ${context.section} ${context.topic}`.toLocaleLowerCase("en");
+  const words = `${context.pageTitle} ${context.headings.join(" ")} ${context.storyContext} ${context.section} ${context.topic}`.toLocaleLowerCase("en");
   if (/\b(story|fiction|novel|poem|writing|writer|character|imagine|creative)\b/.test(words)) return "creative";
   if (/\b(question|research|learn|explore|curiosity|curious|discover)\b/.test(words)) return "curious";
   if (/\b(play|playful|fun|humou?r|joke|game)\b/.test(words)) return "playful";
@@ -456,7 +463,7 @@ function validateGeneratedMessage(raw) {
     return "";
   }
   if (/[\r\n•]\s*\S/.test(raw) || wordCount(message) > MAX_WORDS) return "";
-  if (message.length > 220) return "";
+  if (message.length > MAX_CHARS) return "";
   if (/^(error|failed|exception|status code)\b/i.test(message)) return "";
   return message;
 }
@@ -464,6 +471,8 @@ function validateGeneratedMessage(raw) {
 function buildPrompt(context, avoidRecent, rareEvent = false) {
   const contextBits = {};
   if (context.pageTitle) contextBits.pageTitle = context.pageTitle;
+  if (context.headings?.length) contextBits.headings = context.headings;
+  if (context.storyContext) contextBits.storyContext = context.storyContext;
   if (context.section) contextBits.section = context.section;
   if (context.topic) contextBits.topic = context.topic;
   if (context.vibe) contextBits.preferredStyle = context.vibe;
