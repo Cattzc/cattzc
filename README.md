@@ -25,13 +25,6 @@
   alt="GitHub contribution streak"
 />
 
-</td>
-</tr>
-</table>
-
-<br/>
-  
-
 <!-- TECH STACK -->
 
 <div align="center">
