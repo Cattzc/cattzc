@@ -99,40 +99,46 @@
 
 
 
-<!-- MONOCHROME FOOTER -->
+
+<!-- OBSIDIAN FOOTER -->
 
 <br/>
 
 <img
-  src="https://capsule-render.vercel.app/api?type=rect&color=444444&height=1"
+  src="https://capsule-render.vercel.app/api?type=waving&color=0b0b0b&height=150&section=footer&reversal=true"
   width="100%"
   alt=""
 />
 
-<br/>
-
 <div align="center">
 
-  <a href="https://github.com/Cattzc/cattzc">
-    <img src="https://img.shields.io/github/last-commit/Cattzc/cattzc?style=flat-square&label=LAST%20COMMIT&color=111111&labelColor=080808" alt="Last commit"/>
+  <img
+    src="https://img.shields.io/badge/CATTZC-0B0B0B?style=flat-square&labelColor=0B0B0B&color=0B0B0B"
+    alt="Cattzc"
+  />
+
+  <br/><br/>
+
+  <a href="https://github.com/Cattzc/cattzc/commits/main">
+    <img
+      src="https://img.shields.io/github/last-commit/Cattzc/cattzc?style=flat-square&label=LAST%20UPDATE&color=202020&labelColor=0B0B0B"
+      alt="Last update"
+    />
   </a>
+
   <a href="https://github.com/Cattzc/cattzc/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/Cattzc/cattzc?style=flat-square&label=LICENSE&color=111111&labelColor=080808" alt="License"/>
-  </a>
-  <a href="https://github.com/Cattzc">
-    <img src="https://komarev.com/ghpvc/?username=Cattzc&style=flat-square&color=111111&label=VIEWS" alt="Profile views"/>
+    <img
+      src="https://img.shields.io/github/license/Cattzc/cattzc?style=flat-square&label=LICENSE&color=202020&labelColor=0B0B0B"
+      alt="License"
+    />
   </a>
 
   <br/><br/>
 
-  <sub> Cattzc &nbsp;/&nbsp; Github</sub>
+  <img
+    src="https://capsule-render.vercel.app/api?type=rect&color=303030&height=1"
+    width="36%"
+    alt=""
+  />
 
 </div>
-
-<br/>
-
-<img
-  src="https://capsule-render.vercel.app/api?type=rect&color=222222&height=2"
-  width="100%"
-  alt=""
-/>
