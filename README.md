@@ -30,8 +30,6 @@
 </table>
 
 <br/>
-
-<img
   
 
 <!-- TECH STACK -->
