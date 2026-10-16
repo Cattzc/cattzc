@@ -81,19 +81,21 @@
 
 <br/>
 
-<!-- PROFILE LINKS -->
+<!-- SOCIALS -->
 
 <p align="center">
-  <a href="https://github.com/Cattzc?tab=repositories">
-    <img src="https://img.shields.io/badge/Repositories-161b22?style=flat-square&logo=github&logoColor=white" alt="Repositories"/>
+  <a href="mailto:Anxpixeleve@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-181818?style=flat-square&logo=gmail&logoColor=white" alt="Gmail"/>
   </a>
-  &nbsp;
-  <a href="https://github.com/Cattzc?tab=stars">
-    <img src="https://img.shields.io/badge/Stars-161b22?style=flat-square&logo=github&logoColor=white" alt="Stars"/>
+  <a href="https://instagram.com/7avcns">
+    <img src="https://img.shields.io/badge/Instagram-181818?style=flat-square&logo=instagram&logoColor=white" alt="Instagram"/>
+  </a>
+  <a href="https://github.com/Cattzc">
+    <img src="https://img.shields.io/badge/GitHub-181818?style=flat-square&logo=github&logoColor=white" alt="GitHub"/>
   </a>
 </p>
 
-<br/><br/>
+<br/>
 
 <!-- ANIMATED DIVIDER -->
 
