@@ -43,53 +43,54 @@
  
 <!-- CONTRIBUTIONS -->
 
+<!-- ACTIVITY -->
+
 <h2 align="center">Activity</h2>
 
 <p align="center">
   <img
-    src="https://github-readme-activity-graph.vercel.app/graph?username=Cattzc&bg_color=0d1117&color=8b949e&line=58a6ff&point=f0f6fc&area=true&area_color=161b22&hide_border=true"
+    src="https://ghchart.rshah.org/8b949e/Cattzc"
     width="100%"
-    alt="Contribution activity"
+    alt="GitHub contribution calendar"
   />
 </p>
 
 <br/>
 
-<!-- CONTRIBUTION CALENDAR -->
-
-<p align="center">
-  <img
-    src="https://ghchart.rshah.org/58a6ff/Cattzc"
-    width="100%"
-    alt="Contribution calendar"
-  />
-</p>
-
-<br/>
-
-<!-- LINKS -->
-
-<h3 align="center">Explore</h3>
+<!-- PROFILE LINKS -->
 
 <p align="center">
   <a href="https://github.com/Cattzc?tab=repositories">
-    <img src="https://img.shields.io/badge/Projects-161b22?style=flat-square&logo=github&logoColor=white" alt="Projects"/>
+    <img src="https://img.shields.io/badge/Repositories-161b22?style=flat-square&logo=github&logoColor=white" alt="Repositories"/>
   </a>
+  &nbsp;
   <a href="https://github.com/Cattzc?tab=stars">
     <img src="https://img.shields.io/badge/Stars-161b22?style=flat-square&logo=github&logoColor=white" alt="Stars"/>
   </a>
 </p>
 
-<br/>
+<br/><br/>
 
-<!-- FOOTER -->
+<!-- ANIMATED DIVIDER -->
 
 <img
-  src="https://capsule-render.vercel.app/api?type=rect&color=0d1117&height=3"
+  src="https://capsule-render.vercel.app/api?type=waving&color=0d1117&height=100&section=footer"
   width="100%"
   alt=""
 />
 
 <p align="center">
-  <sub>© Cattzc</sub>
+  <img
+    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=13&duration=3000&pause=1200&color=8B949E&center=true&vCenter=true&width=260&lines=Building+quietly.;Always+learning."
+    alt="Building quietly. Always learning."
+  />
+</p>
+
+<p align="center">
+  <a href="https://github.com/Cattzc">
+    <img
+      src="https://img.shields.io/badge/Cattzc-0d1117?style=flat-square&logo=github&logoColor=8b949e"
+      alt="Cattzc on GitHub"
+    />
+  </a>
 </p>
