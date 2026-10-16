@@ -1,15 +1,8 @@
-
----
-
 <div align="center">
 
-<a href="https://github.com/Cattzc">
-<img
-  src="https://github-profile-trophy.vercel.app/?username=Cattzc&theme=onedark&no-frame=true&no-bg=true&column=6&margin-w=8&margin-h=8"
-  width="100%"
-  alt="GitHub achievements"
-/>
-</a>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=080808&height=210&section=header&text=JAYE&fontSize=82&fontColor=F5F5F5&fontAlignY=46&desc=INDEPENDENT%20DEVELOPER%20%2F%20DIGITAL%20CREATOR&descSize=11&descAlignY=72&descColor=888888" width="100%" alt="JAYE developer identity" />
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=400&size=13&duration=3000&pause=1100&color=AAAAAA&center=true&vCenter=true&width=460&lines=BUILDING+WITH+INTENT.;DESIGNING+WITH+PURPOSE.;LEARNING+BY+SHIPPING." alt="JAYE developer principles" />
 
 <br/><br/>
 
