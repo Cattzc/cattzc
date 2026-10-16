@@ -40,42 +40,56 @@
 
 <br/><br/>
 
-<!-- CONTRIBUTION GRAPH: PLACE YOUR IMAGE HERE MANUALLY -->
+ 
+<!-- CONTRIBUTIONS -->
 
-<div align="center">
+<h2 align="center">Activity</h2>
+
+<p align="center">
+  <img
+    src="https://github-readme-activity-graph.vercel.app/graph?username=Cattzc&bg_color=0d1117&color=8b949e&line=58a6ff&point=f0f6fc&area=true&area_color=161b22&hide_border=true"
+    width="100%"
+    alt="Contribution activity"
+  />
+</p>
+
+<br/>
+
+<!-- CONTRIBUTION CALENDAR -->
+
+<p align="center">
+  <img
+    src="https://ghchart.rshah.org/58a6ff/Cattzc"
+    width="100%"
+    alt="Contribution calendar"
+  />
+</p>
+
+<br/>
+
+<!-- LINKS -->
+
+<h3 align="center">Explore</h3>
+
+<p align="center">
+  <a href="https://github.com/Cattzc?tab=repositories">
+    <img src="https://img.shields.io/badge/Projects-161b22?style=flat-square&logo=github&logoColor=white" alt="Projects"/>
+  </a>
+  <a href="https://github.com/Cattzc?tab=stars">
+    <img src="https://img.shields.io/badge/Stars-161b22?style=flat-square&logo=github&logoColor=white" alt="Stars"/>
+  </a>
+</p>
+
+<br/>
+
+<!-- FOOTER -->
 
 <img
-  src="YOUR_IMAGE_URL_HERE"
+  src="https://capsule-render.vercel.app/api?type=rect&color=0d1117&height=3"
   width="100%"
-  alt="GitHub contribution activity"
+  alt=""
 />
 
-</div>
-
-<br/><br/>
-
-<img
-  src="https://ghchart.rshah.org/AAAAAA/Cattzc"
-  width="100%"
-  alt="GitHub contribution calendar"
-/>
-
-<br/><br/>
-
-<a href="https://github.com/Cattzc?tab=repositories">
-<img src="https://img.shields.io/badge/REPOSITORIES-111111?style=for-the-badge&logo=github&logoColor=F5F5F5" alt="Repositories" />
-</a>
-&nbsp;
-<a href="https://github.com/Cattzc?tab=stars">
-<img src="https://img.shields.io/badge/STARS-111111?style=for-the-badge&logo=github&logoColor=F5F5F5" alt="Starred repositories" />
-</a>
-
-<br/><br/>
-
-<img
-  src="https://capsule-render.vercel.app/api?type=rect&color=080808&height=100&section=footer&text=JAYE&fontSize=32&fontColor=F5F5F5&fontAlignY=55"
-  width="100%"
-  alt="JAYE"
-/>
-
-</div>
+<p align="center">
+  <sub>© Cattzc</sub>
+</p>
