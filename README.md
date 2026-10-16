@@ -37,13 +37,20 @@
   alt="Programming language distribution"
 />
 
+
 <br/><br/>
 
+<!-- CONTRIBUTION GRAPH: PLACE YOUR IMAGE HERE MANUALLY -->
+
+<div align="center">
+
 <img
-  src="https://github-readme-activity-graph.vercel.app/graph?username=Cattzc&bg_color=080808&color=BDBDBD&line=E5E5E5&point=FFFFFF&area=true&area_color=242424&hide_border=true&radius=8"
+  src="YOUR_IMAGE_URL_HERE"
   width="100%"
   alt="GitHub contribution activity"
 />
+
+</div>
 
 <br/><br/>
 
