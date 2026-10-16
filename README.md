@@ -41,25 +41,41 @@
 <br/><br/>
 
 
+
 <!-- TECH STACK -->
 
-<h3 align="center">
-  <samp>Tech Stack</samp>
-</h3>
+<div align="center">
 
-<p align="center">
-  <sub>LANGUAGES & TOOLS</sub>
-</p>
+  <h3><samp>Tech Stack</samp></h3>
 
-<br/>
+  <br/>
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,js,python,java,c&theme=dark&perline=6" alt="HTML, CSS, JavaScript, Python, Java, C"/>
-</p>
+  <table>
+    <tr>
+      <td align="center">
+        <img src="https://img.shields.io/badge/HTML5-171717?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
+      </td>
+      <td align="center">
+        <img src="https://img.shields.io/badge/CSS3-171717?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
+      </td>
+      <td align="center">
+        <img src="https://img.shields.io/badge/JavaScript-171717?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="https://img.shields.io/badge/Python-171717?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+      </td>
+      <td align="center">
+        <img src="https://img.shields.io/badge/Java-171717?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java"/>
+      </td>
+      <td align="center">
+        <img src="https://img.shields.io/badge/C-171717?style=for-the-badge&logo=c&logoColor=white" alt="C"/>
+      </td>
+    </tr>
+  </table>
 
-<p align="center">
-  <sub>HTML&nbsp; · &nbsp;CSS&nbsp; · &nbsp;JAVASCRIPT&nbsp; · &nbsp;PYTHON&nbsp; · &nbsp;JAVA&nbsp; · &nbsp;C</sub>
-</p>
+</div>
 
  
 <!-- CONTRIBUTIONS -->
