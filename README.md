@@ -25,42 +25,22 @@
   alt="GitHub contribution streak"
 />
 
-<!-- TECH STACK -->
+</td>
+</tr>
+</table>
 
-<div align="center">
+<br/>
 
-  <br/>
+<img
+  src="https://github-readme-stats.vercel.app/api/top-langs/?username=Cattzc&layout=donut&hide_border=true&bg_color=080808&title_color=F5F5F5&text_color=A3A3A3&langs_count=5"
+  width="55%"
+  alt="Programming language distribution"
+/>
 
-  <table>
-    <tr>
-      <td align="center">
+<!-- Add your manually hosted contribution calendar here, if desired. -->
 
-        <h2><samp>Tech Stack</samp></h2>
-        <sub>LANGUAGES & TOOLS</sub>
+<br/><br/>
 
-        <br/><br/>
-
-        <img src="https://img.shields.io/badge/HTML5-171717?style=for-the-badge&logo=html5&logoColor=ffffff" alt="HTML5"/>
-        &nbsp;
-        <img src="https://img.shields.io/badge/CSS3-171717?style=for-the-badge&logo=css3&logoColor=ffffff" alt="CSS3"/>
-        &nbsp;
-        <img src="https://img.shields.io/badge/JavaScript-171717?style=for-the-badge&logo=javascript&logoColor=ffffff" alt="JavaScript"/>
-
-        <br/><br/>
-
-        <img src="https://img.shields.io/badge/Python-171717?style=for-the-badge&logo=python&logoColor=ffffff" alt="Python"/>
-        &nbsp;
-        <img src="https://img.shields.io/badge/Java-171717?style=for-the-badge&logo=openjdk&logoColor=ffffff" alt="Java"/>
-        &nbsp;
-        <img src="https://img.shields.io/badge/C-171717?style=for-the-badge&logo=c&logoColor=ffffff" alt="C"/>
-
-        <br/><br/>
-
-      </td>
-    </tr>
-  </table>
-
-</div>
 
  
 <!-- CONTRIBUTIONS -->
