@@ -125,7 +125,7 @@
 
   <br/><br/>
 
-  <sub> Cattzc &nbsp; / &nbsp; G I T H U B </sub>
+  <sub> Cattzc &nbsp;/&nbsp; Github</sub>
 
 </div>
 
