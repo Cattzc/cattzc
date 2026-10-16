@@ -37,7 +37,19 @@
   alt="Programming language distribution"
 />
 
-<!-- Add your manually hosted contribution calendar here, if desired. -->
+<!-- MONOCHROME STATUS -->
+
+<br/>
+
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=262626&height=1" width="28%" alt="" />
+  <br/><br/>
+  <img src="https://img.shields.io/badge/●-ACTIVE-111111?style=flat-square&labelColor=080808&color=171717" alt="Active status" />
+  <img src="https://img.shields.io/badge/BUILD-ONGOING-111111?style=flat-square&labelColor=080808&color=171717" alt="Build ongoing" />
+  <img src="https://img.shields.io/badge/MODE-DARK-111111?style=flat-square&labelColor=080808&color=171717" alt="Dark mode aesthetic" />
+  <br/><br/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=262626&height=1" width="28%" alt="" />
+</div>
 
 <br/><br/>
 
