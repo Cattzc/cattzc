@@ -32,45 +32,41 @@
 <br/>
 
 <img
-  src="https://github-readme-stats.vercel.app/api/top-langs/?username=Cattzc&layout=donut&hide_border=true&bg_color=080808&title_color=F5F5F5&text_color=A3A3A3&langs_count=5"
-  width="55%"
-  alt="Programming language distribution"
-/>
-
-
-<br/><br/>
-
+  
 
 
 <!-- TECH STACK -->
 
 <div align="center">
 
-  <h3><samp>Tech Stack</samp></h3>
-
   <br/>
 
   <table>
     <tr>
-      <td align="center">
-        <img src="https://img.shields.io/badge/HTML5-171717?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
-      </td>
-      <td align="center">
-        <img src="https://img.shields.io/badge/CSS3-171717?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
-      </td>
-      <td align="center">
-        <img src="https://img.shields.io/badge/JavaScript-171717?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/>
-      </td>
-    </tr>
-    <tr>
-      <td align="center">
-        <img src="https://img.shields.io/badge/Python-171717?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-      </td>
-      <td align="center">
-        <img src="https://img.shields.io/badge/Java-171717?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java"/>
-      </td>
-      <td align="center">
-        <img src="https://img.shields.io/badge/C-171717?style=for-the-badge&logo=c&logoColor=white" alt="C"/>
+      <td align="center" width="520">
+        <br/>
+
+        <h2><samp>Tech Stack</samp></h2>
+
+        <p><sub>LANGUAGES & TECHNOLOGIES</sub></p>
+
+        <br/>
+
+        <img src="https://img.shields.io/badge/HTML5-171717?style=for-the-badge&logo=html5&logoColor=white" height="38" alt="HTML5"/>
+        &nbsp;
+        <img src="https://img.shields.io/badge/CSS3-171717?style=for-the-badge&logo=css3&logoColor=white" height="38" alt="CSS3"/>
+        &nbsp;
+        <img src="https://img.shields.io/badge/JavaScript-171717?style=for-the-badge&logo=javascript&logoColor=white" height="38" alt="JavaScript"/>
+
+        <br/><br/>
+
+        <img src="https://img.shields.io/badge/Python-171717?style=for-the-badge&logo=python&logoColor=white" height="38" alt="Python"/>
+        &nbsp;
+        <img src="https://img.shields.io/badge/Java-171717?style=for-the-badge&logo=openjdk&logoColor=white" height="38" alt="Java"/>
+        &nbsp;
+        <img src="https://img.shields.io/badge/C-171717?style=for-the-badge&logo=c&logoColor=white" height="38" alt="C"/>
+
+        <br/><br/>
       </td>
     </tr>
   </table>
