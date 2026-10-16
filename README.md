@@ -42,42 +42,30 @@
 <br/><br/>
 
 
+
 <!-- TECH STACK -->
 
 <div align="center">
 
+  <h2><code>Tech Stack</code></h2>
+
   <br/>
 
-  <table>
-    <tr>
-      <td align="center">
+  <img src="https://img.shields.io/badge/HTML5-171717?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
+  <img src="https://img.shields.io/badge/CSS3-171717?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
+  <img src="https://img.shields.io/badge/JavaScript-171717?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/>
 
-        <h2><samp>Tech Stack</samp></h2>
-        <sub>LANGUAGES & TOOLS</sub>
+  <br/><br/>
 
-        <br/><br/>
-
-        <img src="https://img.shields.io/badge/HTML5-171717?style=for-the-badge&logo=html5&logoColor=ffffff" alt="HTML5"/>
-        &nbsp;
-        <img src="https://img.shields.io/badge/CSS3-171717?style=for-the-badge&logo=css3&logoColor=ffffff" alt="CSS3"/>
-        &nbsp;
-        <img src="https://img.shields.io/badge/JavaScript-171717?style=for-the-badge&logo=javascript&logoColor=ffffff" alt="JavaScript"/>
-
-        <br/><br/>
-
-        <img src="https://img.shields.io/badge/Python-171717?style=for-the-badge&logo=python&logoColor=ffffff" alt="Python"/>
-        &nbsp;
-        <img src="https://img.shields.io/badge/Java-171717?style=for-the-badge&logo=openjdk&logoColor=ffffff" alt="Java"/>
-        &nbsp;
-        <img src="https://img.shields.io/badge/C-171717?style=for-the-badge&logo=c&logoColor=ffffff" alt="C"/>
-
-        <br/><br/>
-
-      </td>
-    </tr>
-  </table>
+  <img src="https://img.shields.io/badge/Python-171717?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Java-171717?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java"/>
+  <img src="https://img.shields.io/badge/C-171717?style=for-the-badge&logo=c&logoColor=white" alt="C"/>
 
 </div>
+
+<!-- END TECH STACK -->
+
+
  
 <!-- CONTRIBUTIONS -->
 
