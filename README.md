@@ -1,113 +1,89 @@
+
 <div align="center">
 
-<br>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=080808&height=200&section=header&text=JAYE&fontSize=76&fontColor=F5F5F5&fontAlignY=48&desc=INDEPENDENT%20DEVELOPER%20%2F%20DIGITAL%20CREATOR&descSize=11&descAlignY=75&descColor=888888" width="100%" alt="JAYE — Developer identity" />
 
-# Jaye
+<br/>
 
-<br>
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=400&size=13&duration=3000&pause=1000&color=AAAAAA&center=true&vCenter=true&width=440&lines=BUILDING+WITH+INTENT.;LEARNING+BY+SHIPPING.;TURNING+IDEAS+INTO+CODE." alt="Developer motto" />
+
+<br/><br/>
+
+<a href="https://github.com/Cattzc">
+  <img src="https://img.shields.io/badge/GITHUB-Cattzc-111111?style=flat-square&logo=github&logoColor=white" alt="GitHub profile" />
+</a>
+<img src="https://img.shields.io/badge/STATUS-LEARNING-111111?style=flat-square&labelColor=080808&color=222222" alt="Learning" />
+
+</div>
+
+---
 
 <table>
 <tr>
-<td align="center" width="54">
-<a href="https://github.com/YOUR_USERNAME">
-<img src="https://cdn.simpleicons.org/github/FFFFFF" width="22">
-</a>
+<td width="55%" valign="top">
+
+### 01 / PROFILE
+
+I'm JAYE — exploring software development, web technologies, and creative problem-solving.
+
+I value clean code, deliberate design, and projects that turn ideas into something real.
+
 </td>
+<td width="45%" valign="top">
 
-<td width="10"></td>
+### 02 / CURRENT FOCUS
 
-<td align="center" width="54">
-<a href="https://linkedin.com/in/YOUR_USERNAME">
-<img src="https://cdn.simpleicons.org/linkedin/FFFFFF" width="22">
-</a>
-</td>
+- Web development
+- Programming fundamentals
+- Personal projects
+- Continuous learning
 
-<td width="10"></td>
-
-<td align="center" width="54">
-<a href="mailto:YOUR_EMAIL">
-<img src="https://cdn.simpleicons.org/gmail/FFFFFF" width="22">
-</a>
 </td>
 </tr>
 </table>
 
-<br><br>
+---
 
-</div>
-
-<div align="center">
-
-<table>
-<tr>
-
-<td align="center" width="190" height="145">
-
-<img src="https://cdn.simpleicons.org/javascript/F7DF1E" width="48">
-
-<br><br>
-
-<strong>JavaScript</strong>
-
-</td>
-
-<td align="center" width="190" height="145">
-
-<img src="https://cdn.simpleicons.org/html5/E34F26" width="48">
-
-<br><br>
-
-<strong>HTML</strong>
-
-</td>
-
-<td align="center" width="190" height="145">
-
-<img src="https://cdn.simpleicons.org/css3/1572B6" width="48">
-
-<br><br>
-
-<strong>CSS</strong>
-
-</td>
-
-<td align="center" width="190" height="145">
-
-<img src="https://cdn.simpleicons.org/python/3776AB" width="48">
-
-<br><br>
-
-<strong>Python</strong>
-
-</td>
-
-</tr>
-</table>
-
-</div>
-
-<br><br>
+### 03 / TECHNOLOGIES
 
 <div align="center">
 
-<img
-src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&hide_title=true&hide_rank=true&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=00000000&text_color=8B949E&icon_color=FFFFFF"
-height="150"
-/>
-
-<img
-src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&hide_border=true&bg_color=00000000&text_color=8B949E&title_color=FFFFFF"
-height="150"
-/>
+<img src="https://skillicons.dev/icons?i=html,css,js,python&theme=dark" alt="HTML, CSS, JavaScript, and Python" />
 
 </div>
 
-<br>
+---
+
+### 04 / GITHUB METRICS
 
 <div align="center">
 
-<a href="https://github.com/YOUR_USERNAME?tab=repositories">
-<img src="https://img.shields.io/badge/REPOSITORIES-161616?style=for-the-badge&labelColor=0D0D0D&color=161616">
+<img width="49%" src="https://github-readme-stats.vercel.app/api?username=Cattzc&show_icons=true&hide_border=true&bg_color=080808&title_color=F5F5F5&text_color=999999&icon_color=F5F5F5&ring_color=F5F5F5&include_all_commits=true" alt="GitHub statistics" />
+
+<img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Cattzc&layout=compact&hide_border=true&bg_color=080808&title_color=F5F5F5&text_color=999999" alt="Most used programming languages" />
+
+</div>
+
+---
+
+### 05 / CONTRIBUTION ACTIVITY
+
+<div align="center">
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Cattzc&bg_color=080808&color=AAAAAA&line=DDDDDD&point=FFFFFF&area=true&area_color=222222&hide_border=true&custom_title=CONTRIBUTION%20ACTIVITY" width="100%" alt="GitHub contribution activity" />
+
+</div>
+
+---
+
+<div align="center">
+
+<a href="https://github.com/Cattzc?tab=repositories">
+  <img src="https://img.shields.io/badge/EXPLORE%20MY%20WORK-FFFFFF?style=for-the-badge&logo=github&logoColor=000000" alt="Explore my repositories" />
 </a>
+
+<br/><br/>
+
+<sub>J A Y E&nbsp; / &nbsp;DESIGN. DEVELOP. REFINE.</sub>
 
 </div>
