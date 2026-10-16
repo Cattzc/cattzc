@@ -40,6 +40,15 @@
 
 <br/><br/>
 
+
+<!-- STACK -->
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=html,css,js,git,github,vscode&theme=dark&perline=6" alt="Tech stack"/>
+</p>
+
+<br/>
+
  
 <!-- CONTRIBUTIONS -->
 
