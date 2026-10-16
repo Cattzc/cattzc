@@ -98,31 +98,41 @@
 <br/>
 
 
+
 <!-- MONOCHROME FOOTER -->
 
 <br/>
 
 <img
-  src="https://capsule-render.vercel.app/api?type=waving&color=0b0b0b&height=120&section=footer"
+  src="https://capsule-render.vercel.app/api?type=rect&color=444444&height=1"
   width="100%"
   alt=""
 />
 
+<br/>
+
 <div align="center">
 
-  <samp>CATTZC</samp>
-
-  <br/><br/>
-
-  <a href="https://github.com/Cattzc">
-    <img src="https://img.shields.io/badge/GitHub-0b0b0b?style=flat-square&logo=github&logoColor=white" alt="GitHub"/>
+  <a href="https://github.com/Cattzc/cattzc">
+    <img src="https://img.shields.io/github/last-commit/Cattzc/cattzc?style=flat-square&label=LAST%20COMMIT&color=111111&labelColor=080808" alt="Last commit"/>
   </a>
   <a href="https://github.com/Cattzc/cattzc/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/License-0b0b0b?style=flat-square&logo=opensourceinitiative&logoColor=white" alt="License"/>
+    <img src="https://img.shields.io/github/license/Cattzc/cattzc?style=flat-square&label=LICENSE&color=111111&labelColor=080808" alt="License"/>
+  </a>
+  <a href="https://github.com/Cattzc">
+    <img src="https://komarev.com/ghpvc/?username=Cattzc&style=flat-square&color=111111&label=VIEWS" alt="Profile views"/>
   </a>
 
   <br/><br/>
 
-  <sub>© 2026 CATTZC</sub>
+  <sub> Cattzc &nbsp; / &nbsp; G I T H U B </sub>
 
 </div>
+
+<br/>
+
+<img
+  src="https://capsule-render.vercel.app/api?type=rect&color=222222&height=2"
+  width="100%"
+  alt=""
+/>
