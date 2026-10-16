@@ -41,13 +41,25 @@
 <br/><br/>
 
 
-<!-- STACK -->
+<!-- TECH STACK -->
+
+<h3 align="center">
+  <samp>Tech Stack</samp>
+</h3>
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,js,git,github,vscode&theme=dark&perline=6" alt="Tech stack"/>
+  <sub>LANGUAGES & TOOLS</sub>
 </p>
 
 <br/>
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=html,css,js,python,java,c&theme=dark&perline=6" alt="HTML, CSS, JavaScript, Python, Java, C"/>
+</p>
+
+<p align="center">
+  <sub>HTML&nbsp; · &nbsp;CSS&nbsp; · &nbsp;JAVASCRIPT&nbsp; · &nbsp;PYTHON&nbsp; · &nbsp;JAVA&nbsp; · &nbsp;C</sub>
+</p>
 
  
 <!-- CONTRIBUTIONS -->
