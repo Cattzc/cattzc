@@ -97,6 +97,18 @@
 
 <br/>
 
+<!-- FOOTER -->
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=303030&height=1&section=footer" width="100%" alt=""/>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Cattzc">
+    <img src="https://img.shields.io/badge/Cattzc-0d1117?style=flat-square&logo=github&logoColor=8b949e" alt="Cattzc"/>
+  </a>
+</p>
+
 <!-- ANIMATED DIVIDER -->
 
 <img
