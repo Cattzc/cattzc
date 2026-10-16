@@ -97,38 +97,32 @@
 
 <br/>
 
-<!-- FOOTER -->
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=303030&height=1&section=footer" width="100%" alt=""/>
-</p>
+<!-- MONOCHROME FOOTER -->
 
-<p align="center">
-  <a href="https://github.com/Cattzc">
-    <img src="https://img.shields.io/badge/Cattzc-0d1117?style=flat-square&logo=github&logoColor=8b949e" alt="Cattzc"/>
-  </a>
-</p>
-
-<!-- ANIMATED DIVIDER -->
+<br/>
 
 <img
-  src="https://capsule-render.vercel.app/api?type=waving&color=0d1117&height=100&section=footer"
+  src="https://capsule-render.vercel.app/api?type=waving&color=0b0b0b&height=120&section=footer"
   width="100%"
   alt=""
 />
 
-<p align="center">
-  <img
-    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=13&duration=3000&pause=1200&color=8B949E&center=true&vCenter=true&width=260&lines=Building+quietly.;Always+learning."
-    alt="Building quietly. Always learning."
-  />
-</p>
+<div align="center">
 
-<p align="center">
+  <samp>CATTZC</samp>
+
+  <br/><br/>
+
   <a href="https://github.com/Cattzc">
-    <img
-      src="https://img.shields.io/badge/Cattzc-0d1117?style=flat-square&logo=github&logoColor=8b949e"
-      alt="Cattzc on GitHub"
-    />
+    <img src="https://img.shields.io/badge/GitHub-0b0b0b?style=flat-square&logo=github&logoColor=white" alt="GitHub"/>
   </a>
-</p>
+  <a href="https://github.com/Cattzc/cattzc/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/License-0b0b0b?style=flat-square&logo=opensourceinitiative&logoColor=white" alt="License"/>
+  </a>
+
+  <br/><br/>
+
+  <sub>© 2026 CATTZC</sub>
+
+</div>
