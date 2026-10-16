@@ -40,30 +40,29 @@
 
   <table>
     <tr>
-      <td align="center" width="520">
-        <br/>
+      <td align="center">
 
         <h2><samp>Tech Stack</samp></h2>
-
-        <p><sub>LANGUAGES & TECHNOLOGIES</sub></p>
-
-        <br/>
-
-        <img src="https://img.shields.io/badge/HTML5-171717?style=for-the-badge&logo=html5&logoColor=white" height="38" alt="HTML5"/>
-        &nbsp;
-        <img src="https://img.shields.io/badge/CSS3-171717?style=for-the-badge&logo=css3&logoColor=white" height="38" alt="CSS3"/>
-        &nbsp;
-        <img src="https://img.shields.io/badge/JavaScript-171717?style=for-the-badge&logo=javascript&logoColor=white" height="38" alt="JavaScript"/>
+        <sub>LANGUAGES & TOOLS</sub>
 
         <br/><br/>
 
-        <img src="https://img.shields.io/badge/Python-171717?style=for-the-badge&logo=python&logoColor=white" height="38" alt="Python"/>
+        <img src="https://img.shields.io/badge/HTML5-171717?style=for-the-badge&logo=html5&logoColor=ffffff" alt="HTML5"/>
         &nbsp;
-        <img src="https://img.shields.io/badge/Java-171717?style=for-the-badge&logo=openjdk&logoColor=white" height="38" alt="Java"/>
+        <img src="https://img.shields.io/badge/CSS3-171717?style=for-the-badge&logo=css3&logoColor=ffffff" alt="CSS3"/>
         &nbsp;
-        <img src="https://img.shields.io/badge/C-171717?style=for-the-badge&logo=c&logoColor=white" height="38" alt="C"/>
+        <img src="https://img.shields.io/badge/JavaScript-171717?style=for-the-badge&logo=javascript&logoColor=ffffff" alt="JavaScript"/>
 
         <br/><br/>
+
+        <img src="https://img.shields.io/badge/Python-171717?style=for-the-badge&logo=python&logoColor=ffffff" alt="Python"/>
+        &nbsp;
+        <img src="https://img.shields.io/badge/Java-171717?style=for-the-badge&logo=openjdk&logoColor=ffffff" alt="Java"/>
+        &nbsp;
+        <img src="https://img.shields.io/badge/C-171717?style=for-the-badge&logo=c&logoColor=ffffff" alt="C"/>
+
+        <br/><br/>
+
       </td>
     </tr>
   </table>
